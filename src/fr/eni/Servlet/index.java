@@ -36,7 +36,7 @@ public class index extends HttpServlet {
 			e.printStackTrace();
 		}
 		//test
-		
+		request.setAttribute("liste", liste);
 		rd = request.getRequestDispatcher("WEB-INF/Accueil.jsp");
 		rd.forward(request, response);
 	}
