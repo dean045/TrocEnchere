@@ -13,6 +13,7 @@ import fr.eni.DAL.JDBCTOOLS;
 
 
 public class DaoJDBCImpl implements articleDao {
+	
 	public List<Articles> selectAll() throws DALException  {
 		Connection cnx = null;
 		Statement rqt = null;
@@ -70,7 +71,7 @@ public class DaoJDBCImpl implements articleDao {
 	}
 	
 	
-//------------------INSERT-----------------------------------------------------------
+//------------------INSERT--USER---------------------------------------------------------
 	
 	
 	public void insert(Utilisateurs registration_user) throws DALException{
@@ -117,7 +118,12 @@ public class DaoJDBCImpl implements articleDao {
 				e.printStackTrace();
 			}
 		}
-	}	
+	}
+	
+//----------------------INSERT--ARTICLE------------------------------------------------
+	
+	
+	
 }
 
 

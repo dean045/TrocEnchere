@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.BLL.Manager;
 import fr.eni.BO.Articles;
+import fr.eni.BO.Utilisateurs;
 import fr.eni.DAL.DALException;
 
 /**
@@ -27,8 +28,10 @@ public class index extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Manager manager = new Manager();
+
 		
 		List<Articles> liste = new ArrayList<Articles>();
+		
 		try {
 			liste = manager.getliste();
 		} catch (DALException e) {
@@ -48,5 +51,6 @@ public class index extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+	
 
 }
