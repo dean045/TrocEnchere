@@ -10,7 +10,7 @@ import java.util.List;
 import fr.eni.BO.*;
 import fr.eni.DAL.JDBCTOOLS;
 
-public class DaoJDBCImpl {
+public class DaoJDBCImpl implements articleDao {
 	public List<Articles> selectAll() throws DALException  {
 		Connection cnx = null;
 		Statement rqt = null;
