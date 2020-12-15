@@ -68,6 +68,16 @@ public class Articles {
 		this.etat = etat;
 		this.img = img;
 	}
+	
+	
+	
+	
+	
+	
+
+	public Articles() {
+		super();
+	}
 
 	//Getter & Setter 
 	public int getNoArticle() {

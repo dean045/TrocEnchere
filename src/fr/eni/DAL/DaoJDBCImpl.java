@@ -14,6 +14,9 @@ import fr.eni.DAL.JDBCTOOLS;
 
 public class DaoJDBCImpl implements articleDao {
 	
+	private final static String SELECT = "select * from ARTICLES where no_article = ?;";
+
+	
 	public List<Articles> selectAll() throws DALException  {
 		Connection cnx = null;
 		Statement rqt = null;
@@ -121,7 +124,119 @@ public class DaoJDBCImpl implements articleDao {
 	}
 	
 //----------------------INSERT--ARTICLE------------------------------------------------
+
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+//--------------------SELECT------------------------
+	
+	
+	
+		public static Articles select (int noArticle) throws DALException {
+			Connection cnx=null;
+			PreparedStatement pstmt=null;
+			ResultSet rs=null;
+			Articles art = new Articles ();
+
+			
+			 
+			try {
+				cnx=JDBCTOOLS.getConnection();
+				pstmt=cnx.prepareStatement(SELECT);
+				pstmt.setInt(1,noArticle);
+				rs=pstmt.executeQuery();
+			if (rs.next()){
+				
+				art.setNoArticle(rs.getInt("no_article"));
+				
+				art.setNomArticle(rs.getString("nom_article"));
+				
+				art.setDescription(rs.getString("description"));
+				
+				art.setDateDebutEnchere(rs.getDate("date_debut_encheres"));
+				
+				art.setDateFinEnchere(rs.getDate("date_fin_encheres"));
+				
+				art.setPrixInitial(rs.getInt("prix_initial"));
+				
+				art.setPrixVente(rs.getInt("prix_vente"));
+				
+				art.setNoUtilisateur(rs.getInt("no_utilisateur"));
+				
+				art.setCategorie(rs.getString("no_categorie"));
+							
+				art.setEtat(rs.getString("EC"));
+				
+				art.setImg(rs.getString("IMG"));
+
+
+			}
+			} catch (SQLException e) {
+				
+					throw new DALException ("Probleme - obtenirUnUtil - " + e.getMessage());
+			
+			}finally{
+				try{
+					if (pstmt!=null) pstmt.close();
+					if (cnx!=null) cnx.close();
+				} catch (SQLException e) {
+						throw new DALException ("Probleme - FermerConnexion - " + e.getMessage());
+				}
+
+			}
+			return art;
+
+		}
+		
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	
 	
 }
