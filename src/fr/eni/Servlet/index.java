@@ -35,6 +35,7 @@ public class index extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		//test
 		
 		rd = request.getRequestDispatcher("WEB-INF/Accueil.jsp");
 		rd.forward(request, response);
