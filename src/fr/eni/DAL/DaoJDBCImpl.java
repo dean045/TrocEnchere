@@ -1,6 +1,7 @@
 package fr.eni.DAL;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -42,7 +43,10 @@ public class DaoJDBCImpl implements articleDao {
 			
 			while (rs.next()) {
 				//creation d'un objet Java
-				article = new Articles(rs.getInt("no_article"), rs.getString("nom"), rs.getDate("date_fin_encheres"), rs.getInt("prix_vente"), 
+				int no_article = rs.getInt("no_article");
+				String nom = rs.getString("nom_article");
+				Date date = rs.getDate("date_fin_encheres");
+				article = new Articles(no_article, nom, date , rs.getInt("prix_vente"), 
 						rs.getInt("no_utilisateur"), "EC",rs.getString("IMG"));
 				liste.add(article);
 			}

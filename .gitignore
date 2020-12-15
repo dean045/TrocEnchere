@@ -10,6 +10,7 @@ target/**
 *.pydevproject
 .project
 .metadata
+context.xml
 bin/**
 tmp/**
 tmp/**/*
@@ -29,3 +30,4 @@ local.properties
 
 # Locally stored "Eclipse launch configurations"
 *.launch
+/bin/
