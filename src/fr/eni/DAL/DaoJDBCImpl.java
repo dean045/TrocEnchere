@@ -11,6 +11,7 @@ import java.util.List;
 import fr.eni.BO.*;
 import fr.eni.DAL.JDBCTOOLS;
 
+
 public class DaoJDBCImpl implements articleDao {
 	public List<Articles> selectAll() throws DALException  {
 		Connection cnx = null;
@@ -68,6 +69,55 @@ public class DaoJDBCImpl implements articleDao {
 
 	}
 	
+	
+//------------------INSERT-----------------------------------------------------------
+	
+	
+	public void insert(Utilisateurs registration_user) throws DALException{
+		 Statement stmt = null;
+		 Connection con = null;
+	
+		try {
+			con = JDBCTOOLS.getConnection();
+		//Créer une requete / Statement
+		String sql = "INSERT INTO Utilisateurs VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			PreparedStatement preparedStmt = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+		      preparedStmt.setString(1, registration_user.getPseudo());
+		      preparedStmt.setString(2, registration_user.getNom());
+		      preparedStmt.setString(3, registration_user.getPrenom());
+		      preparedStmt.setString(4, registration_user.getEmail());
+		      preparedStmt.setString(5, registration_user.getTelephone());
+		      preparedStmt.setString(6, registration_user.getRue());
+		      preparedStmt.setString(7, registration_user.getCode_postal());
+		      preparedStmt.setString(8, registration_user.getVille());
+		      preparedStmt.setString(9, registration_user.getMot_de_passe());
+		      preparedStmt.setInt(10, registration_user.getCredit());
+		      preparedStmt.setInt(11, registration_user.getAdministrateur());
+		      
+		    //Execute la requete
+		      preparedStmt.executeUpdate();
+		      
+		      ResultSet rs =   preparedStmt.getGeneratedKeys();
+		      
+		      while(rs.next()) {
+		    	  registration_user.setNo_utilisateur(rs.getInt(1));
+		      }
+		
+		} catch (SQLException e) {
+			e.printStackTrace();			
+		} finally{
+			try {
+				if(stmt!=null){
+					stmt.close();
+				}
+				if(con!=null){
+					con.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}	
 }
 
 
