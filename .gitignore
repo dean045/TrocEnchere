@@ -1,3 +1,5 @@
+context.xml
+
 # Java related
 target/**
 *.jar
@@ -10,7 +12,7 @@ target/**
 *.pydevproject
 .project
 .metadata
-context.xml
+
 bin/**
 tmp/**
 tmp/**/*
