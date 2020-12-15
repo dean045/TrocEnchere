@@ -9,7 +9,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Page Accueil</title>
+<title>Accueil</title>
 <meta name="description">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -26,7 +26,7 @@ liste = (List<Articles>) request.getAttribute("liste");
 	<header class="col-12">
 		<div class="container d-flex justify-content-between">
 			<h1>ENI-Enchère</h1>
-			<a href="https://www.eni-ecole.fr/">S'inscrire - Se connecter</a>
+			<a href="login">S'inscrire - Se connecter</a>
 		</div>
 
 	</header>
