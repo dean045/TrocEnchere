@@ -11,6 +11,7 @@
 <title>Login</title>
 </head>
 <body style="margin-top: 3%;">
+<%String resultat = (String)request.getAttribute("resultat"); %>
 	<form action="login" method="post">
 		
 		<div class="border m-auto d-flex flex-column justify-content-center" style="padding:2%; height: 400px; width: 300px;">
@@ -29,6 +30,7 @@
 				<label class="form-check-label" for="exampleCheck1">Mémoriser</label>
 			</div>
 			<button type="submit" class="btn btn-primary ">Se connecter</button>
+			<% if(resultat != null) out.print("<p style=\"color:red; text-align : center;\">"+ resultat + "</p>"); %>
 			<p style="text-align: center; margin-top: 10px;">Vous n'avez pas de compte ?</p>
 			<a style="text-align: center" href="sign_in">Creer un compte</a>
 		</div>

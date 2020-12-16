@@ -72,7 +72,7 @@ public class DaoJDBCImpl implements Dao {
 	}
 
 
-	//------------------INSERT--USER---------------------------------------------------------
+	//------------------INSERT--USER-------------------------------------------------------
 
 
 	public void insert(Utilisateurs registration_user) throws DALException{
@@ -239,8 +239,13 @@ public class DaoJDBCImpl implements Dao {
 		PreparedStatement rqt = null;
 		ResultSet rs=null;
 		Utilisateurs user = null;
-
-		String SELECT = "select * from UTILISATEURS where pseudo='?' AND mot_de_passe = '?';";
+		String SELECT;
+		
+		if(username.indexOf('@') !=-1)
+			SELECT = "SELECT * from UTILISATEURS where email = ? AND mot_de_passe = ? ;";
+		else
+			SELECT = "SELECT * from UTILISATEURS where pseudo = ? AND mot_de_passe = ? ;";
+		
 		
 		try {
 			System.out.println("-1");
@@ -248,13 +253,14 @@ public class DaoJDBCImpl implements Dao {
 			cnx = JDBCTOOLS.getConnection(); 
 			System.out.println("0");
 			//creation requete
+			
 			rqt = cnx.prepareStatement(SELECT);
 			rqt.setString(1, username);
-			rqt.setString(1, pw);
+			rqt.setString(2, pw);
 			System.out.println("1");
 			
 			//execution requete
-			rs = rqt.executeQuery(SELECT);
+			rs = rqt.executeQuery();
 
 			System.out.println("2");
 
@@ -269,15 +275,15 @@ public class DaoJDBCImpl implements Dao {
 			
 
 		} catch (SQLException e) {
-			throw new DALException("selectAll failed - ", e);
+			throw new DALException("connexion failed - ", e);
 		}
 		finally{
 			try {
 				if(cnx!=null){
-					cnx.close();
+				cnx.close();
 				}
 			} catch (SQLException e) {
-				e.printStackTrace();
+				throw new DALException ("Probleme - FermerConnexion - " + e.getMessage());
 			}
 		}
 		return user;

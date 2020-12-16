@@ -17,10 +17,7 @@ public class Utilisateurs {
 	
 	
 	
-	public Utilisateurs(String pseudo, String mot_de_passe) {
-		super();
-		this.pseudo = pseudo;
-		this.mot_de_passe = mot_de_passe;
+	public Utilisateurs() {
 	}
 
 	public Utilisateurs(String pseudo, String nom, String prenom, String email, String telephone,
