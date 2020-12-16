@@ -19,21 +19,12 @@
 
 <body>
 	<% Articles art = (Articles)request.getAttribute ("art"); %>
-	<% Utilisateurs util = (Utilisateurs) request.getAttribute("util"); %>
 
 
 	<div class="text-center" id="titre">
 		<h1 id="titre">
 			<b>Détail vente</b>
 		</h1>
-	</div>
-	<div class="text-center">
-		<p>
-			Bonjour <%out.print(util.getPseudo()); %>
-		</p>
-		<p>
-			Vous avez <%out.print(util.getCredit()); %>crédit(s)
-		</p>
 	</div>
 
 	<div class="col-xs-4 col-xl-12 col-md-12"></div>
@@ -47,12 +38,11 @@
 	<%out.print(art.getImg()); %><br />
 	<br>
 
-	<c:if test="${PrixVente>PrixInitial }">
 
-		<strong> Meilleure offre : </strong>${PrixMeilleurVente}
-					par :<a href="AutreProfil=${pseudoEnchere}">${pseudoEnchere}</a>
-		<br />
-	</c:if>
+	<strong> Meilleure offre : <%out.print(art.getPrixVente()); %></strong>$
+	par :
+	<a href="AutreProfil=${pseudoEnchere}">${pseudoEnchere}</a>
+	<br />
 	<br>
 	<strong>Mise à prix : </strong>
 	<%out.print(art.getPrixInitial());%><br />
@@ -68,29 +58,26 @@
 
 	<br>
 	<strong>Vendeur : </strong>
-	<%out.print(util.getPseudo()); %>
+	<%out.print(art.getNoUtilisateur()); %>
 	<a href="AutreProfil?pseudo=${pseudoVente}"><br> <br></a>
 
-	<c:if test="${pseudoVente != sessionScope.sessionUtilisateur.pseudo}"
-		var="test">
-		
-		<div class="row">
-			<div class="col-xs-6">
-				<strong>Ma proposition : </strong>
-			</div>
-			<div class="col-xs-4">
-				<input type="number" class="" id="propoEnchere" name="sPropoEnchere"
-					min=<%out.print(art.getPrixInitial()); %>
-					value=<%out.print(art.getPrixVente()+1);%>>
-			</div>
 
-			<div class="col-xs-2">
-				<button type="submit" class="btn btn-primary" name="Encherir"
-					value="Encherir">Enchérir</button>
-				<br> <br>
-			</div>
+	<div class="row">
+		<div class="col-xs-6">
+			<strong>Ma proposition : </strong>
 		</div>
-	</c:if>
+		<div class="col-xs-4">
+			<input type="number" class="" id="propoEnchere" name="sPropoEnchere"
+				min=<%out.print(art.getPrixInitial()); %>
+				value=<%out.print(art.getPrixVente()+1);%>>
+		</div>
+
+		<div class="col-xs-2">
+			<button type="submit" class="btn btn-primary" name="Encherir"
+				value="Encherir">Enchérir</button>
+			<br> <br>
+		</div>
+	</div>
 
 	</form>
 	</div>

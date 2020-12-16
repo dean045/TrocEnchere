@@ -28,7 +28,7 @@ public class vente extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int noArticle = Integer.parseInt((String)request.getAttribute("no_article"));
+		int noArticle = Integer.parseInt((String)request.getParameter("no_article").toString());
 		Articles art = new Articles();
 		try {
 			art = manager.getArticle(noArticle);

@@ -86,7 +86,7 @@
 				</p>
 			</div>
 			<form action="vente" method="get">
-				<button name="no_article" type="submit" value="<%out.print(liste.get(i).getNoUtilisateur()); %>">Voir l'annonce</button>
+				<button name="no_article" type="submit" value="<%out.print(liste.get(i).getNoArticle()); %>">Voir l'annonce</button>
 			</form>
 		</div>
 		<%}%>

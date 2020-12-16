@@ -174,19 +174,19 @@ public class DaoJDBCImpl implements Dao {
 
 	public Articles select (int noArticle) throws DALException {
 		Connection cnx=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
+		Statement pstmt=null;
+		ResultSet rs = null;
 		Articles art = new Articles ();
-		String SELECT = "select * from ARTICLES where no_article = ?;";
+		String SELECT = "SELECT * from ARTICLES where no_article = "+ noArticle +";";
 
 
 
 		try {
 			cnx=JDBCTOOLS.getConnection();
-			pstmt=cnx.prepareStatement(SELECT);
-			pstmt.setInt(1,noArticle);
-			rs=pstmt.executeQuery();
-			if (rs.next()){
+			pstmt=cnx.createStatement();
+			rs = pstmt.executeQuery(SELECT);
+			System.out.println("ok");
+			while (rs.next()){
 
 				art.setNoArticle(rs.getInt("no_article"));
 
@@ -206,7 +206,7 @@ public class DaoJDBCImpl implements Dao {
 
 				art.setCategorie(rs.getString("no_categorie"));
 
-				art.setEtat(rs.getString("EC"));
+				art.setEtat("EC");
 
 				art.setImg(rs.getString("IMG"));
 
