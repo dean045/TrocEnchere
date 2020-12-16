@@ -15,14 +15,25 @@
 	<%
 		Utilisateurs user = (Utilisateurs) session.getAttribute("user");
 	%>
-	
-	
-	<div class="container" style="border: solid black 1px">
-		<div class="row">
+		
+	<div class="container d-flex justify-content-center">
+		<div class="row font-weight-bold" >
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				
-				<p>nom user: <%out.print(user.getNom());%></p>
-				
+				<p >Pseudo : <%out.print(user.getPseudo());%></p>
+				<p>Nom : <%out.print(user.getNom());%></p>
+				<p>Prenom : <%out.print(user.getPrenom());%></p>
+				<p>Email : <%out.print(user.getEmail());%></p>
+				<p>Téléphone : <%out.print(user.getTelephone());%></p>
+				<p>Rue : <%out.print(user.getRue());%></p>
+				<p>Code Postal : <%out.print(user.getCode_postal());%></p>
+				<p>Ville : <%out.print(user.getVille());%></p>			
+			</div>
+		</div>
+	</div>			
+	<div class="container">
+		<div class="row text-center">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">			
+				<a class="btn btn-secondary" href="/Servlet/inscription" role="button">Modifier</a>
 			</div>
 		</div>
 	</div>
