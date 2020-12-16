@@ -13,7 +13,7 @@
 </head>
 <body>
 	<%
-		Utilisateurs user = (Utilisateurs) request.getAttribute("user");
+		Utilisateurs user = (Utilisateurs) session.getAttribute("user");
 	%>
 	
 	
@@ -21,7 +21,7 @@
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				
-				<p>nom user: <%=user.getNom() %></p>
+				<p>nom user: <%out.print(user.getNom());%></p>
 				
 			</div>
 		</div>
