@@ -18,11 +18,10 @@
 </head>
 
 <body class="container">
-<% 
-List<Articles> liste = new ArrayList<Articles>();
-liste = (List<Articles>) request.getAttribute("liste");
-
-%>
+	<%
+		List<Articles> liste = new ArrayList<Articles>();
+		liste = (List<Articles>) request.getAttribute("liste");
+	%>
 	<header class="col-12">
 		<div class="container d-flex justify-content-between">
 			<h1>ENI-Enchère</h1>
@@ -58,19 +57,39 @@ liste = (List<Articles>) request.getAttribute("liste");
 	</select>
 
 	<div class="container col-12 border d-flex justify-content-around">
-	<%for(int i=0; i< liste.size();i++) { %>
-		<div class="card col-sm-12 col-lg-6" style="max-width: 250px; max-height: 450px;">
-			<img class="card-img-top" 
-			src="https://png.pngtree.com/png-vector/20190626/ourlarge/pngtree-math-in-computer-line-black-icon-png-image_1507318.jpg" 
-			alt="Card image cap">
+		<%
+			for (int i = 0; i < liste.size(); i++) {
+		%>
+		<div class="card col-sm-12 col-lg-6"
+			style="max-width: 250px; max-height: 450px;">
+			<img class="card-img-top"
+				src="https://png.pngtree.com/png-vector/20190626/ourlarge/pngtree-math-in-computer-line-black-icon-png-image_1507318.jpg"
+				alt="Card image cap">
 			<div class="card-body">
-				<h5 class="card-title"><%out.print(liste.get(i).getNomArticle());%></h5>
-				<p class="card-text">Prix :<%out.print(liste.get(i).getPrixInitial());%><br>
-				Fin de l'enchère : <br><%out.print(liste.get(i).getDateFinEnchere().toString());%><br>
-				Vendeur : <%out.print(liste.get(i).getNoUtilisateur());%> <br></p>
+				<h5 class="card-title">
+					<%
+						out.print(liste.get(i).getNomArticle());
+					%>
+				</h5>
+				<p class="card-text">
+					Prix :
+					<%
+					out.print(liste.get(i).getPrixInitial());
+				%><br> Fin de l'enchère : <br>
+					<%
+						out.print(liste.get(i).getDateFinEnchere().toString());
+					%><br> Vendeur :
+					<%
+						out.print(liste.get(i).getNoUtilisateur());
+					%>
+					<br>
+				</p>
 			</div>
+			<form action="vente" method="get">
+				<button name="no_article" type="submit" value="<%out.print(liste.get(i).getNoUtilisateur()); %>">Voir l'annonce</button>
+			</form>
 		</div>
 		<%}%>
-		
+
 	</div>
 <body />

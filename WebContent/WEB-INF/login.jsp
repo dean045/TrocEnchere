@@ -32,7 +32,7 @@
 			<button type="submit" class="btn btn-primary ">Se connecter</button>
 			<% if(resultat != null) out.print("<p style=\"color:red; text-align : center;\">"+ resultat + "</p>"); %>
 			<p style="text-align: center; margin-top: 10px;">Vous n'avez pas de compte ?</p>
-			<a style="text-align: center" href="sign_in">Creer un compte</a>
+			<a style="text-align: center" href="inscription">Creer un compte</a>
 		</div>
 
 	</form>
