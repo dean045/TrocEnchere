@@ -3,7 +3,7 @@ package fr.eni.DAL;
 import fr.eni.DAL.DaoJDBCImpl;
 
 public class DaoFactory {
-	public static articleDao getdao() {
+	public static Dao getdao() {
 		return new DaoJDBCImpl();
 	}
 }

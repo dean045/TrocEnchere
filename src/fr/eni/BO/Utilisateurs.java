@@ -15,6 +15,14 @@ public class Utilisateurs {
 	private int credit;
 	private int administrateur;
 	
+	
+	
+	public Utilisateurs(String pseudo, String mot_de_passe) {
+		super();
+		this.pseudo = pseudo;
+		this.mot_de_passe = mot_de_passe;
+	}
+
 	public Utilisateurs(String pseudo, String nom, String prenom, String email, String telephone,
 						String rue, String code_postal, String ville, String mot_de_passe, int credit, int administrateur) {		
 		this.pseudo = pseudo;

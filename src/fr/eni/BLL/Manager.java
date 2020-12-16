@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.DAL.DALException;
-import fr.eni.DAL.articleDao;
+import fr.eni.DAL.Dao;
 import fr.eni.DAL.DaoFactory;
 import fr.eni.BO.Articles;
 import fr.eni.BO.Utilisateurs;
 
 public class Manager {
 
-	articleDao methode = new DaoFactory().getdao();
-	
-//----------------affichage--list--article--------------
-	
+	Dao methode = new DaoFactory().getdao();
+
+	//----------------affichage--list--article--------------
+
 	public List<Articles> getliste() throws DALException{
 		List<Articles> liste = new ArrayList<Articles>();
 		try {
@@ -25,18 +25,35 @@ public class Manager {
 		}
 		return liste;
 	}
-	
-//---------------insert--user----------------------------
-	
+
+	//---------------insert--user----------------------------
+
 	public void add_user(Utilisateurs user) throws DALException
 	{		
 		methode.insert(user); 
 	}
-	
-//---------------insert--item----------------------------
+
+	//---------------insert--item----------------------------
 
 	public void add_item(Articles item) throws DALException
 	{		
 		methode.insert(item); 
 	}	
+
+	//---------------Connexion--------------------------------
+
+	public Utilisateurs connexion(String username, String pw) throws DALException
+	{	
+		Utilisateurs user = methode.login(username, pw);
+		return user;
+	}
+
+	//---------------Select-Article---------------------------
+
+	public Articles getArticle(int noArticle) throws DALException
+	{	
+		Articles art = methode.select(noArticle);
+		return art;
+	}	
+
 }
