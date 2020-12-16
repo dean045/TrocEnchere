@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+.img {
+	height: 250px;
+	top: 30px;
+	left : -300px ; 
+	position: absolute;
+}
+
+.buttonencherir{
+	height: 60px;
+	position: absolute;
+	left: 250px;
+	bottom : 30px; 
+}
+
+.proposition{
+	width : 80px;
+}
+
+.btn btn-primary btn-block{
+	height : 60px;
+	
+}
