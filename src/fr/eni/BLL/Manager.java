@@ -32,4 +32,11 @@ public class Manager {
 	{		
 		methode.insert(user); 
 	}
+	
+//---------------insert--item----------------------------
+
+	public void add_item(Articles item) throws DALException
+	{		
+		methode.insert(item); 
+	}	
 }

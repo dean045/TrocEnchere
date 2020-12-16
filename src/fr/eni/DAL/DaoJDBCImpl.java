@@ -125,31 +125,51 @@ public class DaoJDBCImpl implements articleDao {
 	
 //----------------------INSERT--ARTICLE------------------------------------------------
 
+	public void insert(Articles registration_item) throws DALException{
+		 Statement stmt = null;
+		 Connection con = null;
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		try {
+			con = JDBCTOOLS.getConnection();
+		//Créer une requete / Statement
+		String sql = "INSERT INTO Utilisateurs VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			PreparedStatement preparedStmt = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+		      preparedStmt.setString(1, registration_item.getNomArticle());
+		      preparedStmt.setString(2, registration_item.getDescription());
+		      preparedStmt.setDate(3, registration_item.getDateDebutEnchere());
+		      preparedStmt.setDate(4, registration_item.getDateFinEnchere());
+		      preparedStmt.setInt(5, registration_item.getPrixInitial());
+		      preparedStmt.setInt(6, registration_item.getPrixVente());
+		      preparedStmt.setInt(7, registration_item.getNoUtilisateur());
+		      preparedStmt.setString(8, registration_item.getCategorie());
+		      preparedStmt.setString(9, registration_item.getEtat());
+		      preparedStmt.setString(10, registration_item.getImg());
+		      
+		      
+		    //Execute la requete
+		      preparedStmt.executeUpdate();
+		      
+		      ResultSet rs =   preparedStmt.getGeneratedKeys();
+		      
+		      while(rs.next()) {
+		    	  registration_item.setNoArticle(rs.getInt(1));
+		      }
+		
+		} catch (SQLException e) {
+			e.printStackTrace();			
+		} finally{
+			try {
+				if(stmt!=null){
+					stmt.close();
+				}
+				if(con!=null){
+					con.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}	
 	
 //--------------------SELECT------------------------
 	
