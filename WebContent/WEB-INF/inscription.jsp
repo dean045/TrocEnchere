@@ -5,8 +5,7 @@
 <link rel="stylesheet" href="style.css">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Page profil</title>
+<title>Compte</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -22,6 +21,7 @@
 	</header>
 	<h2><%if(session.isNew()) out.print("Inscription"); 
 	else out.print("Mon profil");%></h2>
+	<%if(request.getAttribute("message") != null )out.print(request.getAttribute("message"));%>
 	<form action="inscription" method="post">
 		<div class="container d-flex">
 			<div class="container  col-sm-6 d-flex p-2 bd-highlight mx-auto">
@@ -35,7 +35,7 @@
 
 					<div class="form-group">
 						<label for="exampleInputSurName">Prénom</label> <input
-							type="Prenom" class="form-control" name="pernom"
+							type="Prenom" class="form-control" name="prenom"
 							placeholder="Prenom">
 					</div>
 

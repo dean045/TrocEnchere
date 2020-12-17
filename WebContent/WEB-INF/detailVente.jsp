@@ -18,7 +18,12 @@
 </head>
 
 <body>
-	<% Articles art = (Articles)request.getAttribute ("art"); %>
+	<header class="col-12">
+		<jsp:include page="header.jsp"></jsp:include>
+	</header>
+	<%
+		Articles art = (Articles) request.getAttribute("art");
+	%>
 
 
 	<div class="text-center" id="titre">
@@ -30,35 +35,51 @@
 	<div class="col-xs-4 col-xl-12 col-md-12"></div>
 
 	<strong>Nom de l'article :</strong>
-	<%out.print(art.getNomArticle()); %><br>
+	<%
+		out.print(art.getNomArticle());
+	%><br>
 	<strong>Description : </strong>
-	<%out.print(art.getDescription()); %><br />
+	<%
+		out.print(art.getDescription());
+	%><br />
 	<br>
 	<img src="./lib/image.jpg" class="img-fluid" alt="Responsive image">
-	<%out.print(art.getImg()); %><br />
+	<%
+		out.print(art.getImg());
+	%><br />
 	<br>
 
 
-	<strong> Meilleure offre : <%out.print(art.getPrixVente()); %></strong>$
+	<strong> Meilleure offre : <%
+		out.print(art.getPrixVente());
+	%></strong>$
 	par :
 	<a href="AutreProfil=${pseudoEnchere}">${pseudoEnchere}</a>
 	<br />
 	<br>
 	<strong>Mise à prix : </strong>
-	<%out.print(art.getPrixInitial());%><br />
+	<%
+		out.print(art.getPrixInitial());
+	%><br />
 	<strong><br>Fin de l'enchère :</strong>
-	<%out.print(art.getDateFinEnchere()); %><br />
+	<%
+		out.print(art.getDateFinEnchere());
+	%><br />
 	<br>
 	<strong>Retrait : </strong>
 	<br>
 
 	<div class="col-xl-4">
-		<%out.print(art.getRetrait()); %>
+		<%
+			out.print(art.getRetrait());
+		%>
 	</div>
 
 	<br>
 	<strong>Vendeur : </strong>
-	<%out.print(art.getNoUtilisateur()); %>
+	<%
+		out.print(art.getNoUtilisateur());
+	%>
 	<a href="AutreProfil?pseudo=${pseudoVente}"><br> <br></a>
 
 
@@ -68,8 +89,8 @@
 		</div>
 		<div class="col-xs-4">
 			<input type="number" class="" id="propoEnchere" name="sPropoEnchere"
-				min=<%out.print(art.getPrixInitial()); %>
-				value=<%out.print(art.getPrixVente()+1);%>>
+				min=<%out.print(art.getPrixInitial());%>
+				value=<%out.print(art.getPrixVente() + 1);%>>
 		</div>
 
 		<div class="col-xs-2">

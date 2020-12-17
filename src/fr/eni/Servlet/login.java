@@ -23,19 +23,14 @@ public class login extends HttpServlet {
 	Manager manager = new Manager();
 	RequestDispatcher rd = null;
 	HttpSession session ;
-	boolean connexion = false;
 	String resultat = null;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if (connexion == false) {
-			rd = request.getRequestDispatcher("WEB-INF/login.jsp");
-		}
-		else
-			rd = request.getRequestDispatcher("WEB-INF/profil.jsp");
-		
+
+		rd = request.getRequestDispatcher("WEB-INF/login.jsp");
 		rd.forward(request, response);
 	}
 
@@ -43,21 +38,22 @@ public class login extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		try {
 			Utilisateurs user = new Utilisateurs();
 			user = manager.connexion(request.getParameter("pseudo"), request.getParameter("mdp"));
 			if(user != null)
 			{
 				session = request.getSession();
-				connexion = true;
 				session.setAttribute("user", user);
+				rd = request.getRequestDispatcher("index");
+				rd.forward(request, response);
 			}
 		} catch (DALException e) {
 			resultat = "echec de connexion";
 			request.setAttribute("resultat", resultat);
+			doGet(request, response);
 		}
-		doGet(request, response);
 	}
 
 }

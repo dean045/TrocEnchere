@@ -12,9 +12,13 @@
 <title>Accueil</title>
 <meta name="description">
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-	crossorigin="anonymous">
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 
 <body class="container">
@@ -22,41 +26,47 @@
 		List<Articles> liste = new ArrayList<Articles>();
 		liste = (List<Articles>) request.getAttribute("liste");
 	%>
-	<header class="col-12">
-		<div class="container d-flex justify-content-between">
-			<h1>ENI-Enchère</h1>
-			<a href="login">S'inscrire - Se connecter</a>
-		</div>
-
+	<header class="row">
+		<jsp:include page="header.jsp"></jsp:include>
 	</header>
 
-	<div class="container col-10 ">
-		<h2 class="col-12" style="text-align: center;">Liste des enchères</h2>
-		<div class="container col-12 d-flex justify-content-between">
-			<div class="col-6 container">
-				<label for="site-search" class="col-12">Filtres:</label> <input
-					type="search" id="site-search" name="q"
-					aria-label="Search through site content">
-			</div>
+	<nav class="navbar navbar-expand-sm bg-light navbar-light rounded">
+		<ul class="navbar-nav">
+			<li class="nav-item">
+				<form class="form-inline" action="/action_page.php">
+					<div class="input-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"> <svg
+									xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+									fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+										d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z" />
+            <path fill-rule="evenodd"
+										d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
+          </svg>
+							</span>
+						</div>
+						<input type="text" class="form-control" placeholder="Rechercher">
+					</div>
+				</form>
+			</li>
 
-			<button class="col-6 btn btn-dark" style="height: 100px;">Rechercher</button>
-		</div>
+			<!-- Dropdown -->
+			<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" href="#" id="navbardrop"
+				data-toggle="dropdown"> Catégories </a>
+				<div class="dropdown-menu">
+					<a class="dropdown-item" href="#">Ameublement</a> <a
+						class="dropdown-item" href="#">Informatique</a> <a
+						class="dropdown-item" href="#">Vêtements</a>
+				</div></li>
+		</ul>
+	</nav>
+	<br>
 
-	</div>
 
-	<label for="site-search">Catégories :</label>
-	<select>
-		<optgroup label="Catégories">
-			<option>Toutes</option>
-			<option>Informatique</option>
-			<option>Ameublement</option>
-			<option>Vêtements</option>
-			<option>Sports et Loisirs</option>
-		</optgroup>
-
-	</select>
-
-	<div class="container col-12 border d-flex justify-content-around">
+	<div class="container col-12 border d-flex justify-content-around"
+		style="margin-bottom: 1%;">
 		<%
 			for (int i = 0; i < liste.size(); i++) {
 		%>
@@ -86,10 +96,16 @@
 				</p>
 			</div>
 			<form action="vente" method="get">
-				<button name="no_article" type="submit" value="<%out.print(liste.get(i).getNoArticle()); %>">Voir l'annonce</button>
+				<div class="d-flex justify-content-center">
+					<button class="btn btn-secondary btn-sm mx-auto" name="no_article"
+						type="submit" value="<%out.print(liste.get(i).getNoArticle());%>">Voir
+						l'annonce</button>
+				</div>
 			</form>
 		</div>
-		<%}%>
+		<%
+			}
+		%>
 
 	</div>
 <body />
