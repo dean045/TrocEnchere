@@ -4,9 +4,13 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+ <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Page Vendre un Article</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 <title>Insert title here</title>
 </head>
-<body class="container">
+ <body class="container">
     
       <h2>Nouvelle vente</h2> 
 
@@ -35,6 +39,12 @@
                         <label for="exampleInputSurArticle">Article</label>
                         <input type="Article" class="form-control" id="exampleInputArticle1" placeholder="Article">
                       </div>
+              
+                    <div class="form-group">
+                        <label for="exampleInputSurDescription">Description</label>
+                        <input type="Description" class="form-control" id="exampleInputDescription1" placeholder="Description">
+                      </div>
+              
                     <label for="site-search">Catégories :</label>
                    <select>
                     <optgroup label="Catégories">
@@ -45,10 +55,14 @@
                         <option>Sports et Loisirs</option>
                     </optgroup>
                     </select>
+              
                       <label for="avatar">Photo de l'article :</label>
                       <input type="file"
                        id="avatar" name="avatar"
                        accept="image/png, image/jpeg">
+                    
+                        <label for="exampleInputPrice">Prix</label>
+                        <input type="number" name="howmuch">
 
                       <form>
                       <div>
