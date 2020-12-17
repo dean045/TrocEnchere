@@ -13,7 +13,7 @@ import fr.eni.DAL.JDBCTOOLS;
 
 
 public class DaoJDBCImpl implements Dao {
-	
+
 
 
 
@@ -242,25 +242,25 @@ public class DaoJDBCImpl implements Dao {
 		ResultSet rs=null;
 		Utilisateurs user = null;
 		String SELECT;
-		
+
 		if(username.indexOf('@') !=-1)
 			SELECT = "SELECT * from UTILISATEURS where email = ? AND mot_de_passe = ? ;";
 		else
 			SELECT = "SELECT * from UTILISATEURS where pseudo = ? AND mot_de_passe = ? ;";
-		
-		
+
+
 		try {
 			System.out.println("-1");
 			//recuperation de la connection g�r� par JdbcTools 
 			cnx = JDBCTOOLS.getConnection(); 
 			System.out.println("0");
 			//creation requete
-			
+
 			rqt = cnx.prepareStatement(SELECT);
 			rqt.setString(1, username);
 			rqt.setString(2, pw);
 			System.out.println("1");
-			
+
 			//execution requete
 			rs = rqt.executeQuery();
 
@@ -270,11 +270,11 @@ public class DaoJDBCImpl implements Dao {
 				//creation d'un objet Java
 				user = new Utilisateurs(rs.getInt("no_utilisateur"), rs.getString("pseudo"), rs.getString("nom"), 
 						rs.getString("prenom"), rs.getString("email"),  rs.getString("telephone"),
-						 rs.getString("rue"),  rs.getString("code_postal"),  rs.getString("ville"), 
-						 rs.getString("mot_de_passe"), rs.getInt("credit"), rs.getInt("administrateur"));
+						rs.getString("rue"),  rs.getString("code_postal"),  rs.getString("ville"), 
+						rs.getString("mot_de_passe"), rs.getInt("credit"), rs.getInt("administrateur"));
 			}
 			System.out.println("3");
-			
+
 
 		} catch (SQLException e) {
 			throw new DALException("connexion failed - ", e);
@@ -282,7 +282,7 @@ public class DaoJDBCImpl implements Dao {
 		finally{
 			try {
 				if(cnx!=null){
-				cnx.close();
+					cnx.close();
 				}
 			} catch (SQLException e) {
 				throw new DALException ("Probleme - FermerConnexion - " + e.getMessage());
@@ -292,50 +292,100 @@ public class DaoJDBCImpl implements Dao {
 	}
 
 
-//----------------Verification MDP ----------------------------------
-	
-	
+	//----------------Verification MDP ---------------------------------------------------
+
+
 	public boolean verfication (String username) throws Exception {
-		
+
 		Connection cnx=null;
 		PreparedStatement rqt = null;
 		ResultSet rs=null;
 		String SELECT;
 		boolean check = true ;
-		
+
 		if(username.indexOf('@') !=-1)
 			SELECT = "SELECT * from UTILISATEURS where email = ?;";
 		else
 			SELECT = "SELECT * from UTILISATEURS where pseudo = ?;";
-		
-		
+
+
 		try {
 			System.out.println("-1");
 			//recuperation de la connection g�r� par JdbcTools 
 			cnx = JDBCTOOLS.getConnection(); 
 			System.out.println("0");
 			//creation requete
-			
+
 			rqt = cnx.prepareStatement(SELECT);
 			rqt.setString(1, username);
 			System.out.println("1");
-			
+
 			//execution requete
 			rs = rqt.executeQuery();
 
 			System.out.println("2");
 
 			//List<Utilisateurs> listUtil = new ArrayList <Utilisateurs> () ; 
-			 while (rs.next()){
-				 check = false ; 
-			 } 
-			 
-			 
+			while (rs.next()){
+				check = false ; 
+			} 
+
+
 		} catch (Exception e) {
 			throw new Exception("Failure while trying to check is the user is already registered :" + e);
 		}
 		return check;
 	}
+
+	//----------------Update-user---------------------------------------------------------
+	
+	public void Update_user(Utilisateurs registration_user) throws DALException{
+		Statement stmt = null;
+		Connection con = null;
+
+		try {
+			con = JDBCTOOLS.getConnection();
+			//Créer une requete / Statement
+			String sql = "INSERT INTO Utilisateurs VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			PreparedStatement preparedStmt = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+			preparedStmt.setString(1, registration_user.getPseudo());
+			preparedStmt.setString(2, registration_user.getNom());
+			preparedStmt.setString(3, registration_user.getPrenom());
+			preparedStmt.setString(4, registration_user.getEmail());
+			preparedStmt.setString(5, registration_user.getTelephone());
+			preparedStmt.setString(6, registration_user.getRue());
+			preparedStmt.setString(7, registration_user.getCode_postal());
+			preparedStmt.setString(8, registration_user.getVille());
+			preparedStmt.setString(9, registration_user.getMot_de_passe());
+			preparedStmt.setInt(10, registration_user.getCredit());
+			preparedStmt.setInt(11, registration_user.getAdministrateur());
+
+			//Execute la requete
+			preparedStmt.executeUpdate();
+
+			ResultSet rs =   preparedStmt.getGeneratedKeys();
+
+			while(rs.next()) {
+				registration_user.setNo_utilisateur(rs.getInt(1));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();			
+		} finally{
+			try {
+				if(stmt!=null){
+					stmt.close();
+				}
+				if(con!=null){
+					con.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	
 }        
-	              
+
 
