@@ -49,6 +49,12 @@ public class login extends HttpServlet {
 				rd = request.getRequestDispatcher("index");
 				rd.forward(request, response);
 			}
+			else
+			{
+				resultat = "id ou mdp incorrect";
+				request.setAttribute("resultat", resultat);
+				doGet(request, response);
+			}
 		} catch (DALException e) {
 			resultat = "echec de connexion";
 			request.setAttribute("resultat", resultat);
