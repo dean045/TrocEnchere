@@ -10,4 +10,9 @@ public interface Dao {
 	public void insert(Articles registration_item) throws DALException;
 	public Utilisateurs login (String username, String pw) throws DALException;
 	public Articles select (int noArticle) throws DALException;
+	public boolean verfication (String username) throws Exception ;
+
+	
 }
+
+

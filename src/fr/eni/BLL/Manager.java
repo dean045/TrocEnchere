@@ -55,5 +55,11 @@ public class Manager {
 		Articles art = methode.select(noArticle);
 		return art;
 	}	
+	//----------------Check adresse mail & pseudo-----------------------
+	public boolean check (String username) throws Exception {
+		return methode.verfication(username);
+		
+	}
+
 
 }

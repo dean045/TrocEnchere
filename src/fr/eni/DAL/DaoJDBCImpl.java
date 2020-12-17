@@ -13,6 +13,8 @@ import fr.eni.DAL.JDBCTOOLS;
 
 
 public class DaoJDBCImpl implements Dao {
+	
+
 
 
 	public List<Articles> selectAll() throws DALException  {
@@ -290,27 +292,51 @@ public class DaoJDBCImpl implements Dao {
 	}
 
 
+//----------------Verification MDP ----------------------------------
+	
+	
+	public boolean verfication (String username) throws Exception {
+		
+		Connection cnx=null;
+		PreparedStatement rqt = null;
+		ResultSet rs=null;
+		Utilisateurs user = null;
+		String SELECT;
+		boolean check = false ;
+		
+		if(username.indexOf('@') !=-1)
+			SELECT = "SELECT * from UTILISATEURS where email = ?;";
+		else
+			SELECT = "SELECT * from UTILISATEURS where pseudo = ?;";
+		
+		
+		try {
+			System.out.println("-1");
+			//recuperation de la connection g�r� par JdbcTools 
+			cnx = JDBCTOOLS.getConnection(); 
+			System.out.println("0");
+			//creation requete
+			
+			rqt = cnx.prepareStatement(SELECT);
+			rqt.setString(1, username);
+			System.out.println("1");
+			
+			//execution requete
+			rs = rqt.executeQuery();
 
+			System.out.println("2");
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
-
+			//List<Utilisateurs> listUtil = new ArrayList <Utilisateurs> () ; 
+			 while (rs.next()){
+				 check = true ; 
+			 } 
+			 
+			 
+		} catch (Exception e) {
+			throw new Exception("Failure while trying to check is the user is already registered :" + e);
+		}
+		return check;
+	}
+}        
+	              
 
