@@ -12,6 +12,7 @@ import fr.eni.BO.*;
 import fr.eni.DAL.JDBCTOOLS;
 
 
+
 public class DaoJDBCImpl implements Dao {
 
 
@@ -336,6 +337,36 @@ public class DaoJDBCImpl implements Dao {
 		}
 		return check;
 	}
+<<<<<<< HEAD
+	
+//-------------------------------------------------DELETE--------------------------------------------------------------------------------
+	
+	public void delete(Integer no_utilisateur) {
+		
+		Connection con = null;
+		
+		try {
+			con = JDBCTOOLS.getConnection();
+			String sql = "DELETE FROM UTILISATEURS WHERE no_utilisateur = "+no_utilisateur+" ";
+			
+			Statement stmt = con.createStatement();
+				
+			
+			stmt.executeUpdate(sql);
+					
+			
+		} catch(SQLException e){
+			
+		}
+		finally {
+			try{
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}	
+
 
 	//----------------Update-user---------------------------------------------------------
 	
@@ -386,6 +417,7 @@ public class DaoJDBCImpl implements Dao {
 	}
 	
 	
+>>>>>>> branch 'master' of https://github.com/dean045/TrocEnchere
 }        
 
 

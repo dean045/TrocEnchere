@@ -11,7 +11,7 @@ public interface Dao {
 	public Utilisateurs login (String username, String pw) throws DALException;
 	public Articles select (int noArticle) throws DALException;
 	public boolean verfication (String username) throws Exception ;
-
+	public void delete(Integer no_utilisateur)throws DALException;
 	
 }
 

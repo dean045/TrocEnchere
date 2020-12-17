@@ -61,5 +61,14 @@ public class Manager {
 		
 	}
 
+	//---------------------Delete----------------------------------------
+	
+	public void removeUtilisateur(int index) throws Exception{
+		try {
+			methode.delete(index);
+		}catch(DALException e){
+			throw new Exception(e.getMessage());
+		}
+	}
 
 }
