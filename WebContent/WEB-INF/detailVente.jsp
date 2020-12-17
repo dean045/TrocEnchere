@@ -3,7 +3,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,100 +17,141 @@
 </head>
 
 <body>
+
 	<header class="col-12">
 		<jsp:include page="header.jsp"></jsp:include>
 	</header>
+
 	<%
 		Articles art = (Articles) request.getAttribute("art");
 	%>
 
+	<div class="container">
 
-	<div class="text-center" id="titre">
-		<h1 id="titre">
-			<b>Détail vente</b>
-		</h1>
-	</div>
+		<div class="row text-center">
 
-	<div class="col-xs-4 col-xl-12 col-md-12"></div>
+			<div class="container img-responsive col-lg-5 col-sm-8 ">
+				<img src="./img/carotte.jpeg" style="max-width: 100%;">
+			</div>
 
-	<strong>Nom de l'article :</strong>
-	<%
-		out.print(art.getNomArticle());
-	%><br>
-	<strong>Description : </strong>
-	<%
-		out.print(art.getDescription());
-	%><br />
-	<br>
-	<img src="./lib/image.jpg" class="img-fluid" alt="Responsive image">
-	<%
-		out.print(art.getImg());
-	%><br />
-	<br>
+			<div class="container col-lg-7 col-sm-12 ">
 
+				<div class="container col-12">
+					<h1>Détail vente</h1>
+				</div>
 
-	<strong> Meilleure offre : <%
-		out.print(art.getPrixVente());
-	%></strong>$
-	par :
-	<a href="AutreProfil=${pseudoEnchere}">${pseudoEnchere}</a>
-	<br />
-	<br>
-	<strong>Mise à prix : </strong>
-	<%
-		out.print(art.getPrixInitial());
-	%><br />
-	<strong><br>Fin de l'enchère :</strong>
-	<%
-		out.print(art.getDateFinEnchere());
-	%><br />
-	<br>
-	<strong>Retrait : </strong>
-	<br>
+				<div class="container col-7">
+					<div class="row">
+						<strong>Nom de l'article :</strong>
+						<p>
+							<%
+								out.print(art.getNomArticle());
+							%>
+						</p>
+					</div>
+				</div>
 
-	<div class="col-xl-4">
-		<%
-			out.print(art.getRetrait());
-		%>
-	</div>
+				<div class="container col-7">
+					<div class="row">
+						<strong>Description : </strong>
+						<p>
+							<%
+								out.print(art.getDescription());
+							%>
+						</p>
+					</div>
+				</div>
 
-	<br>
-	<strong>Vendeur : </strong>
-	<%
-		out.print(art.getNoUtilisateur());
-	%>
-	<a href="AutreProfil?pseudo=${pseudoVente}"><br> <br></a>
+				<div class="container col-7">
+					<div class="row">
+						<strong> Meilleure offre : </strong>
+						<p>
+							<%
+								out.print(art.getPrixVente());
+							%>
+						</p>
+						<p>
+							par :
+							<%
+							out.print(art.getNoUtilisateur());
+						%>
+						</p>
+					</div>
+				</div>
 
 
-	<div class="row">
-		<div class="col-xs-6">
-			<strong>Ma proposition : </strong>
+				<div class="container col-7">
+					<div class="row">
+						<strong>Mise à prix : </strong>
+						<p>
+							<%
+								out.print(art.getPrixInitial());
+							%>
+						</p>
+					</div>
+				</div>
+
+				<div class="container col-7">
+					<div class="row">
+						<p>
+							<strong>Fin de l'enchère :</strong>
+							<%
+								out.print(art.getDateFinEnchere());
+							%>
+						</p>
+					</div>
+				</div>
+
+				<div class="container col-7">
+					<div class="row">
+						<p>
+							<strong>Retrait : </strong>
+							<%
+								out.print(art.getRetrait());
+							%>
+						</p>
+					</div>
+				</div>
+				<div class="container col-7">
+					<div class="row">
+						<p>
+							<strong>Vendeur : </strong>
+							<%
+								out.print(art.getNoUtilisateur());
+							%>
+						</p>
+					</div>
+				</div>
+				<div class="container col-7">
+
+
+					<div class="row">
+						<p>
+							<strong>Ma proposition : </strong>
+						<p>
+							<input type="number" style="width: 75px; margin-left: 20px;"
+								id="propoEnchere" min=<%out.print(art.getPrixInitial());%>
+								value=<%out.print(art.getPrixVente() + 1);%>>
+					</div>
+
+					<div class="container row">
+
+						<button type="submit" class="btn btn-primary m-auto"
+							name="Encherir" value="Encherir">Enchérir</button>
+					</div>
+
+				</div>
+
+				<div class="container row" style="margin-top: 1%">
+
+					<a href="index" class="btn btn-primary btn-block mx-auto"
+						style="width: 13em">Retour à la page principale
+						</button>
+					</a>
+
+				</div>
+			</div>
+
 		</div>
-		<div class="col-xs-4">
-			<input type="number" class="" id="propoEnchere" name="sPropoEnchere"
-				min=<%out.print(art.getPrixInitial());%>
-				value=<%out.print(art.getPrixVente() + 1);%>>
-		</div>
-
-		<div class="col-xs-2">
-			<button type="submit" class="btn btn-primary" name="Encherir"
-				value="Encherir">Enchérir</button>
-			<br> <br>
-		</div>
-	</div>
-
-	</form>
-	</div>
-
-	<div class="col-xs-8 xl-4">
-		<br /> <a href="./index"><button type="submit"
-				class="btn btn-primary btn-block">Retour à la page
-				principale</button></a><br> <br />
-	</div>
-	</div>
-	</div>
-
-
-
 </body>
 </html>

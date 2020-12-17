@@ -337,7 +337,7 @@ public class DaoJDBCImpl implements Dao {
 		}
 		return check;
 	}
-<<<<<<< HEAD
+
 	
 //-------------------------------------------------DELETE--------------------------------------------------------------------------------
 	
@@ -417,7 +417,6 @@ public class DaoJDBCImpl implements Dao {
 	}
 	
 	
->>>>>>> branch 'master' of https://github.com/dean045/TrocEnchere
 }        
 
 
