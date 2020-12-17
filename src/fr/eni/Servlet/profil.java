@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eni.BLL.Manager;
+import fr.eni.BO.Utilisateurs;
 
 /**
  * Servlet implementation class profil
@@ -34,8 +35,21 @@ public class profil extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		session = request.getSession();
+		int no_utilisateur = ((Utilisateurs) session.getAttribute("user")).getNo_utilisateur();
+		if(request.getParameter("button").equals("suppr")) {
+			try {
+				manager.removeUtilisateur(no_utilisateur);
+				request.getSession().invalidate();
+				rd = request.getRequestDispatcher("index");
+				rd.forward(request, response);
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+				doGet(request, response);
+			}
+		}
+		
 	}
 
 }

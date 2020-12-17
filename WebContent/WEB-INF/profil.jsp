@@ -76,7 +76,18 @@
 	<div class="container">
 		<div class="row text-center">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				<a class="btn btn-secondary" href="inscription" role="button">Modifier</a>
+			<form method="post" action="profil">
+				<button name="button" class="btn btn-secondary" type="submit" value="modif">Modifier</button>
+			</form>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row text-center">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<form method="post" action="profil">
+				<button name="button" class="btn btn-secondary" type="submit" value="suppr">Supprimer</button>
+			</form>
 			</div>
 		</div>
 	</div>
