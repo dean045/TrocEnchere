@@ -300,9 +300,8 @@ public class DaoJDBCImpl implements Dao {
 		Connection cnx=null;
 		PreparedStatement rqt = null;
 		ResultSet rs=null;
-		Utilisateurs user = null;
 		String SELECT;
-		boolean check = false ;
+		boolean check = true ;
 		
 		if(username.indexOf('@') !=-1)
 			SELECT = "SELECT * from UTILISATEURS where email = ?;";
@@ -328,7 +327,7 @@ public class DaoJDBCImpl implements Dao {
 
 			//List<Utilisateurs> listUtil = new ArrayList <Utilisateurs> () ; 
 			 while (rs.next()){
-				 check = true ; 
+				 check = false ; 
 			 } 
 			 
 			 

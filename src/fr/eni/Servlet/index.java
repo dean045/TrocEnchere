@@ -55,6 +55,4 @@ public class index extends HttpServlet {
 		if(null != temp) request.getSession().invalidate();
 		doGet(request, response);
 	}
-	
-
 }
