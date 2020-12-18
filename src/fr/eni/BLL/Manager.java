@@ -70,5 +70,11 @@ public class Manager {
 			throw new Exception(e.getMessage());
 		}
 	}
-
+	
+	//---------------------Modifier---------------------------------------
+	
+	public void modifierUtilisateur(Utilisateurs user) throws DALException{
+		methode.Update_user(user);
+	}
+	
 }

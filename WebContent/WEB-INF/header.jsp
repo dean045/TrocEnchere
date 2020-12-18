@@ -1,4 +1,5 @@
-<div class="container border rounded" style="margin-top: 1%; margin-bottom : 2%;">
+<div class="container border rounded"
+	style="margin-top: 1%; margin-bottom: 2%;">
 	<div class="row">
 		<%
 			session = request.getSession();
@@ -14,11 +15,13 @@
 		<%
 			} else {
 		%>
-		<div class="col-3 row">
-			<a class="navbar-brand" href="profil">Mon Profil</a>
-			<form action="index" method="post">
-				<button class="btn btn-primary" name="log" value="off">Déconnexion</button>
-			</form>
+		<div class="col-3">
+			<div class="row">
+				<a class="navbar-brand col-5" href="profil">Mon Profil</a>
+				<form action="index" method="post" class="col-5">
+					<button class="btn btn-primary" name="log" value="off">Déconnexion</button>
+				</form>
+			</div>
 		</div>
 
 		<%

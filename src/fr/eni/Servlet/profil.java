@@ -49,6 +49,17 @@ public class profil extends HttpServlet {
 				doGet(request, response);
 			}
 		}
+		else if(request.getParameter("button").equals("modif")) {
+			try {
+				request.setAttribute("action", "afficher");
+				rd = request.getRequestDispatcher("WEB-INF/modifier.jsp");
+				rd.forward(request, response);
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+				doGet(request, response);
+			}
+		}
 		
 	}
 
