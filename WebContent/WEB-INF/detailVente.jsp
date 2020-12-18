@@ -146,12 +146,13 @@
 
 					<a href="index" class="btn btn-primary btn-block mx-auto"
 						style="width: 13em">Retour à la page principale
-						</button>
+						
 					</a>
 
 				</div>
 			</div>
 
 		</div>
+	</div>	
 </body>
 </html>
