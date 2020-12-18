@@ -60,7 +60,7 @@ public class modifier extends HttpServlet {
 					} catch (DALException e) {
 						message = "erreur lors de l'inscription veuillez contacter l'assistance";
 						request.setAttribute("message", message);
-						rd = request.getRequestDispatcher("WEB-INF/inscription.jsp");
+						rd = request.getRequestDispatcher("WEB-INF/modifier.jsp");
 						rd.forward(request, response);
 						e.printStackTrace();
 					}
@@ -69,7 +69,7 @@ public class modifier extends HttpServlet {
 				{
 					message = "votre mail ou pseudo est deja utilisé";
 					request.setAttribute("message", message);
-					rd = request.getRequestDispatcher("WEB-INF/inscription.jsp");
+					rd = request.getRequestDispatcher("WEB-INF/modifier.jsp");
 					rd.forward(request, response);
 				}
 			} catch (Exception e1) {
@@ -79,7 +79,7 @@ public class modifier extends HttpServlet {
 
 		}
 		request.setAttribute("message", message);
-		rd = request.getRequestDispatcher("WEB-INF/inscription.jsp");
+		rd = request.getRequestDispatcher("WEB-INF/modifier.jsp");
 		rd.forward(request, response);
 	}
 
