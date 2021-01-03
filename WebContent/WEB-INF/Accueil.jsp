@@ -21,7 +21,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 
-<body class="container">
+<body class="container-fluid">
 	<%
 		List<Articles> liste = new ArrayList<Articles>();
 		liste = (List<Articles>) request.getAttribute("liste");
@@ -30,38 +30,18 @@
 		<jsp:include page="header.jsp"></jsp:include>
 	</header>
 
-	<nav class="navbar navbar-expand-sm bg-light navbar-light rounded">
-		<ul class="navbar-nav">
-			<li class="nav-item">
-				<form class="form-inline" action="/action_page.php">
-					<div class="input-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"> <svg
-									xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-									fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-            <path fill-rule="evenodd"
-										d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z" />
-            <path fill-rule="evenodd"
-										d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
-          </svg>
-							</span>
-						</div>
-						<input type="text" class="form-control" placeholder="Rechercher">
-					</div>
-				</form>
-			</li>
+	<div class="row" style="
+	height:250px; background-image: url(images/Bannière.png);
+	background-size: contain;
+	background-repeat: no-repeat;
+	">
+		<div class="col-3 border my-auto" 
+		style="margin-left:3%; width:80%; height:60%; max-height: 250px;">
+		
+		</div>
+	</div>
 
-			<!-- Dropdown -->
-			<li class="nav-item dropdown"><a
-				class="nav-link dropdown-toggle" href="#" id="navbardrop"
-				data-toggle="dropdown"> Catégories </a>
-				<div class="dropdown-menu">
-					<a class="dropdown-item" href="#">Ameublement</a> <a
-						class="dropdown-item" href="#">Informatique</a> <a
-						class="dropdown-item" href="#">Vêtements</a>
-				</div></li>
-		</ul>
-	</nav>
+
 	<br>
 
 

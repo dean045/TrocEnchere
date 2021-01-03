@@ -1,15 +1,20 @@
-<div class="container border rounded"
-	style="margin-top: 1%; margin-bottom: 2%;">
-	<div class="row">
+<div class="container-fluid" style="margin-top: 1%; margin-bottom: 2%;">
+	<div class="row d-flex justify-content-between">
 		<%
 			session = request.getSession();
 		%>
-		<a class="col-8 navbar-brand" href="index">Eni-Enchère</a>
+		<a class="navbar-brand col-3" href="index" style="margin-left: 2%"> <img
+			src="images/logo.png" width="70" height="70" alt="">
+		</a>
+		<h1 class="col-5" style="text-align: center;">Liste des enchères</h1>
 		<%
 			if (null == session.getAttribute("user")) {
 		%>
-		<div class="col-3">
-			<a class="navbar-brand" href="login">Se connecter</a>
+		<div class="col-lg-3 col-sm-5 d-flex flex-column justify-content-center">
+			<a href="login" class="m-auto"> <img
+				src="images/picto_eniEnchere.png" width="40">	
+			</a>
+			<a href="login"  class="m-auto">S'inscrire / Se connecter</a>
 		</div>
 
 		<%
