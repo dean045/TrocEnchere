@@ -57,6 +57,7 @@ public class index extends HttpServlet {
 		String temp = null;
 		temp = request.getParameter("log");
 		if(null != temp) request.getSession().invalidate();
+		doGet(request, response);
 
 	}
 }
