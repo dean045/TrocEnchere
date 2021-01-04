@@ -3,8 +3,8 @@ package fr.eni.BO;
 import java.sql.Date;
 
 public class Articles {
-	
-	
+
+
 	//Attribut 
 	private int noArticle ; 
 	private String nomArticle ; 
@@ -17,15 +17,19 @@ public class Articles {
 	private String etat ; 
 	private String img ;
 	private String categorie ; 
-	private String retrait ; 
+	private String rue ;
+	private String code_postal;
+	private String ville; 
 
 
-	
-	
+
+
 	//Constructeur
+
+
 	public Articles(int noArticle, String nomArticle, String description, Date dateDebutEnchere, Date dateFinEnchere,
-					int prixInitial, int prixVente, int noUtilisateur, String etat, String img, String categorie, String retrait) {
-		
+			int prixInitial, int prixVente, int noUtilisateur, String etat, String img, String categorie, String rue,
+			String code_postal, String ville) {
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
 		this.description = description;
@@ -36,30 +40,33 @@ public class Articles {
 		this.noUtilisateur = noUtilisateur;
 		this.etat = etat;
 		this.img = img;
-		this.categorie = categorie ; 
-		this.retrait = retrait ;
-
+		this.categorie = categorie;
+		this.rue = rue;
+		this.code_postal = code_postal;
+		this.ville = ville;
 	}
 
 	//Surcharge 
 	public Articles(String nomArticle, String description, Date dateDebutEnchere, Date dateFinEnchere, int prixInitial,
-			int prixVente, int noUtilisateur, String etat, String img, String categorie, String retrait) {
-				
+			int noUtilisateur, String etat, String img, String categorie, String rue, String code_postal, String ville) {
+
 		this.nomArticle = nomArticle;
 		this.description = description;
 		this.dateDebutEnchere = dateDebutEnchere;
 		this.dateFinEnchere = dateFinEnchere;
 		this.prixInitial = prixInitial;
-		this.prixVente = prixVente;
 		this.noUtilisateur = noUtilisateur;
 		this.etat = etat;
 		this.img = img;
-		this.categorie = categorie ;
-		this.retrait = retrait ;
+		this.categorie = categorie;
+		this.rue = rue;
+		this.code_postal = code_postal;
+		this.ville = ville;
 	}
-    
+
 	
-	public Articles(int noArticle, String nomArticle, Date dateFinEnchere, int prixVente, int noUtilisateur, String etat, String img) {
+	public Articles(int noArticle, String nomArticle, Date dateFinEnchere, int prixVente, int noUtilisateur,
+			String etat, String img) {
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
 		this.dateFinEnchere = dateFinEnchere;
@@ -68,12 +75,6 @@ public class Articles {
 		this.etat = etat;
 		this.img = img;
 	}
-	
-	
-	
-	
-	
-	
 
 	public Articles() {
 		super();
@@ -134,7 +135,7 @@ public class Articles {
 	public void setPrixVente(int prixVente) {
 		this.prixVente = prixVente;
 	}
-		
+
 	public int getNoUtilisateur() {
 		return noUtilisateur;
 	}
@@ -167,13 +168,31 @@ public class Articles {
 		this.categorie = categorie;
 	}
 
-	public String getRetrait() {
-		return retrait;
+	public String getRue() {
+		return rue;
 	}
 
-	public void setRetrait(String retrait) {
-		this.retrait = retrait;
-	} 
-	
+	public void setRue(String rue) {
+		this.rue = rue;
+	}
+
+	public String getCode_postal() {
+		return code_postal;
+	}
+
+	public void setCode_postal(String code_postal) {
+		this.code_postal = code_postal;
+	}
+
+	public String getVille() {
+		return ville;
+	}
+
+	public void setVille(String ville) {
+		this.ville = ville;
+	}
+
+
+
 
 }

@@ -1,7 +1,7 @@
 package fr.eni.Servlet;
 
 import java.io.IOException;
-
+import java.sql.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import fr.eni.BLL.Manager;
 import fr.eni.BO.Articles;
-
+import fr.eni.BO.Utilisateurs;
 import fr.eni.DAL.DALException;
 
 /**
@@ -28,22 +28,32 @@ public class creation_article extends HttpServlet {
 	String message ;
  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		rd = request.getRequestDispatcher("WEB-INF/VendreArticle.jsp");
-		rd.forward(request, response);
+		session = request.getSession();
+		if (null == session.getAttribute("user")) {
+			request.setAttribute("resultat", "Vous devez vous connecter pour pouvoir vendre un article");
+			rd = request.getRequestDispatcher("WEB-INF/login.jsp");
+			rd.forward(request, response);
+		}
+		else {
+			rd = request.getRequestDispatcher("WEB-INF/VendreArticle.jsp");
+			rd.forward(request, response);
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		Articles item = new Articles(request.getParameter("nomArticle"), request.getParameter("description"), java.sql.Date.valueOf(request.getParameter("dateDebutEnchere")), 
-									java.sql.Date.valueOf(request.getParameter("dateFinEnchere")), Integer.parseInt(request.getParameter("prixInitial")), 
-									Integer.parseInt(request.getParameter("prixVente")), Integer.parseInt(request.getParameter("noUtilisateur")), "EC", 
-									request.getParameter("img"), request.getParameter("categorie"), "erfze");
-
+		session = request.getSession();
+		Date date_debut =  java.sql.Date.valueOf(request.getParameter("date_debut"));
+		Date date_fin =  java.sql.Date.valueOf(request.getParameter("date_fin"));
+		Utilisateurs user = (Utilisateurs) session.getAttribute("user");
+		Articles item = new Articles(request.getParameter("nom"), request.getParameter("descri"),date_debut,date_fin,
+				Integer.valueOf(request.getParameter("prix")),user.getNo_utilisateur(),"EC","img",request.getParameter("categorie"),request.getParameter("rue"),request.getParameter("codepostal"),request.getParameter("ville"));
 		try {
 			manager.add_item(item);
-			session = request.getSession();
 			session.setAttribute("item", item);
-			rd = request.getRequestDispatcher("index");
+			item = manager.getArticle(item.getNoArticle());
+			request.setAttribute("art", item);
+			rd = request.getRequestDispatcher("WEB-INF/detailVente.jsp");
 			rd.forward(request, response);
 		} catch (DALException e) {
 			message = "erreur lors de la création de la vente";
@@ -53,7 +63,7 @@ public class creation_article extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		doGet(request, response);
+		
 	}
 
 }

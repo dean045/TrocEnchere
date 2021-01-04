@@ -126,25 +126,25 @@
 
 		//----------------------INSERT--ARTICLE------------------------------------------------
 
-		public void insert(Articles registration_item) throws DALException{
+		public void insert(Articles item) throws DALException{
 			Statement stmt = null;
 			Connection con = null;
 
 			try {
 				con = JDBCTOOLS.getConnection();
 				//Créer une requete / Statement
-				String sql = "INSERT INTO Utilisateurs VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				String sql = "INSERT INTO ARTICLES VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, null)";
 				PreparedStatement preparedStmt = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-				preparedStmt.setString(1, registration_item.getNomArticle());
-				preparedStmt.setString(2, registration_item.getDescription());
-				preparedStmt.setDate(3, registration_item.getDateDebutEnchere());
-				preparedStmt.setDate(4, registration_item.getDateFinEnchere());
-				preparedStmt.setInt(5, registration_item.getPrixInitial());
-				preparedStmt.setInt(6, registration_item.getPrixVente());
-				preparedStmt.setInt(7, registration_item.getNoUtilisateur());
-				preparedStmt.setString(8, registration_item.getCategorie());
-				preparedStmt.setString(9, registration_item.getEtat());
-				preparedStmt.setString(10, registration_item.getImg());
+				preparedStmt.setString(1, item.getNomArticle());
+				preparedStmt.setString(2, item.getDescription());
+				preparedStmt.setDate(3, item.getDateDebutEnchere());
+				preparedStmt.setDate(4, item.getDateFinEnchere());
+				preparedStmt.setInt(5, item.getPrixInitial());
+				preparedStmt.setInt(6, item.getPrixInitial());
+				preparedStmt.setInt(7, item.getNoUtilisateur());
+				preparedStmt.setInt(8, 1);
+				preparedStmt.setString(9, item.getEtat());
+				preparedStmt.setString(10,item.getImg());
 
 
 				//Execute la requete
@@ -153,8 +153,18 @@
 				ResultSet rs =   preparedStmt.getGeneratedKeys();
 
 				while(rs.next()) {
-					registration_item.setNoArticle(rs.getInt(1));
+					item.setNoArticle(rs.getInt(1));
 				}
+				sql = "INSERT INTO RETRAITS VALUES (?, ?, ?, ?)";
+				preparedStmt = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+				preparedStmt.setInt(1, item.getNoArticle());
+				preparedStmt.setString(2, item.getRue());
+				preparedStmt.setString(3, item.getCode_postal());
+				preparedStmt.setString(4, item.getVille());
+				
+				preparedStmt.executeUpdate();
+
+				rs =   preparedStmt.getGeneratedKeys();
 
 			} catch (SQLException e) {
 				e.printStackTrace();			
@@ -188,7 +198,7 @@
 				cnx=JDBCTOOLS.getConnection();
 				pstmt=cnx.createStatement();
 				rs = pstmt.executeQuery(SELECT);
-				System.out.println("ok");
+				System.out.println("test select article ok");
 				while (rs.next()){
 
 					art.setNoArticle(rs.getInt("no_article"));
@@ -212,9 +222,17 @@
 					art.setEtat("EC");
 
 					art.setImg(rs.getString("IMG"));
-
-
 				}
+				SELECT = "SELECT * from RETRAITS where no_article = "+ noArticle +";";
+				rs = pstmt.executeQuery(SELECT);
+				System.out.println("test select retraits ok");
+				while(rs.next())
+				{
+					art.setCode_postal(rs.getString("code_postal"));
+					art.setRue(rs.getString("rue"));
+					art.setVille(rs.getString("ville"));
+				}
+				
 			} catch (SQLException e) {
 
 				throw new DALException ("Probleme - obtenirUnUtil - " + e.getMessage());

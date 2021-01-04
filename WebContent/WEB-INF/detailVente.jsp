@@ -107,7 +107,7 @@
 						<p>
 							<strong>Retrait : </strong>
 							<%
-								out.print(art.getRetrait());
+								out.print(art.getRue() +" " +art.getCode_postal() + " " + art.getVille());
 							%>
 						</p>
 					</div>

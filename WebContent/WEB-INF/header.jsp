@@ -10,18 +10,22 @@
 		<%
 			if (null == session.getAttribute("user")) {
 		%>
+		<a class="" href="creation_article">Vendre</a>
 		<div class="col-lg-3 col-sm-5 d-flex flex-column justify-content-center">
 			<a href="login" class="m-auto"> <img
 				src="images/picto_eniEnchere.png" width="40">	
 			</a>
+			
 			<a href="login"  class="m-auto">S'inscrire / Se connecter</a>
 		</div>
+		
 
 		<%
 			} else {
 		%>
 		<div class="col-3">
 			<div class="row">
+				<a class="navbar-brand col-5" href="creation_article">Vendre</a>
 				<a class="navbar-brand col-5" href="profil">Mon Profil</a>
 				<form action="index" method="post" class="col-5">
 					<button class="btn btn-primary" name="log" value="off">Déconnexion</button>
