@@ -14,7 +14,7 @@ public interface Dao {
 	public void delete(Integer no_utilisateur)throws DALException;
 	public void Update_user(Utilisateurs registration_user) throws DALException;
 	public List<String> libelle() throws DALException;
-
+	public Utilisateurs select_user (int no_utilisateur) throws DALException;
 	
 }
 

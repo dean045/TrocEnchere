@@ -11,7 +11,7 @@ import fr.eni.BO.Utilisateurs;
 
 public class Manager {
 
-	Dao methode = new DaoFactory().getdao();
+	Dao methode = DaoFactory.getdao();
 
 	//----------------affichage--list--article--------------
 
@@ -77,6 +77,10 @@ public class Manager {
 		methode.Update_user(user);
 	}
 	
+	
+	public Utilisateurs getUser (int no_utilisateur) throws DALException{
+		return methode.select_user(no_utilisateur);
+	}
 	
 	
 	public List<String> getLibelle ()throws DALException{

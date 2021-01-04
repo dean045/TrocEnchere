@@ -442,7 +442,7 @@ public class DaoJDBCImpl implements Dao {
 		}
 	}
 
-	//------------------------- Select Catégorie --------------------------------- 
+	//------------------------- list Catégorie --------------------------------- 
 
 	public List<String> libelle () throws DALException {
 
@@ -485,6 +485,64 @@ public class DaoJDBCImpl implements Dao {
 		}
 	}
 
+	//----------------Select-user---------------------------------------------------------
+
+	public Utilisateurs select_user (int no_utilisateur) throws DALException {
+		Connection cnx=null;
+		Statement pstmt=null;
+		ResultSet rs = null;
+		Utilisateurs user = new Utilisateurs();
+		String SELECT = "SELECT * from UTILISATEURS where no_utilisateur = "+ no_utilisateur +";";
+
+
+
+		try {
+			cnx=JDBCTOOLS.getConnection();
+			pstmt=cnx.createStatement();
+			rs = pstmt.executeQuery(SELECT);
+			System.out.println("test select article ok");
+			while (rs.next()){
+
+				user.setNo_utilisateur(rs.getInt("no_utilisateur"));
+
+				user.setPseudo(rs.getString("pseudo"));
+
+				user.setNom(rs.getString("nom"));
+
+				user.setPrenom(rs.getString("prenom"));
+
+				user.setEmail(rs.getString("email"));
+
+				user.setTelephone(rs.getString("telephone"));
+
+				user.setRue(rs.getString("rue"));
+
+				user.setCode_postal(rs.getString("code_postal"));
+
+				user.setVille(rs.getString("ville"));
+
+				user.setCredit(Integer.valueOf(rs.getString("credit")));
+
+				user.setAdministrateur(Integer.valueOf(rs.getString("administrateur")));
+				
+			}
+
+		} catch (SQLException e) {
+
+			throw new DALException ("Probleme - obtenirUnUtil - " + e.getMessage());
+
+		}finally{
+			try{
+				if (pstmt!=null) pstmt.close();
+				if (cnx!=null) cnx.close();
+			} catch (SQLException e) {
+				throw new DALException ("Probleme - FermerConnexion - " + e.getMessage());
+			}
+
+		}
+		return user;
+
+	}
 }  
 
 

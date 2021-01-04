@@ -124,37 +124,34 @@
 				</div>
 				<div class="container col-7">
 
+					<form method="post" action="enchere">
+						<div class="row">
 
-					<div class="row">
-						<form method="post" action="enchere">
-						<p>
-							<strong>Ma proposition : </strong>
-						<p>
-							<input type="number" style="width: 75px; margin-left: 20px;"
-								name="propoEnchere" min=<%out.print(art.getPrixInitial());%>
-								value=<%out.print(art.getPrixVente() + 1);%>>
-						</form>
-					</div>
+							<p>
+								<strong>Ma proposition : </strong>
+							<p>
+								<input type="number" style="width: 75px; margin-left: 20px;"
+									name="propoEnchere" min=<%out.print(art.getPrixInitial());%>
+									value=<%out.print(art.getPrixVente() + 1);%>>
+						</div>
 
-					<div class="container row">
+						<div class="container row">
 
-						<button type="submit" class="btn btn-primary m-auto"
-							name="noArticle" value=<%out.print(art.getNoArticle(); %>>Enchérir</button>
-					</div>
-
+							<button type="submit" class="btn btn-primary m-auto"
+								name="noArticle" value=<%out.print(art.getNoArticle()); %>>Enchérir</button>
+						</div>
+					</form>
 				</div>
 
 				<div class="container row" style="margin-top: 1%">
 
 					<a href="index" class="btn btn-primary btn-block mx-auto"
-						style="width: 13em">Retour à la page principale
-						
-					</a>
+						style="width: 13em">Retour à la page principale </a>
 
 				</div>
 			</div>
 
 		</div>
-	</div>	
+	</div>
 </body>
 </html>
