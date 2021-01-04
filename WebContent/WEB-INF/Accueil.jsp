@@ -32,7 +32,7 @@
 
 	<div class="row" style="
 	height:250px; background-image: url(images/Bannière.png);
-	background-size: contain;
+	background-size: cover;
 	background-repeat: no-repeat;
 	">
 		<div class="col-3 border my-auto" 
