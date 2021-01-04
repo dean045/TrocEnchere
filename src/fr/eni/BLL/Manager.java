@@ -77,4 +77,11 @@ public class Manager {
 		methode.Update_user(user);
 	}
 	
+	
+	
+	public List<String> getLibelle ()throws DALException{
+		return methode.libelle();
+		
+	}
+	
 }

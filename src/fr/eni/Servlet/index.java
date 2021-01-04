@@ -31,16 +31,20 @@ public class index extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Manager manager = new Manager();
 
-		
 		List<Articles> liste = new ArrayList<Articles>();
+		List<String> listeCat = new ArrayList<String>();
+
 		
 		try {
 			liste = manager.getliste();
-		} catch (DALException e) {
-			// TODO Auto-generated catch block
+			listeCat = manager.getLibelle();
+		} 
+		catch (DALException e) {
 			e.printStackTrace();
 		}
-		//test
+		 
+		request.setAttribute("CATEGORIE", listeCat);
+				
 		request.setAttribute("liste", liste);
 		rd = request.getRequestDispatcher("WEB-INF/Accueil.jsp");
 		rd.forward(request, response);
@@ -53,6 +57,6 @@ public class index extends HttpServlet {
 		String temp = null;
 		temp = request.getParameter("log");
 		if(null != temp) request.getSession().invalidate();
-		doGet(request, response);
+
 	}
 }

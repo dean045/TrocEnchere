@@ -13,6 +13,8 @@ public interface Dao {
 	public boolean verfication (String username) throws Exception ;
 	public void delete(Integer no_utilisateur)throws DALException;
 	public void Update_user(Utilisateurs registration_user) throws DALException;
+	public List<String> libelle() throws DALException;
+
 	
 }
 
