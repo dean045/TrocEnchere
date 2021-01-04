@@ -38,6 +38,8 @@ public class modifier extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		session = request.getSession();
+		Utilisateurs user = (Utilisateurs) session.getAttribute("user");
 		if(!request.getParameter("mot_de_passe").equals(request.getParameter("confirm")))
 		{
 			message = "Vous avez saisi 2 mots de passe différents. ";
@@ -45,17 +47,23 @@ public class modifier extends HttpServlet {
 		else
 		{
 			try {
-				if(manager.check(request.getParameter("pseudo")) && manager.check(request.getParameter("email")))
+				if((manager.check(request.getParameter("pseudo")) || user.getPseudo().equals(request.getParameter("pseudo")))
+						&& (manager.check(request.getParameter("email")) || user.getEmail().equalsIgnoreCase(request.getParameter("email"))))
 				{
-					Utilisateurs user = new Utilisateurs(request.getParameter("pseudo"),request.getParameter("nom"), 
-							request.getParameter("prenom"),request.getParameter("email"),request.getParameter("telephone"), 
-							request.getParameter("rue"), request.getParameter("code_postal"), request.getParameter("ville"),
-							request.getParameter("mot_de_passe"), 0, 0);
+					user.setPseudo(request.getParameter("pseudo"));
+					user.setNom(request.getParameter("nom"));
+					user.setPrenom(request.getParameter("prenom"));
+					user.setEmail(request.getParameter("email"));
+					user.setTelephone(request.getParameter("telephone"));	
+					user.setRue(request.getParameter("rue"));
+					user.setCode_postal(request.getParameter("code_postal"));
+					user.setVille(request.getParameter("ville"));
+					user.setMot_de_passe(request.getParameter("mot_de_passe"));
 
 					try {
 						manager.modifierUtilisateur(user);
 						session.setAttribute("user", user);
-						rd = request.getRequestDispatcher("profil");
+						rd = request.getRequestDispatcher("WEB-INF/profil.jsp");
 						rd.forward(request, response);
 					} catch (DALException e) {
 						message = "erreur lors de l'inscription veuillez contacter l'assistance";

@@ -394,7 +394,7 @@ public class DaoJDBCImpl implements Dao {
 		try {
 			con = JDBCTOOLS.getConnection();
 			//Créer une requete / Statement
-			String sql = "UPDATE UTILISATEURS SETpseudo = ?,\r\n" + 
+			String sql = "UPDATE UTILISATEURS SET pseudo = ?,\r\n" + 
 					"		nom = ?,\r\n" + 
 					"		prenom = ?,\r\n" + 
 					"		email = ?,\r\n" + 
@@ -442,8 +442,6 @@ public class DaoJDBCImpl implements Dao {
 
 	//------------------------- Select Catégorie --------------------------------- 
 
-
-
 	public List<String> libelle () throws DALException {
 
 		String LIBCATEGORIE= "select libelle from CATEGORIES ;";
@@ -484,8 +482,6 @@ public class DaoJDBCImpl implements Dao {
 			}
 		}
 	}
-
-
 
 }  
 
