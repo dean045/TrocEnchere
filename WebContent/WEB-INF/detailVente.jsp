@@ -126,18 +126,20 @@
 
 
 					<div class="row">
+						<form method="post" action="enchere">
 						<p>
 							<strong>Ma proposition : </strong>
 						<p>
 							<input type="number" style="width: 75px; margin-left: 20px;"
-								id="propoEnchere" min=<%out.print(art.getPrixInitial());%>
+								name="propoEnchere" min=<%out.print(art.getPrixInitial());%>
 								value=<%out.print(art.getPrixVente() + 1);%>>
+						</form>
 					</div>
 
 					<div class="container row">
 
 						<button type="submit" class="btn btn-primary m-auto"
-							name="Encherir" value="Encherir">Enchérir</button>
+							name="noArticle" value=<%out.print(art.getNoArticle(); %>>Enchérir</button>
 					</div>
 
 				</div>

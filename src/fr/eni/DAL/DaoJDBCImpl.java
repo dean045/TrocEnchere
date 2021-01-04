@@ -222,6 +222,8 @@ public class DaoJDBCImpl implements Dao {
 				art.setEtat("EC");
 
 				art.setImg(rs.getString("IMG"));
+				
+				art.setNo_acheteur(rs.getInt("no_acheteur"));
 			}
 			SELECT = "SELECT * from RETRAITS where no_article = "+ noArticle +";";
 			rs = pstmt.executeQuery(SELECT);
