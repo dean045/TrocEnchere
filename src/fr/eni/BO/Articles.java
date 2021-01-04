@@ -19,7 +19,8 @@ public class Articles {
 	private String categorie ; 
 	private String rue ;
 	private String code_postal;
-	private String ville; 
+	private String ville;
+	private int no_acheteur;
 
 
 
@@ -29,7 +30,7 @@ public class Articles {
 
 	public Articles(int noArticle, String nomArticle, String description, Date dateDebutEnchere, Date dateFinEnchere,
 			int prixInitial, int prixVente, int noUtilisateur, String etat, String img, String categorie, String rue,
-			String code_postal, String ville) {
+			String code_postal, String ville, int no_acheteur) {
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
 		this.description = description;
@@ -44,6 +45,7 @@ public class Articles {
 		this.rue = rue;
 		this.code_postal = code_postal;
 		this.ville = ville;
+		this.no_acheteur = no_acheteur;
 	}
 
 	//Surcharge 
@@ -190,6 +192,14 @@ public class Articles {
 
 	public void setVille(String ville) {
 		this.ville = ville;
+	}
+
+	public int getNo_acheteur() {
+		return no_acheteur;
+	}
+
+	public void setNo_acheteur(int no_acheteur) {
+		this.no_acheteur = no_acheteur;
 	}
 
 
