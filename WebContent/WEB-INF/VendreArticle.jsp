@@ -112,7 +112,7 @@
 						<br>
 						<div class="container">
 							<button type="submit" class="btn btn-primary">Confirmer</button>
-							<button type="submit" class="btn btn-primary">Annuler</button>
+							<a href="index" class="btn btn-primary">Annuler</a>
 						</div>
 					</div>
 				</div>
