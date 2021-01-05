@@ -80,7 +80,7 @@
 						Prix :
 						<%
 						out.print(liste.get(i).getPrixVente());
-					%><br> Fin de l'enchère : <br>
+					%><br>Fin de l'enchère : <br>
 						<%
 							out.print(liste.get(i).getDateFinEnchere().toString());
 						%><br> Vendeur : 
