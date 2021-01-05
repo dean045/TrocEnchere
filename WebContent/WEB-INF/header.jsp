@@ -1,4 +1,9 @@
+<%@page import="fr.eni.BO.Utilisateurs"%>
+<% int timeout = session.getMaxInactiveInterval(); response.setHeader("Refresh", timeout + "; URL = index.jsp"); %>
+
 <div class="container-fluid" style="margin-top: 1%; margin-bottom: 2%;">
+
+
 	<div class="row d-flex justify-content-between">
 		<%
 			session = request.getSession();
@@ -22,15 +27,22 @@
 
 		<%
 			} else {
+			Utilisateurs user = (Utilisateurs)session.getAttribute("user");	
 		%>
+		
 		<div class="col-3">
 			<div class="row">
 				<a class="navbar-brand col-5" href="creation_article">Vendre</a>
-				<a class="navbar-brand col-5" href="profil">Mon Profil</a>
+				<div>
+					<a class="navbar-brand col-5" href="profil">Mon Profil</a>
+					<p>Crédit : <%out.print(user.getCredit());%> points</p>
+				
 				<form action="index" method="post" class="col-5">
-					<button class="btn btn-primary" name="log" value="off">Déconnexion</button>
+				<button class="btn btn-primary" name="log" value="off">Déconnexion</button>
 				</form>
+				</div>	
 			</div>
+			
 		</div>
 
 		<%
