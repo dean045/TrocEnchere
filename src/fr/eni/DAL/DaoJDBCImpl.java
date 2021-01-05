@@ -34,26 +34,26 @@ public class DaoJDBCImpl implements Dao {
 			System.out.println("1");
 			//requete selection de tout les articles
 			String sql;
-			
+
 			if(no_categorie == 0)
 			{
-				 sql = "select no_article, nom_article, prix_vente, date_fin_encheres, ARTICLES.no_utilisateur, IMG , UTILISATEURS.pseudo, no_categorie \r\n" + 
-					"From ARTICLES\r\n" + 
-					"left join UTILISATEURS ON ARTICLES.no_utilisateur = UTILISATEURS.no_utilisateur WHERE ARTICLES.ETAT ='EC'; ";
+				sql = "select no_article, nom_article, prix_vente, date_fin_encheres, ARTICLES.no_utilisateur, IMG , UTILISATEURS.pseudo, no_categorie \r\n" + 
+						"From ARTICLES\r\n" + 
+						"left join UTILISATEURS ON ARTICLES.no_utilisateur = UTILISATEURS.no_utilisateur WHERE ARTICLES.ETAT ='EC'; ";
 				//execution requete
 				rs = rqt.executeQuery(sql);
 			}
 			else
 			{
-				
+
 				sql = "select no_article, nom_article, prix_vente, date_fin_encheres, ARTICLES.no_utilisateur, IMG, UTILISATEURS.pseudo, no_categorie \r\n" + 
-					"From ARTICLES\r\n" + 
-					"left join UTILISATEURS ON ARTICLES.no_utilisateur = UTILISATEURS.no_utilisateur WHERE ARTICLES.ETAT ='EC' AND ARTICLES.no_categorie =" + no_categorie + "; ";
+						"From ARTICLES\r\n" + 
+						"left join UTILISATEURS ON ARTICLES.no_utilisateur = UTILISATEURS.no_utilisateur WHERE ARTICLES.ETAT ='EC' AND ARTICLES.no_categorie =" + no_categorie + "; ";
 				rs = rqt.executeQuery(sql);
 			}
 
 
-			
+
 
 
 
@@ -69,7 +69,7 @@ public class DaoJDBCImpl implements Dao {
 				article = new Articles(no_article, nom, date , rs.getInt("prix_vente"), 
 						rs.getInt("no_utilisateur"), "EC",rs.getString("IMG"));
 				article.setPseudo(rs.getString("pseudo"));
-				
+
 				liste.add(article);
 			}
 			System.out.println("3");
@@ -238,7 +238,7 @@ public class DaoJDBCImpl implements Dao {
 				art.setEtat("EC");
 
 				art.setImg(rs.getString("IMG"));
-				
+
 				art.setNo_acheteur(rs.getInt("no_acheteur"));
 			}
 			SELECT = "SELECT * from RETRAITS where no_article = "+ noArticle +";";
@@ -464,43 +464,43 @@ public class DaoJDBCImpl implements Dao {
 
 	public List<Categories> libelle() throws DALException {
 
-        String LIBCATEGORIE= "select * from CATEGORIES ;";
+		String LIBCATEGORIE= "select * from CATEGORIES ;";
 
 
-        Connection cnx=null;
-        PreparedStatement pstmt=null;
-        ResultSet rs=null;
+		Connection cnx=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
 
-        try {
+		try {
 
-            cnx= JDBCTOOLS.getConnection();
-            pstmt=cnx.prepareStatement(LIBCATEGORIE);
-            rs=pstmt.executeQuery();
+			cnx= JDBCTOOLS.getConnection();
+			pstmt=cnx.prepareStatement(LIBCATEGORIE);
+			rs=pstmt.executeQuery();
 
-            List <Categories> liste = new ArrayList <Categories> () ; 
+			List <Categories> liste = new ArrayList <Categories> () ; 
 
-            Categories cat = new Categories();
-            while (rs.next()) {
-                cat = new Categories(rs.getInt("no_categorie"),rs.getString("libelle"));
-                liste.add(cat);
-            }
-            System.out.println("Récupération catégorie");
-            return liste;
+			Categories cat = new Categories();
+			while (rs.next()) {
+				cat = new Categories(rs.getInt("no_categorie"),rs.getString("libelle"));
+				liste.add(cat);
+			}
+			System.out.println("Récupération catégorie");
+			return liste;
 
 
-        } catch (SQLException e) {
-            throw new DALException("selectAll failed - ", e);
-        }
-        finally{
-            try {
-                if(cnx!=null){
-                    cnx.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+		} catch (SQLException e) {
+			throw new DALException("selectAll failed - ", e);
+		}
+		finally{
+			try {
+				if(cnx!=null){
+					cnx.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 
 	//----------------Select-user---------------------------------------------------------
 
@@ -537,13 +537,13 @@ public class DaoJDBCImpl implements Dao {
 				user.setCode_postal(rs.getString("code_postal"));
 
 				user.setVille(rs.getString("ville"));
-				
+
 				user.setMot_de_passe(rs.getString("mot_de_passe"));
 
 				user.setCredit(Integer.valueOf(rs.getString("credit")));
 
 				user.setAdministrateur(Integer.valueOf(rs.getString("administrateur")));
-				
+
 			}
 
 		} catch (SQLException e) {
@@ -562,69 +562,106 @@ public class DaoJDBCImpl implements Dao {
 		return user;
 
 	}
-	
+
 	//----------------------------Update--article---------------------
 
-		public void Update_article(Articles registration_article) throws DALException{
-			Statement stmt = null;
-			Connection con = null;
-		
+	public void Update_article(Articles registration_article) throws DALException{
+		Statement stmt = null;
+		Connection con = null;
+
+		try {
+			con = JDBCTOOLS.getConnection();
+			//Créer une requete / Statement
+			String sql = "UPDATE ARTICLES SET nom_article = ?,\r\n" + 
+					"		description = ?,\r\n" + 
+					"		date_debut_encheres = ?,\r\n" + 
+					"		date_fin_encheres = ?,\r\n" + 
+					"		prix_initial = ?,\r\n" + 
+					"		prix_vente = ?,\r\n" + 
+					"		no_utilisateur = ?,\r\n" +
+					"		no_categorie = ?,\r\n" + 
+					"		etat = ?,\r\n" + 
+					"		img = ?,\r\n" +
+					"		no_acheteur = ? \r\n" +
+					"WHERE no_article = ?;";
+
+
+			PreparedStatement preparedStmt = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+			preparedStmt.setString(1, registration_article.getNomArticle());
+			preparedStmt.setString(2, registration_article.getDescription());
+			preparedStmt.setDate(3, registration_article.getDateDebutEnchere());
+			preparedStmt.setDate(4, registration_article.getDateFinEnchere());
+			preparedStmt.setInt(5, registration_article.getPrixInitial());
+			preparedStmt.setInt(6, registration_article.getPrixVente());
+			preparedStmt.setInt(7, registration_article.getNoUtilisateur());
+			preparedStmt.setString(8, registration_article.getCategorie());
+			preparedStmt.setString(9, registration_article.getEtat());
+			preparedStmt.setString(10,registration_article.getImg());
+			preparedStmt.setInt(11,registration_article.getNo_acheteur());
+			preparedStmt.setInt(12,registration_article.getNoArticle());
+
+
+			//Execute la requete
+			preparedStmt.executeUpdate();
+
+			ResultSet rs =   preparedStmt.getGeneratedKeys();
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();			
+		} finally{
 			try {
-				con = JDBCTOOLS.getConnection();
-				//Créer une requete / Statement
-				String sql = "UPDATE ARTICLES SET nom_article = ?,\r\n" + 
-						"		description = ?,\r\n" + 
-						"		date_debut_encheres = ?,\r\n" + 
-						"		date_fin_encheres = ?,\r\n" + 
-						"		prix_initial = ?,\r\n" + 
-						"		prix_vente = ?,\r\n" + 
-						"		no_utilisateur = ?,\r\n" +
-						"		no_categorie = ?,\r\n" + 
-						"		etat = ?,\r\n" + 
-						"		img = ?,\r\n" +
-						"		no_acheteur = ? \r\n" +
-						"WHERE no_article = ?;";
-		
-		
-				PreparedStatement preparedStmt = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-				preparedStmt.setString(1, registration_article.getNomArticle());
-				preparedStmt.setString(2, registration_article.getDescription());
-				preparedStmt.setDate(3, registration_article.getDateDebutEnchere());
-				preparedStmt.setDate(4, registration_article.getDateFinEnchere());
-				preparedStmt.setInt(5, registration_article.getPrixInitial());
-				preparedStmt.setInt(6, registration_article.getPrixVente());
-				preparedStmt.setInt(7, registration_article.getNoUtilisateur());
-				preparedStmt.setString(8, registration_article.getCategorie());
-				preparedStmt.setString(9, registration_article.getEtat());
-				preparedStmt.setString(10,registration_article.getImg());
-				preparedStmt.setInt(11,registration_article.getNo_acheteur());
-				preparedStmt.setInt(12,registration_article.getNoArticle());
-		
-		
-				//Execute la requete
-				preparedStmt.executeUpdate();
-		
-				ResultSet rs =   preparedStmt.getGeneratedKeys();
-		
-		
-			} catch (SQLException e) {
-				e.printStackTrace();			
-			} finally{
-				try {
-					if(stmt!=null){
-						stmt.close();
-					}
-					if(con!=null){
-						con.close();
-					}
-				} catch (SQLException e) {
-					e.printStackTrace();
+				if(stmt!=null){
+					stmt.close();
 				}
+				if(con!=null){
+					con.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
 		}
-		
-		
-	
+	}
+
+	//----------------------INSERT--ARTICLE------------------------------------------------
+
+	public void enchere(Articles item) throws DALException{
+		Statement stmt = null;
+		Connection con = null;
+
+		try {
+			con = JDBCTOOLS.getConnection();
+			//Créer une requete / Statement
+			String sql = "INSERT INTO ENCHERES VALUES (?, ?, ?, ?)";
+			PreparedStatement preparedStmt = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+			preparedStmt.setInt(1, item.getNo_acheteur());
+			preparedStmt.setInt(2, item.getNoArticle());
+			preparedStmt.setDate(3, new java.sql.Date(System.currentTimeMillis()));
+			preparedStmt.setInt(4, item.getPrixVente());
+
+
+			//Execute la requete
+			preparedStmt.executeUpdate();
+
+			ResultSet rs =   preparedStmt.getGeneratedKeys();
+
+		} catch (SQLException e) {
+			e.printStackTrace();			
+		} finally{
+			try {
+				if(stmt!=null){
+					stmt.close();
+				}
+				if(con!=null){
+					con.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}	
+
+
 }  
 
 

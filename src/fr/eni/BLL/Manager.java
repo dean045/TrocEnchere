@@ -96,4 +96,9 @@ public class Manager {
 		public void modifierArticle(Articles article) throws DALException{
 			methode.Update_article(article);
 		}
+	
+	//--------------------Put-Enchere----------------------------------	
+		public void put_enchere(Articles item) throws DALException{
+			methode.enchere(item);
+		}
 }

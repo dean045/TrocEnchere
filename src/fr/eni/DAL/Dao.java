@@ -16,6 +16,7 @@ public interface Dao {
 	public List<Categories> libelle() throws DALException;
 	public Utilisateurs select_user (int no_utilisateur) throws DALException;
 	public void Update_article(Articles registration_article) throws DALException;	
+	public void enchere(Articles item) throws DALException;
 }
 
 

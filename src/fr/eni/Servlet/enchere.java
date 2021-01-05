@@ -57,9 +57,10 @@ public class enchere extends HttpServlet {
 						}
 						art.setNo_acheteur(user.getNo_utilisateur());
 						art.setPrixVente(prix);
-						
 						user.setCredit(user.getCredit() - prix);
+						
 						manager.modifierArticle(art);
+						manager.put_enchere(art);
 						manager.modifierUtilisateur(user);
 						request.setAttribute("no_article", art.getNoArticle());
 						
