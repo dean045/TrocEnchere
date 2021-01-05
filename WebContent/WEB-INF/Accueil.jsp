@@ -79,13 +79,13 @@
 					<p class="card-text">
 						Prix :
 						<%
-						out.print(liste.get(i).getPrixInitial());
+						out.print(liste.get(i).getPrixVente());
 					%><br> Fin de l'enchère : <br>
 						<%
 							out.print(liste.get(i).getDateFinEnchere().toString());
-						%><br> Vendeur :
+						%><br> Vendeur : 
 						<%
-							out.print(liste.get(i).getNoUtilisateur());
+							out.print(liste.get(i).getPseudo());
 						%>
 						<br>
 					</p>

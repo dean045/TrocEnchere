@@ -571,14 +571,15 @@ public class DaoJDBCImpl implements Dao {
 				//Créer une requete / Statement
 				String sql = "UPDATE ARTICLES SET nom_article = ?,\r\n" + 
 						"		description = ?,\r\n" + 
-						"		date_debut_enchere = ?,\r\n" + 
-						"		date_fin_enchere = ?,\r\n" + 
+						"		date_debut_encheres = ?,\r\n" + 
+						"		date_fin_encheres = ?,\r\n" + 
 						"		prix_initial = ?,\r\n" + 
 						"		prix_vente = ?,\r\n" + 
 						"		no_utilisateur = ?,\r\n" +
 						"		no_categorie = ?,\r\n" + 
 						"		etat = ?,\r\n" + 
-						"		img = ?\r\n" +
+						"		img = ?,\r\n" +
+						"		no_acheteur = ? \r\n" +
 						"WHERE no_article = ?;";
 		
 		
@@ -593,8 +594,8 @@ public class DaoJDBCImpl implements Dao {
 				preparedStmt.setString(8, registration_article.getCategorie());
 				preparedStmt.setString(9, registration_article.getEtat());
 				preparedStmt.setString(10,registration_article.getImg());
-				preparedStmt.setInt(11,registration_article.getNoArticle());
-				preparedStmt.setInt(12,registration_article.getNo_acheteur());
+				preparedStmt.setInt(11,registration_article.getNo_acheteur());
+				preparedStmt.setInt(12,registration_article.getNoArticle());
 		
 		
 				//Execute la requete

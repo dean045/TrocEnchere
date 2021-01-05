@@ -42,7 +42,8 @@ public class enchere extends HttpServlet {
 		}
 		else {
 			Utilisateurs user = (Utilisateurs) session.getAttribute("user");
-			if(user.getCredit() >= Integer.valueOf(request.getParameter("enchere"))) {
+			int prix = Integer.valueOf(request.getParameter("enchere"));
+			if(user.getCredit() >= prix) {
 
 				try {
 					Articles art = manager.getArticle(Integer.valueOf(request.getParameter("noArticle")));
@@ -53,8 +54,11 @@ public class enchere extends HttpServlet {
 					}
 					
 					art.setNo_acheteur(user.getNo_utilisateur());
-					user.setCredit(user.getCredit() - Integer.valueOf(request.getParameter("propoEnchere")));
+					art.setPrixVente(prix);
+					user.setCredit(user.getCredit() - prix);
+					manager.modifierArticle(art);
 					manager.modifierUtilisateur(user);
+					request.setAttribute("no_article", art.getNoArticle());
 					
 				} catch (NumberFormatException e) {					
 					e.printStackTrace();
@@ -63,7 +67,7 @@ public class enchere extends HttpServlet {
 				}
 
 			}
-			rd = request.getRequestDispatcher("WEB-INF/detailVente.jsp");
+			rd = request.getRequestDispatcher("vente");
 			rd.forward(request, response);
 		}
 	}
