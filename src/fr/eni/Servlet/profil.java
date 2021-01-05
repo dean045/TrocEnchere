@@ -27,6 +27,10 @@ public class profil extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(null != request.getAttribute("profil"))
+		{
+			request.setAttribute("profil", request.getAttribute("profil"));
+		}
 		rd = request.getRequestDispatcher("WEB-INF/profil.jsp");
 		rd.forward(request, response);
 	}

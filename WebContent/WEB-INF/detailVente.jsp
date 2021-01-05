@@ -1,3 +1,4 @@
+<%@page import="fr.eni.BLL.Manager"%>
 <%@page import="fr.eni.BO.Utilisateurs"%>
 <%@page import="fr.eni.BO.Articles"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -67,14 +68,18 @@
 						<strong> Meilleure offre : </strong>
 						<p>
 							<%
-								out.print(art.getPrixVente());
+								out.print(" " + art.getPrixVente() + " ");
 							%>
 						</p>
+					</div>
+					<div class="row">
+						<strong> Meilleure Enchérisseur : </strong>
 						<p>
-							par :
 							<%
-							out.print(art.getNoUtilisateur());
-						%>
+								Manager manager = new Manager();
+								Utilisateurs user = manager.getUser(art.getNo_acheteur());
+								out.print(" " + user.getPseudo());
+							%>
 						</p>
 					</div>
 				</div>
@@ -107,19 +112,21 @@
 						<p>
 							<strong>Retrait : </strong>
 							<%
-								out.print(art.getRue() +" " +art.getCode_postal() + " " + art.getVille());
+								out.print(art.getRue() + " " + art.getCode_postal() + " " + art.getVille());
 							%>
 						</p>
 					</div>
 				</div>
 				<div class="container col-7">
 					<div class="row">
-						<p>
-							<strong>Vendeur : </strong>
+						<%user = manager.getUser(art.getNoUtilisateur()); 
+						request.setAttribute("profil", user);%>
+						<strong>Vendeur : </strong>
+						<a href="profil">	
 							<%
-								out.print(art.getNoUtilisateur());
+								out.print(user.getPseudo());
 							%>
-						</p>
+						</a>
 					</div>
 				</div>
 				<div class="container col-7">
@@ -138,7 +145,7 @@
 						<div class="container row">
 
 							<button type="submit" class="btn btn-primary m-auto"
-								name="noArticle" value=<%out.print(art.getNoArticle()); %>>Enchérir</button>
+								name="noArticle" value=<%out.print(art.getNoArticle());%>>Enchérir</button>
 						</div>
 					</form>
 				</div>

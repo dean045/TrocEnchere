@@ -13,7 +13,16 @@
 </head>
 <body>
 	<%
-		Utilisateurs user = (Utilisateurs) session.getAttribute("user");
+		Utilisateurs user = new Utilisateurs();
+		if(null != request.getAttribute("profil"))
+		{
+			user = (Utilisateurs) request.getAttribute("profil");
+		}
+		else
+		{
+			user = (Utilisateurs) session.getAttribute("user");
+		}
+		
 	%>
 
 	<header class="col-12">
@@ -73,6 +82,9 @@
 			</div>
 		</div>
 	</div>
+	<%if(session.getAttribute("user").equals(request.getAttribute("profil")) || null == request.getAttribute("profil"))
+		{
+	%>
 	<div class="container">
 		<div class="row">
 			<div class="col-3 container mx-auto">
@@ -94,6 +106,7 @@
 
 		</div>
 	</div>
+	<% }%>
 
 </body>
 </html>

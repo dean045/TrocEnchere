@@ -420,7 +420,8 @@ public class DaoJDBCImpl implements Dao {
 					"		rue = ?,\r\n" + 
 					"		code_postal = ?,\r\n" + 
 					"		ville = ?,\r\n" + 
-					"		mot_de_passe = ?\r\n" + 
+					"		mot_de_passe = ?,\r\n" + 
+					"		credit = ?\r\n" +
 					"WHERE no_utilisateur = ?;";
 
 
@@ -434,7 +435,8 @@ public class DaoJDBCImpl implements Dao {
 			preparedStmt.setString(7, registration_user.getCode_postal());
 			preparedStmt.setString(8, registration_user.getVille());
 			preparedStmt.setString(9, registration_user.getMot_de_passe());
-			preparedStmt.setInt(10, registration_user.getNo_utilisateur());
+			preparedStmt.setInt(10, registration_user.getCredit());
+			preparedStmt.setInt(11, registration_user.getNo_utilisateur());
 
 			//Execute la requete
 			preparedStmt.executeUpdate();
@@ -536,6 +538,8 @@ public class DaoJDBCImpl implements Dao {
 				user.setCode_postal(rs.getString("code_postal"));
 
 				user.setVille(rs.getString("ville"));
+				
+				user.setMot_de_passe(rs.getString("mot_de_passe"));
 
 				user.setCredit(Integer.valueOf(rs.getString("credit")));
 
