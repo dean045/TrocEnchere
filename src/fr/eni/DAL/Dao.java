@@ -5,7 +5,7 @@ import java.util.List;
 import fr.eni.BO.*;
 
 public interface Dao {
-	public List<Articles> selectAll() throws DALException;
+	public List<Articles> selectAll(int no_categorie) throws DALException;
 	public void insert(Utilisateurs registration_user) throws DALException;
 	public void insert(Articles registration_item) throws DALException;
 	public Utilisateurs login (String username, String pw) throws DALException;
@@ -15,6 +15,7 @@ public interface Dao {
 	public void Update_user(Utilisateurs registration_user) throws DALException;
 	public List<String> libelle() throws DALException;
 	public Utilisateurs select_user (int no_utilisateur) throws DALException;
+	
 	
 }
 

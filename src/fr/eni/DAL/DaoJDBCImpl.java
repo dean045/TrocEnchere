@@ -18,7 +18,7 @@ public class DaoJDBCImpl implements Dao {
 
 
 
-	public List<Articles> selectAll() throws DALException  {
+	public List<Articles> selectAll(int no_categorie) throws DALException  {
 		Connection cnx = null;
 		Statement rqt = null;
 		ResultSet rs = null;
@@ -33,13 +33,27 @@ public class DaoJDBCImpl implements Dao {
 			rqt = cnx.createStatement();
 			System.out.println("1");
 			//requete selection de tout les articles
-			String SQLSelectAllArticle = "select no_article, nom_article, prix_vente, date_fin_encheres, ARTICLES.no_utilisateur, IMG\r\n" + 
+			String sql;
+			
+			if(no_categorie == 0)
+			{
+				 sql = "select no_article, nom_article, prix_vente, date_fin_encheres, ARTICLES.no_utilisateur, IMG , UTILISATEURS.pseudo, no_categorie \r\n" + 
 					"From ARTICLES\r\n" + 
 					"left join UTILISATEURS ON ARTICLES.no_utilisateur = UTILISATEURS.no_utilisateur AND ARTICLES.ETAT ='EC'; ";
+			}
+			else
+			{
+				
+				sql = "select no_article, nom_article, prix_vente, date_fin_encheres, ARTICLES.no_utilisateur, IMG, UTILISATEURS.pseudo, no_categorie \r\n" + 
+						"From ARTICLES\r\n" + 
+						"left join UTILISATEURS ON ARTICLES.no_utilisateur = UTILISATEURS.no_utilisateur AND ARTICLES.ETAT ='EC' AND ARTCILES.no_categorie = ?; ";
+				PreparedStatement preparedStmt = cnx.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+				preparedStmt.setInt(1, no_categorie);
+			}
 
 
 			//execution requete
-			rs = rqt.executeQuery(SQLSelectAllArticle);
+			rs = rqt.executeQuery(sql);
 
 
 
@@ -54,6 +68,8 @@ public class DaoJDBCImpl implements Dao {
 				Date date = rs.getDate("date_fin_encheres");
 				article = new Articles(no_article, nom, date , rs.getInt("prix_vente"), 
 						rs.getInt("no_utilisateur"), "EC",rs.getString("IMG"));
+				article.setPseudo(rs.getString("pseudo"));
+				
 				liste.add(article);
 			}
 			System.out.println("3");

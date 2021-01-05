@@ -33,18 +33,27 @@ public class index extends HttpServlet {
 
 		List<Articles> liste = new ArrayList<Articles>();
 		List<String> listeCat = new ArrayList<String>();
-
-		
+		int no_cat = 0;
 		try {
-			liste = manager.getliste();
 			listeCat = manager.getLibelle();
-		} 
-		catch (DALException e) {
-			e.printStackTrace();
+			if(null != request.getParameter("nom_select"))
+			{
+				no_cat = Integer.valueOf(request.getParameter("nom_select"));
+			}
+
+			try {
+				liste = manager.getliste(no_cat);
+			} 
+			catch (DALException e) {
+				e.printStackTrace();
+			}
+		} catch (DALException e1) {
+			e1.printStackTrace();
 		}
-		 
+
+
 		request.setAttribute("CATEGORIE", listeCat);
-				
+
 		request.setAttribute("liste", liste);
 		rd = request.getRequestDispatcher("WEB-INF/Accueil.jsp");
 		rd.forward(request, response);
@@ -58,6 +67,5 @@ public class index extends HttpServlet {
 		temp = request.getParameter("log");
 		if(null != temp) request.getSession().invalidate();
 		doGet(request, response);
-
 	}
 }

@@ -42,7 +42,7 @@ public class enchere extends HttpServlet {
 		}
 		else {
 			Utilisateurs user = (Utilisateurs) session.getAttribute("user");
-			if(Integer.valueOf(request.getParameter("proproEnchere")) <= user.getCredit()) {
+			if(user.getCredit() >= Integer.valueOf(request.getParameter("enchere"))) {
 
 				try {
 					Articles art = manager.getArticle(Integer.valueOf(request.getParameter("noArticle")));
@@ -54,6 +54,7 @@ public class enchere extends HttpServlet {
 					
 					art.setNo_acheteur(user.getNo_utilisateur());
 					user.setCredit(user.getCredit() - Integer.valueOf(request.getParameter("propoEnchere")));
+					manager.modifierUtilisateur(user);
 					
 				} catch (NumberFormatException e) {					
 					e.printStackTrace();

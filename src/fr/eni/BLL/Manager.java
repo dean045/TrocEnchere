@@ -15,10 +15,10 @@ public class Manager {
 
 	//----------------affichage--list--article--------------
 
-	public List<Articles> getliste() throws DALException{
+	public List<Articles> getliste(int no_categorie) throws DALException{
 		List<Articles> liste = new ArrayList<Articles>();
 		try {
-			liste = methode.selectAll();
+			liste = methode.selectAll(no_categorie);
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -71,17 +71,19 @@ public class Manager {
 		}
 	}
 	
-	//---------------------Modifier---------------------------------------
+	//---------------------Modifier-user---------------------------------
 	
 	public void modifierUtilisateur(Utilisateurs user) throws DALException{
 		methode.Update_user(user);
 	}
 	
+	//---------------------get-user--------------------------------------
 	
 	public Utilisateurs getUser (int no_utilisateur) throws DALException{
 		return methode.select_user(no_utilisateur);
 	}
 	
+	//---------------------get-cat--------------------------------------
 	
 	public List<String> getLibelle ()throws DALException{
 		return methode.libelle();

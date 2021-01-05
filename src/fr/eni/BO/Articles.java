@@ -21,6 +21,7 @@ public class Articles {
 	private String code_postal;
 	private String ville;
 	private int no_acheteur;
+	private String pseudo; 
 
 
 
@@ -200,6 +201,14 @@ public class Articles {
 
 	public void setNo_acheteur(int no_acheteur) {
 		this.no_acheteur = no_acheteur;
+	}
+
+	public String getPseudo() {
+		return pseudo;
+	}
+
+	public void setPseudo(String pseudo) {
+		this.pseudo = pseudo;
 	}
 
 

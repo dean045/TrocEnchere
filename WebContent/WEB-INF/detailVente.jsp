@@ -131,7 +131,7 @@
 								<strong>Ma proposition : </strong>
 							<p>
 								<input type="number" style="width: 75px; margin-left: 20px;"
-									name="propoEnchere" min=<%out.print(art.getPrixInitial());%>
+									name="enchere" min=<%out.print(art.getPrixInitial());%>
 									value=<%out.print(art.getPrixVente() + 1);%>>
 						</div>
 
