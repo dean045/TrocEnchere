@@ -559,6 +559,66 @@ public class DaoJDBCImpl implements Dao {
 		return user;
 
 	}
+	
+	//----------------------------Update--article---------------------
+
+		public void Update_article(Articles registration_article) throws DALException{
+			Statement stmt = null;
+			Connection con = null;
+		
+			try {
+				con = JDBCTOOLS.getConnection();
+				//Créer une requete / Statement
+				String sql = "UPDATE ARTICLES SET nom_article = ?,\r\n" + 
+						"		description = ?,\r\n" + 
+						"		date_debut_enchere = ?,\r\n" + 
+						"		date_fin_enchere = ?,\r\n" + 
+						"		prix_initial = ?,\r\n" + 
+						"		prix_vente = ?,\r\n" + 
+						"		no_utilisateur = ?,\r\n" +
+						"		no_categorie = ?,\r\n" + 
+						"		etat = ?,\r\n" + 
+						"		img = ?\r\n" +
+						"WHERE no_article = ?;";
+		
+		
+				PreparedStatement preparedStmt = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+				preparedStmt.setString(1, registration_article.getNomArticle());
+				preparedStmt.setString(2, registration_article.getDescription());
+				preparedStmt.setDate(3, registration_article.getDateDebutEnchere());
+				preparedStmt.setDate(4, registration_article.getDateFinEnchere());
+				preparedStmt.setInt(5, registration_article.getPrixInitial());
+				preparedStmt.setInt(6, registration_article.getPrixVente());
+				preparedStmt.setInt(7, registration_article.getNoUtilisateur());
+				preparedStmt.setString(8, registration_article.getCategorie());
+				preparedStmt.setString(9, registration_article.getEtat());
+				preparedStmt.setString(10,registration_article.getImg());
+				preparedStmt.setInt(11,registration_article.getNoArticle());
+				preparedStmt.setInt(12,registration_article.getNo_acheteur());
+		
+		
+				//Execute la requete
+				preparedStmt.executeUpdate();
+		
+				ResultSet rs =   preparedStmt.getGeneratedKeys();
+		
+		
+			} catch (SQLException e) {
+				e.printStackTrace();			
+			} finally{
+				try {
+					if(stmt!=null){
+						stmt.close();
+					}
+					if(con!=null){
+						con.close();
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	
 }  
 
 

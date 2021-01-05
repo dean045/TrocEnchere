@@ -90,4 +90,9 @@ public class Manager {
 		
 	}
 	
+	//--------------------modifier---article---------------------------
+	
+		public void modifierArticle(Articles article) throws DALException{
+			methode.Update_article(article);
+		}
 }
