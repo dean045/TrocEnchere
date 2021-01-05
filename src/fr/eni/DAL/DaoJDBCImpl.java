@@ -39,7 +39,7 @@ public class DaoJDBCImpl implements Dao {
 			{
 				 sql = "select no_article, nom_article, prix_vente, date_fin_encheres, ARTICLES.no_utilisateur, IMG , UTILISATEURS.pseudo, no_categorie \r\n" + 
 					"From ARTICLES\r\n" + 
-					"left join UTILISATEURS ON ARTICLES.no_utilisateur = UTILISATEURS.no_utilisateur AND ARTICLES.ETAT ='EC'; ";
+					"left join UTILISATEURS ON ARTICLES.no_utilisateur = UTILISATEURS.no_utilisateur WHERE ARTICLES.ETAT ='EC'; ";
 				//execution requete
 				rs = rqt.executeQuery(sql);
 			}
@@ -48,7 +48,7 @@ public class DaoJDBCImpl implements Dao {
 				
 				sql = "select no_article, nom_article, prix_vente, date_fin_encheres, ARTICLES.no_utilisateur, IMG, UTILISATEURS.pseudo, no_categorie \r\n" + 
 					"From ARTICLES\r\n" + 
-					"left join UTILISATEURS ON ARTICLES.no_utilisateur = UTILISATEURS.no_utilisateur AND ARTICLES.ETAT ='EC' AND ARTICLES.no_categorie =" + no_categorie + "; ";
+					"left join UTILISATEURS ON ARTICLES.no_utilisateur = UTILISATEURS.no_utilisateur WHERE ARTICLES.ETAT ='EC' AND ARTICLES.no_categorie =" + no_categorie + "; ";
 				rs = rqt.executeQuery(sql);
 			}
 
