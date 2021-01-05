@@ -122,7 +122,7 @@
 						<%user = manager.getUser(art.getNoUtilisateur()); 
 						request.setAttribute("profil", user);%>
 						<strong>Vendeur : </strong>
-						<a href="profil">	
+						<a href="profil" >	
 							<%
 								out.print(user.getPseudo());
 							%>

@@ -31,7 +31,7 @@ public class profil extends HttpServlet {
 		{
 			request.setAttribute("profil", request.getAttribute("profil"));
 		}
-		rd = request.getRequestDispatcher("WEB-INF/profil.jsp");
+		rd = request.getRequestDispatcher("WEB-INF/profil.jsp" );
 		rd.forward(request, response);
 	}
 

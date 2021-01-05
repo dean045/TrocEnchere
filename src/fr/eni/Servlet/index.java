@@ -29,7 +29,7 @@ public class index extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Manager manager = new Manager();
+		Manager manager =  new Manager();
 
 		List<Articles> liste = new ArrayList<Articles>();
 		List<String> listeCat = new ArrayList<String>();

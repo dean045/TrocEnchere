@@ -35,7 +35,7 @@ public class enchere extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		session = request.getSession();
-		if (null == session.getAttribute("user")) {
+		if( null == session.getAttribute("user")) {
 			request.setAttribute("resultat", "Vous devez vous connecter pour enchérir sur un article");
 			rd = request.getRequestDispatcher("WEB-INF/login.jsp");
 			rd.forward(request, response);

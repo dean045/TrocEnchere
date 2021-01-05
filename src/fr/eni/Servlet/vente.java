@@ -40,7 +40,7 @@ public class vente extends HttpServlet {
 		Articles art = new Articles();
 		try {
 			art = manager.getArticle(noArticle);
-		} catch (DALException e) {
+		} catch ( DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
