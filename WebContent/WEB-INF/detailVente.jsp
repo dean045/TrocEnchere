@@ -25,6 +25,7 @@
 
 	<%
 		Articles art = (Articles) request.getAttribute("art");
+		
 	%>
 
 	<div class="container">
@@ -160,5 +161,37 @@
 
 		</div>
 	</div>
+	
+	<%
+		if (null == session.getAttribute("user")) {
+	%>
+		
+		
+		
+	<%
+		}
+		else{
+	%>
+	<div class="container">
+		<div class="row">
+			<div class="col-3 container mx-auto">
+				<div class="row">
+					<div class="col-5">
+						<form method="post" action="modifierArticle">
+							<button name="button" class="btn btn-secondary" type="submit"
+								value="m<%=art.getNoArticle()%>">Modifier</button>
+						</form>
+						<form method="post" action="modifierArticle">
+							<button name="button" class="btn btn-secondary" type="submit"
+								value="s<%=art.getNoArticle()%>">Supprimer</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<%
+		}
+	%>
 </body>
 </html>
