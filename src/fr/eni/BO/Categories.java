@@ -10,6 +10,10 @@ public class Categories {
 		this.libelle = libelle ; 
 	}
 
+	public Categories() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getNo_categorie() {
 		return no_categorie;
 	}

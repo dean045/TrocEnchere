@@ -462,46 +462,45 @@ public class DaoJDBCImpl implements Dao {
 
 	//------------------------- list Catégorie --------------------------------- 
 
-	public List<String> libelle () throws DALException {
+	public List<Categories> libelle() throws DALException {
 
-		String LIBCATEGORIE= "select libelle from CATEGORIES ;";
-
-
-		Connection cnx=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-
-		List<String> liste = new ArrayList<String>();
+        String LIBCATEGORIE= "select * from CATEGORIES ;";
 
 
-		try {
+        Connection cnx=null;
+        PreparedStatement pstmt=null;
+        ResultSet rs=null;
 
-			cnx= JDBCTOOLS.getConnection();
-			pstmt=cnx.prepareStatement(LIBCATEGORIE);
-			rs=pstmt.executeQuery();
+        try {
 
-			while (rs.next()) {
-				//creation d'un objet Java
-				String lib = rs.getString("libelle");
-				liste.add(lib);
-			}
-			System.out.println("Récupération catégorie");
-			return liste;
+            cnx= JDBCTOOLS.getConnection();
+            pstmt=cnx.prepareStatement(LIBCATEGORIE);
+            rs=pstmt.executeQuery();
+
+            List <Categories> liste = new ArrayList <Categories> () ; 
+
+            Categories cat = new Categories();
+            while (rs.next()) {
+                cat = new Categories(rs.getInt("no_categorie"),rs.getString("libelle"));
+                liste.add(cat);
+            }
+            System.out.println("Récupération catégorie");
+            return liste;
 
 
-		} catch (SQLException e) {
-			throw new DALException("selectAll failed - ", e);
-		}
-		finally{
-			try {
-				if(cnx!=null){
-					cnx.close();
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-	}
+        } catch (SQLException e) {
+            throw new DALException("selectAll failed - ", e);
+        }
+        finally{
+            try {
+                if(cnx!=null){
+                    cnx.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
 	//----------------Select-user---------------------------------------------------------
 
@@ -623,6 +622,8 @@ public class DaoJDBCImpl implements Dao {
 				}
 			}
 		}
+		
+		
 	
 }  
 

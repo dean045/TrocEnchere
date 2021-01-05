@@ -1,3 +1,4 @@
+<%@page import="fr.eni.BO.Categories"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="fr.eni.BO.Articles"%>
 <%@page import="java.util.List"%>
@@ -25,8 +26,8 @@
 	<%
 		List<Articles> liste = new ArrayList<Articles>();
 		liste = (List<Articles>) request.getAttribute("liste");
-		List<String> categorie = new ArrayList<String>();
-		categorie = (List<String>) request.getAttribute("CATEGORIE");
+		List<Categories> categorie = new ArrayList<Categories>();
+		categorie = (List<Categories>) request.getAttribute("listeCat");
 	%>
 	<header class="row">
 		<jsp:include page="header.jsp"></jsp:include>
@@ -36,20 +37,30 @@
 		style="min-height: 250px; background-image: url(images/Bannière.png); background-size: cover; background-repeat: no-repeat;">
 		<div class="col-3 border my-auto"
 			style="margin-left: 3%; width: 80%; height: 60%; max-height: 250px;">
-			
-			<form action="index"> <select name="nom_select">
 
-				<%
-					for (int i = 0; i < categorie.size(); i++) {
-					
-					%>
-				<option>
-					<%out.print(categorie.get(i));%>
-				</option>
-					<%
-					}
-					%>
-			</select>
+			<form action="index" method="post">
+				<div class="row">
+					<label style="color: white;">Categorie : </label> <select
+						name="nom_select">
+						<option value="0">Toutes</option>
+						<%
+							for (int i = 0; i < categorie.size(); i++) {
+						%>
+						<option value="<%out.print(categorie.get(i).getNo_categorie());%>">
+							<%
+								out.print(categorie.get(i).getLibelle());
+							%>
+						</option>
+						<%
+							}
+						%>
+					</select>
+				</div>
+				<div class="row">
+					<button type="submit" class="btn btn-primary m-auto"
+						name="chercher">Chercher</button>
+				</div>
+
 			</form>
 
 		</div>
@@ -80,10 +91,10 @@
 						Prix :
 						<%
 						out.print(liste.get(i).getPrixVente());
-					%><br >Fin de l'enchère : <br>
+					%><br>Fin de l'enchère : <br>
 						<%
 							out.print(liste.get(i).getDateFinEnchere().toString());
-						%><br> Vendeur : 
+						%><br> Vendeur :
 						<%
 							out.print(liste.get(i).getPseudo());
 						%>

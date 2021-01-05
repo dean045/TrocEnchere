@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import fr.eni.BLL.Manager;
 import fr.eni.BO.Articles;
+import fr.eni.BO.Categories;
 import fr.eni.BO.Utilisateurs;
 import fr.eni.DAL.DALException;
 
@@ -32,7 +33,7 @@ public class index extends HttpServlet {
 		Manager manager =  new Manager();
 
 		List<Articles> liste = new ArrayList<Articles>();
-		List<String> listeCat = new ArrayList<String>();
+		List<Categories> listeCat = new ArrayList<Categories>();
 		int no_cat = 0;
 		try {
 			listeCat = manager.getLibelle();
@@ -40,7 +41,6 @@ public class index extends HttpServlet {
 			{
 				no_cat = Integer.valueOf(request.getParameter("nom_select"));
 			}
-
 			try {
 				liste = manager.getliste(no_cat);
 			} 
@@ -52,7 +52,7 @@ public class index extends HttpServlet {
 		}
 
 
-		request.setAttribute("CATEGORIE", listeCat);
+		request.setAttribute("listeCat", listeCat);
 
 		request.setAttribute("liste", liste);
 		rd = request.getRequestDispatcher("WEB-INF/Accueil.jsp");

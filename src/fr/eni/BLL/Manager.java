@@ -7,6 +7,7 @@ import fr.eni.DAL.DALException;
 import fr.eni.DAL.Dao;
 import fr.eni.DAL.DaoFactory;
 import fr.eni.BO.Articles;
+import fr.eni.BO.Categories;
 import fr.eni.BO.Utilisateurs;
 
 public class Manager {
@@ -85,7 +86,7 @@ public class Manager {
 	
 	//---------------------get-cat--------------------------------------
 	
-	public List<String> getLibelle ()throws DALException{
+	public List<Categories> getLibelle ()throws DALException{
 		return methode.libelle();
 		
 	}
