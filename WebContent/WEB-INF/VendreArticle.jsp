@@ -106,7 +106,7 @@
 
 							<div class="form-group">
 								<label for="exampleInputCity">Ville</label> <input type="text"
-									class="form-control" name="ville" placeholder="Ville">
+									class="form-control" name="ville" placeholder="Ville" value="">
 							</div>
 						</div>
 						<br>

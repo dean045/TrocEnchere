@@ -63,6 +63,9 @@ public class enchere extends HttpServlet {
 						manager.put_enchere(art);
 						manager.modifierUtilisateur(user);
 						request.setAttribute("no_article", art.getNoArticle());
+						session = request.getSession();
+						session.setMaxInactiveInterval(10*60);
+						session.setAttribute("user", user);
 						
 					} catch (NumberFormatException e) {					
 						e.printStackTrace();

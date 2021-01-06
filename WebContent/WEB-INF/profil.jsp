@@ -13,16 +13,15 @@
 </head>
 <body>
 	<%
+		session = request.getSession();
+		Utilisateurs user_profil = new Utilisateurs();
 		Utilisateurs user = new Utilisateurs();
-		if(null != request.getAttribute("profil"))
-		{
-			user = (Utilisateurs) request.getAttribute("profil");
+		user = (Utilisateurs) session.getAttribute("user");
+		if (null != request.getAttribute("profil")) {
+			user_profil = (Utilisateurs) request.getAttribute("profil");
+		} else {
+			user_profil = (Utilisateurs) session.getAttribute("user");
 		}
-		else
-		{
-			user = (Utilisateurs) session.getAttribute("user");
-		}
-		
 	%>
 
 	<header class="col-12">
@@ -34,56 +33,57 @@
 				<p>
 					Pseudo :
 					<%
-					out.print(user.getPseudo());
+					out.print(user_profil.getPseudo());
 				%>
 				</p>
 				<p>
 					Nom :
 					<%
-					out.print(user.getNom());
+					out.print(user_profil.getNom());
 				%>
 				</p>
 				<p>
 					Prenom :
 					<%
-					out.print(user.getPrenom());
+					out.print(user_profil.getPrenom());
 				%>
 				</p>
 				<p>
 					Email :
 					<%
-					out.print(user.getEmail());
+					out.print(user_profil.getEmail());
 				%>
 				</p>
 				<p>
 					Téléphone :
 					<%
-					out.print(user.getTelephone());
+					out.print(user_profil.getTelephone());
 				%>
 				</p>
 				<p>
 					Rue :
 					<%
-					out.print(user.getRue());
+					out.print(user_profil.getRue());
 				%>
 				</p>
 				<p>
 					Code Postal :
 					<%
-					out.print(user.getCode_postal());
+					out.print(user_profil.getCode_postal());
 				%>
 				</p>
 				<p>
 					Ville :
 					<%
-					out.print(user.getVille());
+					out.print(user_profil.getVille());
 				%>
 				</p>
 			</div>
 		</div>
 	</div>
-	<%if(session.getAttribute("user").equals(request.getAttribute("profil")) || null == request.getAttribute("profil"))
-		{
+	<%
+		if (null == request.getAttribute("profil")
+				|| (null != session.getAttribute("user") && user_profil.equals(user))) {
 	%>
 	<div class="container">
 		<div class="row">
@@ -106,7 +106,9 @@
 
 		</div>
 	</div>
-	<% }%>
+	<%
+		}
+	%>
 
 </body>
 </html>

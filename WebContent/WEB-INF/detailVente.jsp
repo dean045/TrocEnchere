@@ -120,14 +120,13 @@
 				</div>
 				<div class="container col-7">
 					<div class="row">
-						<%user = manager.getUser(art.getNoUtilisateur()); 
-						request.setAttribute("profil", user);%>
 						<strong>Vendeur : </strong>
-						<a href="profil" >	
-							<%
-								out.print(user.getPseudo());
-							%>
-						</a>
+						<form action="profil" method="post">
+							<button name="profil" class="btn btn-outline-dark" value="<%=art.getNoUtilisateur()%>" type="submit" >
+							 <%out.print(manager.getUser(art.getNoUtilisateur()).getPseudo());%>
+							</button>
+						</form>
+
 					</div>
 				</div>
 				<div class="container col-7">
@@ -161,13 +160,13 @@
 
 		</div>
 	</div>
-	
+
 	<%
 		if (null == session.getAttribute("user")) {
 	%>
-		
-		
-		
+
+
+
 	<%
 		}
 		else{
