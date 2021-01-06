@@ -374,9 +374,9 @@ public class DaoJDBCImpl implements Dao {
 		return check;
 	}
 
-	//-------------------------------------------------DELETE--------------------------------------------------------------------------------
+	//-------------------------------------------------DELETE-----------------------------
 
-	public void delete(Integer no_utilisateur) {
+	public void delete(Integer no_utilisateur) throws DALException{
 
 		Connection con = null;
 
@@ -662,6 +662,28 @@ public class DaoJDBCImpl implements Dao {
 	}	
 
 
+	//-------------------------------------------------DELETE-Art--------------------------
+	public void delete_article(int no_article) throws DALException{
+
+		Connection con = null;
+
+		try {
+			con = JDBCTOOLS.getConnection();
+			String sql = "DELETE FROM ARTICLES WHERE no_article = "+no_article+" ";
+			Statement stmt = con.createStatement();
+			stmt.executeUpdate(sql);
+
+		} catch(SQLException e){
+
+		}
+		finally {
+			try{
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }  
 
 

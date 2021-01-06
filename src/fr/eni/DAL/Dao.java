@@ -17,6 +17,7 @@ public interface Dao {
 	public Utilisateurs select_user (int no_utilisateur) throws DALException;
 	public void Update_article(Articles registration_article) throws DALException;	
 	public void enchere(Articles item) throws DALException;
+	public void delete_article(int no_article) throws DALException;
 }
 
 

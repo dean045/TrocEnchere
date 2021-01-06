@@ -101,4 +101,9 @@ public class Manager {
 		public void put_enchere(Articles item) throws DALException{
 			methode.enchere(item);
 		}
+	
+	//--------------------delete-art-------------------------------
+		public void delete_art(int no_article) throws DALException{
+			methode.delete_article(no_article);
+		}
 }
