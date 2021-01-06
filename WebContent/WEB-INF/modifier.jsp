@@ -26,13 +26,13 @@
 		<div class="container">
 			<div class="row ">
 				<div class="form-group col-lg-6 col-sm-12">
-					<label for="exampleInputSurPseudo">Pseudo</label> <input
+					<label for="exampleInputSurPseudo">Pseudo</label> <input required
 						type="text" class="form-control" name="pseudo"
 						value="<%=user.getPseudo()%>">
 				</div>
 				<br>
 				<div class="form-group col-lg-6 col-sm-12">
-					<label for="exampleInputEmail1">Adresse mail</label> <input
+					<label for="exampleInputEmail1">Adresse mail</label> <input required
 						type="email" class="form-control" name="email"
 						aria-describedby="emailHelp" value="<%=user.getEmail()%>">
 
@@ -42,11 +42,11 @@
 
 			<div class="row ">
 				<div class="form-group col-lg-6 col-sm-12">
-					<label for="exampleInputSurName">Prénom</label> <input type="text"
+					<label for="exampleInputSurName">Prénom</label> <input type="text" required
 						class="form-control" name="prenom" value="<%=user.getPrenom()%>">
 				</div>
 				<div class="form-group col-lg-6 col-sm-12">
-					<label for="exampleInputName">Nom</label> <input type="text"
+					<label for="exampleInputName">Nom</label> <input type="text" required
 						class="form-control" name="nom" value="<%=user.getNom()%>">
 				</div>
 			</div>
@@ -59,30 +59,30 @@
 				</div>
 				<div class="form-group col-lg-6 col-sm-12">
 					<label for="exampleInputSurPostalCode">Code Postal</label> <input
-						type="text" class="form-control" name="code_postal"
+						type="text" class="form-control" name="code_postal" required
 						value="<%=user.getCode_postal()%>">
 				</div>
 			</div>
 			<div class="row ">
 				<div class="form-group col-lg-6 col-sm-12">
-					<label for="exampleInputStreet">Rue</label> <input type="text"
+					<label for="exampleInputStreet">Rue</label> <input type="text" required
 						class="form-control" name="rue" value="<%=user.getRue()%>">
 				</div>
 
 				<div class="form-group col-lg-6 col-sm-12">
-					<label for="exampleInputCity">Ville</label> <input type="text"
+					<label for="exampleInputCity">Ville</label> <input type="text" required
 						class="form-control" name="ville" value="<%=user.getVille()%>">
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="form-group col-lg-6 col-sm-12">
-					<label for="exampleInputPassword1">Mot de passe</label> <input
+					<label for="exampleInputPassword1">Mot de passe</label> <input required
 						type="password" class="form-control" name="mot_de_passe"
 						placeholder="Mot de passe">
 				</div>
 				<div class="form-group col-lg-6 col-sm-12">
-					<label for="exampleInputConfirmPassword1">Confirmation</label> <input
+					<label for="exampleInputConfirmPassword1">Confirmation</label> <input required
 						type="password" class="form-control" name="confirm"
 						placeholder="Confirmation">
 				</div>

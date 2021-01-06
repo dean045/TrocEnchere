@@ -65,18 +65,18 @@ categorie = (List<Categories>)request.getAttribute("listeCat");
 
 
 						<div class="form-group">
-							<label>Titre de la vente</label> <input
+							<label>Titre de la vente</label> <input required
 								type="text" class="form-control" name="nom"
 								placeholder="Article">
 						</div>
 
 						<div class="form-group">
-							<label>Description</label> <input
+							<label>Description</label> <input 
 								type="text" class="form-control" name="descri"
 								placeholder="Description">
 						</div>
 
-						<label>Catégories :</label> <select name="categorie">
+						<label>Catégories :</label> <select name="categorie" required>
 
 							<option value="0">Toutes</option>
 							<%
@@ -92,18 +92,18 @@ categorie = (List<Categories>)request.getAttribute("listeCat");
 							}
 							%>
 						<label>Prix</label>
-						<input type="number" name="prix">
+						<input type="number" class="form-control" required name="prix">
 
 
 						<div>
 							<label>Début de l'enchère :</label> <input type="date"
-								name="date_debut">
+								name="date_debut" required>
 						</div>
 
 
 						<div>
 							<label>Fin de l'enchère :</label> <input type="date"
-								name="date_fin">
+								name="date_fin" required>
 						</div>
 
 
@@ -112,17 +112,17 @@ categorie = (List<Categories>)request.getAttribute("listeCat");
 						<div class=" border">
 							<div class="form-group">
 
-								<label for="exampleInputStreet">Rue</label> <input type="text"
+								<label for="exampleInputStreet">Rue</label> <input type="text" required
 									class="form-control" name="rue" value="<%=user.getRue()%>">
 							</div>
 							<div class="form-group">
-								<label for="exampleInputCodePostal">CodePostal</label> <input
+								<label for="exampleInputCodePostal">CodePostal</label> <input required
 									type="text" class="form-control" name="codepostal"
 									value="<%=user.getCode_postal()%>">
 							</div>
 
 							<div class="form-group">
-								<label for="exampleInputCity">Ville</label> <input type="text"
+								<label for="exampleInputCity">Ville</label> <input type="text" required
 									class="form-control" name="ville" value="<%=user.getVille()%>" value="">
 							</div>
 						</div>
