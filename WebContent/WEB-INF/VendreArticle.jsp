@@ -73,7 +73,6 @@ categorie = (List<Categories>)request.getAttribute("listeCat");
 								placeholder="Description">
 						</div>
 
-						<label>Catégories :</label>
 						<label>Catégories :</label> <select name="categorie">
 
 							<option value="0">Toutes</option>
