@@ -112,7 +112,7 @@ public class DaoJDBCImpl implements Dao {
 			preparedStmt.setString(7, registration_user.getCode_postal());
 			preparedStmt.setString(8, registration_user.getVille());
 			preparedStmt.setString(9, registration_user.getMot_de_passe());
-			preparedStmt.setInt(10, registration_user.getCredit());
+			preparedStmt.setInt(10, 0);
 			preparedStmt.setInt(11, registration_user.getAdministrateur());
 
 			//Execute la requete
