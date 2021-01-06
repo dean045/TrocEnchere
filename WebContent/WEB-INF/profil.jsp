@@ -13,7 +13,7 @@
 </head>
 <body>
 	<%
-		session = request.getSession();
+		session = request.getSession(false);
 		Utilisateurs user_profil = new Utilisateurs();
 		Utilisateurs user = new Utilisateurs();
 		user = (Utilisateurs) session.getAttribute("user");

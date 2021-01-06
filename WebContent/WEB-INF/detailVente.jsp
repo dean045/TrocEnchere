@@ -22,8 +22,10 @@
 	</header>
 
 	<%
+		session = request.getSession(false);
+		Utilisateurs user = new Utilisateurs();
+		user = (Utilisateurs) session.getAttribute("user");
 		Articles art = (Articles) request.getAttribute("art");
-		
 	%>
 
 	<div class="container">
@@ -76,8 +78,8 @@
 						<p>
 							<%
 								Manager manager = new Manager();
-								Utilisateurs user = manager.getUser(art.getNo_acheteur());
-								out.print(" " + user.getPseudo());
+								Utilisateurs user1 = manager.getUser(art.getNo_acheteur());
+								out.print(" " + user1.getPseudo());
 							%>
 						</p>
 					</div>
@@ -120,8 +122,11 @@
 					<div class="row">
 						<strong>Vendeur : </strong>
 						<form action="profil" method="post">
-							<button name="profil" class="btn btn-outline-dark" value="<%=art.getNoUtilisateur()%>" type="submit" >
-							 <%out.print(manager.getUser(art.getNoUtilisateur()).getPseudo());%>
+							<button name="profil" class="btn btn-outline-dark"
+								value="<%=art.getNoUtilisateur()%>" type="submit">
+								<%
+									out.print(manager.getUser(art.getNoUtilisateur()).getPseudo());
+								%>
 							</button>
 						</form>
 
@@ -160,14 +165,7 @@
 	</div>
 
 	<%
-		if (null == session.getAttribute("user")) {
-	%>
-
-
-
-	<%
-		}
-		else{
+		if (null != session.getAttribute("user") && art.getNoUtilisateur() == user.getNo_utilisateur()) {
 	%>
 	<div class="container">
 		<div class="row">
