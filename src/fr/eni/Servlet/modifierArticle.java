@@ -36,48 +36,43 @@ public class modifierArticle extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		session = request.getSession();
-		
+
 		Articles article = new Articles();
-		
+
 		if(request.getParameter("button").charAt(0) == 'm'){
 			int noArticle = Integer.valueOf(request.getParameter("button").substring(1));
 			List<Categories> listeCat = new ArrayList<Categories>();
-			
+
 			try {
 				article = manager.getArticle(noArticle);
 				listeCat = manager.getLibelle();
 				request.setAttribute("article", article);
 				request.setAttribute("listeCat", listeCat);
 			} catch (DALException e) {
-			
+
 				e.printStackTrace();
 			}
-			
-			
+
+
 			rd = request.getRequestDispatcher("WEB-INF/modifierArticle.jsp");
 			rd.forward(request, response);
 		}
-		
-		else { 
 
-            noArticle = Integer.valueOf(request.getParameter("button").substring(1));
+		else if(request.getParameter("button").charAt(0) == 's'){ 
 
-            if (request.getParameter("button").charAt(0) == 's') {
+			int noArticle = Integer.valueOf(request.getParameter("button").substring(1));
 
-                try {
-                    manager.delete_art(noArticle);
-                    rd = request.getRequestDispatcher("index");
-                    rd.forward(request, response);
+			try {
+				manager.delete_art(noArticle);
+				rd = request.getRequestDispatcher("index");
+				rd.forward(request, response);
 
-                } catch (Exception e) {
+			} catch (Exception e) {
 
-                    e.printStackTrace();
-                    doGet(request, response);
-                }
-            }
-        }
-	
-		
+				e.printStackTrace();
+				doGet(request, response);
+			}
+		}
 		else if(request.getParameter("button").charAt(0) == 'c') {
 			System.out.println("essai 1");
 			int noArticle = Integer.valueOf(request.getParameter("button").substring(1));
@@ -98,9 +93,9 @@ public class modifierArticle extends HttpServlet {
 			article.setCode_postal(request.getParameter("code_postal"));
 			article.setVille(request.getParameter("ville"));
 			System.out.println("essai 3");
-			
+
 			try {
-				
+
 				manager.modifierArticle(article);
 				session.setAttribute("no_article", article.getNoArticle());
 				System.out.println("essai 4");
