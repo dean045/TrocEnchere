@@ -666,12 +666,12 @@ public class DaoJDBCImpl implements Dao {
 	public void delete_article(int no_article) throws DALException{
 
 		Connection con = null;
-
 		try {
 			con = JDBCTOOLS.getConnection();
-			String sql = "DELETE FROM ARTICLES WHERE no_article = "+no_article+" ";
-			Statement stmt = con.createStatement();
-			stmt.executeUpdate(sql);
+			String sql = "DELETE FROM ARTICLES WHERE no_article = ? ";
+			PreparedStatement preparedStmt = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+			preparedStmt.setInt(1, no_article);
+			preparedStmt.executeUpdate();
 
 		} catch(SQLException e){
 
