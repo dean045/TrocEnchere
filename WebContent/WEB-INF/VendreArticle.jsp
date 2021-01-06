@@ -1,3 +1,4 @@
+<%@page import="fr.eni.BO.Utilisateurs"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 	<%@page import="fr.eni.BO.Categories"%>
@@ -27,6 +28,8 @@
 </head>
 <body class="container">
 <%
+Utilisateurs user = new Utilisateurs();
+user = (Utilisateurs) session.getAttribute("user");
 Articles art = (Articles) request.getAttribute("article");
 List<Categories> categorie = new ArrayList<Categories>();
 categorie = (List<Categories>)request.getAttribute("listeCat");
@@ -110,17 +113,17 @@ categorie = (List<Categories>)request.getAttribute("listeCat");
 							<div class="form-group">
 
 								<label for="exampleInputStreet">Rue</label> <input type="text"
-									class="form-control" name="rue" placeholder="Rue">
+									class="form-control" name="rue" value="<%=user.getRue()%>">
 							</div>
 							<div class="form-group">
 								<label for="exampleInputCodePostal">CodePostal</label> <input
 									type="text" class="form-control" name="codepostal"
-									placeholder="CodePostal">
+									value="<%=user.getCode_postal()%>">
 							</div>
 
 							<div class="form-group">
 								<label for="exampleInputCity">Ville</label> <input type="text"
-									class="form-control" name="ville" placeholder="Ville" value="">
+									class="form-control" name="ville" value="<%=user.getVille()%>" value="">
 							</div>
 						</div>
 						<br>
