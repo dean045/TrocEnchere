@@ -78,6 +78,43 @@ public class modifierArticle extends HttpServlet {
 				}
 			}
 		}
+		
+		else if(request.getParameter("button").charAt(0) == 'c') {
+			System.out.println("essai 1");
+			int noArticle = Integer.valueOf(request.getParameter("button").substring(1));
+			try {
+				article = manager.getArticle(noArticle);
+				System.out.println("essai 2");
+			} catch (DALException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			article.setNomArticle(request.getParameter("nom_article"));
+			article.setDescription(request.getParameter("description"));
+			article.setCategorie(request.getParameter("categorie"));
+			article.setPrixInitial(Integer.valueOf(request.getParameter("prix_initial")));
+			article.setDateDebutEnchere(java.sql.Date.valueOf(request.getParameter("date_debut_enchere")));
+			article.setDateFinEnchere(java.sql.Date.valueOf(request.getParameter("date_fin_enchere")));
+			article.setRue(request.getParameter("rue"));
+			article.setCode_postal(request.getParameter("code_postal"));
+			article.setVille(request.getParameter("ville"));
+			System.out.println("essai 3");
+			
+			try {
+				
+				manager.modifierArticle(article);
+				session.setAttribute("no_article", article.getNoArticle());
+				System.out.println("essai 4");
+				rd = request.getRequestDispatcher("vente");
+				rd.forward(request, response);
+			} catch (DALException e) {
+				message = "erreur lors de l'enregistrement de l'article veuillez contacter l'assistance";
+				request.setAttribute("message", message);
+				rd = request.getRequestDispatcher("WEB-INF/modifierArticle.jsp");
+				rd.forward(request, response);
+				e.printStackTrace();
+			}
+		}
 	}
 }
 

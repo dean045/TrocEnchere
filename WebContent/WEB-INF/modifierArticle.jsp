@@ -1,5 +1,6 @@
 <%@page import="java.util.List"%>
 <%@page import="fr.eni.BO.Articles"%>
+<%@page import="fr.eni.BO.Utilisateurs"%>
 <%@page import="fr.eni.BO.Categories"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -49,12 +50,12 @@
 
 						<div class="form-group">
 							<label>Titre de la vente</label> <input type="text"
-								class="form-control" name="nom" value="<%=art.getNomArticle()%>">
+								class="form-control" name="nom_article" value="<%=art.getNomArticle()%>">
 						</div>
 
 						<div class="form-group">
 							<label>Description</label> <input type="text"
-								class="form-control" name="descri"
+								class="form-control" name="description"
 								value="<%=art.getDescription()%>" placeholder="Description">
 						</div>
 
@@ -79,18 +80,18 @@
 							}
 						%>
 
-						</select> <label>Prix</label> <input type="number" name="prix">
+						</select> <label>Prix</label> <input type="number" name="prix_initial" value="<%=art.getPrixInitial()%>">
 
 
 						<div>
 							<label>Début de l'enchère :</label> <input type="date"
-								name="date_debut" value="<%=art.getDateDebutEnchere()%>">
+								name="date_debut_enchere" value="<%=art.getDateDebutEnchere()%>">
 						</div>
 
 
 						<div>
 							<label>Fin de l'enchère :</label> <input type="date"
-								name="date_fin" value="<%=art.getDateFinEnchere()%>">
+								name="date_fin_enchere" value="<%=art.getDateFinEnchere()%>">
 						</div>
 
 
@@ -100,22 +101,22 @@
 							<div class="form-group">
 
 								<label for="exampleInputStreet">Rue</label> <input type="text"
-									class="form-control" name="rue" placeholder="Rue">
+									class="form-control" name="rue" placeholder="Rue" value="<%=art.getRue()%>">
 							</div>
 							<div class="form-group">
 								<label for="exampleInputCodePostal">CodePostal</label> <input
-									type="text" class="form-control" name="codepostal"
-									placeholder="CodePostal">
+									type="text" class="form-control" name="code_postal"
+									placeholder="CodePostal" value="<%=art.getCode_postal()%>">
 							</div>
 
 							<div class="form-group">
 								<label for="exampleInputCity">Ville</label> <input type="text"
-									class="form-control" name="ville" placeholder="Ville">
+									class="form-control" name="ville" placeholder="Ville" value="<%=art.getVille()%>">
 							</div>
 						</div>
 						<br>
 						<div class="container">
-							<button type="submit" class="btn btn-primary">Confirmer</button>
+							<button type="submit" class="btn btn-primary" name="button" value="c<%=art.getNoArticle()%>">Confirmer</button>
 							<a href="index" class="btn btn-primary">Annuler</a>
 						</div>
 					</div>
