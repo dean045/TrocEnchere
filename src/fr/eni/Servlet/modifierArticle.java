@@ -97,7 +97,7 @@ public class modifierArticle extends HttpServlet {
 			try {
 
 				manager.modifierArticle(article);
-				session.setAttribute("no_article", article.getNoArticle());
+				request.setAttribute("no_article", article.getNoArticle());
 				System.out.println("essai 4");
 				rd = request.getRequestDispatcher("vente");
 				rd.forward(request, response);
