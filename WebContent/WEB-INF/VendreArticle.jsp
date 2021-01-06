@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@page import="fr.eni.BO.Categories"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="fr.eni.BO.Articles"%>
+<%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,6 +26,11 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body class="container">
+<%
+Articles art = (Articles) request.getAttribute("article");
+List<Categories> categorie = new ArrayList<Categories>();
+categorie = (List<Categories>)request.getAttribute("listeCat");
+%>
 	<header class="row">
 		<jsp:include page="header.jsp"></jsp:include>
 	</header>
@@ -65,15 +74,21 @@
 						</div>
 
 						<label>Catégories :</label>
-						<select  name="categorie">
-							<optgroup>
-								<option value="all">Toutes</option>
-								<option value="info">Informatique</option>
-								<option value="meubles">Ameublement</option>
-								<option value="vetements">Vêtements</option>
-								<option value="sports">Sports et Loisirs</option>
-							</optgroup>
-						</select>
+						<label>Catégories :</label> <select name="categorie">
+
+							<option value="0">Toutes</option>
+							<%
+							for (int i = 0; i < categorie.size(); i++) {
+							%>
+							<option
+								value="<%out.print(categorie.get(i).getNo_categorie());%>">
+								<%
+								out.print(categorie.get(i).getLibelle());
+							%>
+							</option>
+							<%
+							}
+							%>
 						<label>Prix</label>
 						<input type="number" name="prix">
 

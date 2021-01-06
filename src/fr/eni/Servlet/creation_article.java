@@ -2,6 +2,8 @@ package fr.eni.Servlet;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import fr.eni.BLL.Manager;
 import fr.eni.BO.Articles;
+import fr.eni.BO.Categories;
 import fr.eni.BO.Utilisateurs;
 import fr.eni.DAL.DALException;
 
@@ -26,7 +29,7 @@ public class creation_article extends HttpServlet {
 	HttpSession session ;
 	Manager manager = new Manager();
 	String message ;
- 
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		session = request.getSession();
 		if (null == session.getAttribute("user")) {
@@ -35,13 +38,31 @@ public class creation_article extends HttpServlet {
 			rd.forward(request, response);
 		}
 		else {
+
+			List<Categories> listeCat = new ArrayList<Categories>();
+
+			try {
+				listeCat = manager.getLibelle();
+				request.setAttribute("listeCat", listeCat);
+			} catch (DALException e) {
+
+				e.printStackTrace();
+			}
+
+
 			rd = request.getRequestDispatcher("WEB-INF/VendreArticle.jsp");
 			rd.forward(request, response);
+
+
 		}
+
+
+
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		session = request.getSession();
 		Date date_debut =  java.sql.Date.valueOf(request.getParameter("date_debut"));
 		Date date_fin =  java.sql.Date.valueOf(request.getParameter("date_fin"));
@@ -62,8 +83,12 @@ public class creation_article extends HttpServlet {
 			rd.forward(request, response);
 			e.printStackTrace();
 		}
-		
-		
+
 	}
 
+
+
+
 }
+
+
