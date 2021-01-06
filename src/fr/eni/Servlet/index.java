@@ -36,6 +36,7 @@ public class index extends HttpServlet {
 		List<Categories> listeCat = new ArrayList<Categories>();
 		int no_cat = 0;
 		try {
+			manager.refresh_art();
 			listeCat = manager.getLibelle();
 			if(null != request.getParameter("nom_select"))
 			{

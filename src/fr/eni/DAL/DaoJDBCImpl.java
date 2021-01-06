@@ -684,6 +684,28 @@ public class DaoJDBCImpl implements Dao {
 			}
 		}
 	}
+	
+	//-------------------------------------------------DELETE-Art--------------------------
+		public void refresh() throws DALException{
+
+			Connection con = null;
+			try {
+				con = JDBCTOOLS.getConnection();
+				String sql = "update ARTICLES set ETAT = 'FN' where DATEDIFF(day,date_fin_encheres, GETDATE()) > 0;";
+				PreparedStatement preparedStmt = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+				preparedStmt.executeUpdate();
+
+			} catch(SQLException e){
+
+			}
+			finally {
+				try{
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 }  
 
 

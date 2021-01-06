@@ -59,11 +59,11 @@ public class Manager {
 	//----------------Check adresse mail & pseudo-----------------------
 	public boolean check (String username) throws Exception {
 		return methode.verfication(username);
-		
+
 	}
 
 	//---------------------Delete----------------------------------------
-	
+
 	public void removeUtilisateur(int index) throws Exception{
 		try {
 			methode.delete(index);
@@ -71,39 +71,45 @@ public class Manager {
 			throw new Exception(e.getMessage());
 		}
 	}
-	
+
 	//---------------------Modifier-user---------------------------------
-	
+
 	public void modifierUtilisateur(Utilisateurs user) throws DALException{
 		methode.Update_user(user);
 	}
-	
+
 	//---------------------get-user--------------------------------------
-	
+
 	public Utilisateurs getUser (int no_utilisateur) throws DALException{
 		return methode.select_user(no_utilisateur);
 	}
-	
+
 	//---------------------get-cat--------------------------------------
-	
+
 	public List<Categories> getLibelle ()throws DALException{
 		return methode.libelle();
-		
+
 	}
-	
+
 	//--------------------modifier---article---------------------------
-	
-		public void modifierArticle(Articles article) throws DALException{
-			methode.Update_article(article);
-		}
-	
+
+	public void modifierArticle(Articles article) throws DALException{
+		methode.Update_article(article);
+	}
+
 	//--------------------Put-Enchere----------------------------------	
-		public void put_enchere(Articles item) throws DALException{
-			methode.enchere(item);
-		}
-	
+	public void put_enchere(Articles item) throws DALException{
+		methode.enchere(item);
+	}
+
 	//--------------------delete-art-------------------------------
-		public void delete_art(int no_article) throws DALException{
-			methode.delete_article(no_article);
+	public void delete_art(int no_article) throws DALException{
+		methode.delete_article(no_article);
+	}
+
+	//--------------------Refresh-art-------------------------------
+	public void refresh_art() throws DALException{
+		methode.refresh();
 		}
-}
+
+	}

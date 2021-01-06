@@ -18,6 +18,7 @@ public interface Dao {
 	public void Update_article(Articles registration_article) throws DALException;	
 	public void enchere(Articles item) throws DALException;
 	public void delete_article(int no_article) throws DALException;
+	public void refresh() throws DALException;
 }
 
 
