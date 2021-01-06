@@ -44,6 +44,8 @@ public class vente extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		if(null != request.getAttribute("msg")) request.setAttribute("msg", (String)request.getAttribute("msg"));
 		request.setAttribute("art", art);
 		rd = request.getRequestDispatcher("WEB-INF/detailVente.jsp");
 		rd.forward(request, response);

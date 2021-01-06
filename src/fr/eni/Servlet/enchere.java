@@ -45,9 +45,9 @@ public class enchere extends HttpServlet {
 			try {
 				user = manager.getUser(user.getNo_utilisateur());
 				int prix = Integer.valueOf(request.getParameter("enchere"));
+				Articles art = manager.getArticle(Integer.valueOf(request.getParameter("noArticle")));
 				if(user.getCredit() >= prix) {
 					try {
-						Articles art = manager.getArticle(Integer.valueOf(request.getParameter("noArticle")));
 						if(art.getNo_acheteur() != 0) {
 							Utilisateurs utilisateur = new Utilisateurs();
 							utilisateur = manager.getUser(art.getNo_acheteur());
@@ -73,6 +73,10 @@ public class enchere extends HttpServlet {
 						e.printStackTrace();
 					}
 
+				}
+				else {
+					request.setAttribute("no_article", art.getNoArticle());
+					request.setAttribute("msg", "Solde insufisant !");
 				}
 			} catch (DALException e1) {
 				e1.printStackTrace();

@@ -26,6 +26,7 @@
 		Utilisateurs user = new Utilisateurs();
 		user = (Utilisateurs) session.getAttribute("user");
 		Articles art = (Articles) request.getAttribute("art");
+		Manager manager = new Manager();
 	%>
 
 	<div class="container">
@@ -39,7 +40,22 @@
 			<div class="container col-lg-7 col-sm-12 ">
 
 				<div class="container col-12">
+					<%
+						if (art.getEtat().equals("FN")) {
+					%>
+					<h1>
+						Objet remporté par
+						<%
+						out.print(manager.getUser(art.getNo_acheteur()).getPseudo());
+					%>
+					</h1>
+					<%
+						} else {
+					%>
 					<h1>Détail vente</h1>
+					<%
+						}
+					%>
 				</div>
 
 				<div class="container col-7">
@@ -77,7 +93,6 @@
 						<strong> Meilleure Enchérisseur : </strong>
 						<p>
 							<%
-								Manager manager = new Manager();
 								Utilisateurs user1 = manager.getUser(art.getNo_acheteur());
 								out.print(" " + user1.getPseudo());
 							%>
@@ -140,9 +155,21 @@
 							<p>
 								<strong>Ma proposition : </strong>
 							<p>
-								<input type="number" style="width: 75px; margin-left: 20px;"
-									name="enchere" min=<%out.print(art.getPrixInitial());%>
-									value=<%out.print(art.getPrixVente() + 1);%>>
+								<%
+									if (null != request.getAttribute("msg")) {
+								%>
+							
+							<p style="color: red">
+								<%
+									out.print(request.getAttribute("msg"));
+								%>
+							</p>
+							<%
+								}
+							%>
+							<input type="number" style="width: 75px; margin-left: 20px;"
+								name="enchere" min=<%out.print(art.getPrixInitial());%>
+								value=<%out.print(art.getPrixVente() + 1);%>>
 						</div>
 
 						<div class="container row">
