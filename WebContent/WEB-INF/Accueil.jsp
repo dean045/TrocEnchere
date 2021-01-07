@@ -77,7 +77,7 @@
 							
 							<div class="row">
 								<input type="radio"  name="check" value="1"> 
-								<label for="scales">mes encères en cours</label> 
+								<label for="scales">mes enchères en cours</label> 
 							</div>
 							
 							<div class="row">

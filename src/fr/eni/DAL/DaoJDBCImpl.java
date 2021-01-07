@@ -235,7 +235,7 @@ public class DaoJDBCImpl implements Dao {
 
 				art.setCategorie(rs.getString("no_categorie"));
 
-				art.setEtat("EC");
+				art.setEtat(rs.getString("ETAT"));
 
 				art.setImg(rs.getString("IMG"));
 

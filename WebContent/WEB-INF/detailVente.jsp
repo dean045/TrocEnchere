@@ -161,7 +161,7 @@
 						<div class="row">
 							<strong style ="margin-top: 12px;">Vendeur : </strong>
 							<form action="profil" method="post">
-								<button style ="margin-top: 5px; margin-left: -5px;" name="profil" class="btn btn-link" value=" <%= art.getNoUtilisateur()%>" type="submit">
+								<button style ="margin-top: 5px; margin-left: -5px;" name="profil" class="btn btn-link" value="<%=art.getNoUtilisateur()%>" type="submit">
 									<%
 										out.print(manager.getUser(art.getNoUtilisateur()).getPseudo());
 									%>
@@ -179,7 +179,7 @@
 								<p>
 				
 								<input class ="form-control" type="number" style="width: 100px; margin-top: -4px; margin-left: 15px;"
-									name="enchere" min=<%out.print(art.getPrixInitial());%>
+									name="enchere" min=<%if(art.getPrixVente() == 0) out.print(art.getPrixInitial()); else out.print(art.getPrixVente());%>
 									value=<%out.print(art.getPrixVente() + 1);%>>
 							</div>
 							
@@ -201,20 +201,21 @@
 							</form>	
 					</div>		
 							
+					<%if(null != user && art.getNoUtilisateur() == user.getNo_utilisateur() && art.getEtat().equalsIgnoreCase("PR")) { %>
+						<div class="btn-group">
 							
-					<div class="btn-group">
-						
-							<form method="post" action="modifierArticle">
-							<button name="button" class="btn btn-outline-primary mb-2"
-									type="submit" value="m<%=art.getNoArticle()%>">Modifier
-							</button>
-							</form>
-							<form method="post" action="modifierArticle">
-							<button name="button" class="btn btn-outline-primary mb-2"
-									type="submit" value="s<%=art.getNoArticle()%>">Supprimer
-							</button>
-							</form>
-					</div>
+								<form method="post" action="modifierArticle">
+								<button name="button" class="btn btn-outline-primary mb-2"
+										type="submit" value="m<%=art.getNoArticle()%>">Modifier
+								</button>
+								</form>
+								<form method="post" action="modifierArticle">
+								<button name="button" class="btn btn-outline-primary mb-2"
+										type="submit" value="s<%=art.getNoArticle()%>">Supprimer
+								</button>
+								</form>
+						</div>
+					<% } else out.print("<br>"); %>
 					
 				</div>
 				
@@ -223,12 +224,5 @@
 		</div>
 				<a href="index" class="btn btn-primary btn-block mx-auto" style="width: 10em; margin-top: 10px;">Page principal</a>
 	</div>	
-
-					<%
-						if (null != session.getAttribute("user") && art.getNoUtilisateur() == user.getNo_utilisateur()) {
-					%>
-					<%
-						}
-					%>
 </body>
 </html>
