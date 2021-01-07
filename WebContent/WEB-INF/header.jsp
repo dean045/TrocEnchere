@@ -51,7 +51,7 @@
 					<a class="btn btn-primary btn-sm" href="profil" role="button" style="height: 30px; margin-right: 2%;">Profil</a> 						
 					<a class="btn btn-primary btn-sm" href="creation_article" role="button" style="height: 30px ; margin-right: 2%;">Vendre</a>	
 					<form action="index" method="post">
-					<button class="btn btn-primary btn-sm" name="log" value="off">Déconnexion</button>
+					<button class="btn btn-primary btn-sm" name="log" value="off"  style="height: 30px ;">Déconnexion</button>
 					</form>	
 			</div>
 				
