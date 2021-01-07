@@ -22,116 +22,127 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body class="container-fluid">
-	<%
-		Utilisateurs user = new Utilisateurs();
-		user = (Utilisateurs) session.getAttribute("user");
-		Articles art = (Articles) request.getAttribute("article");
-		List<Categories> categorie = new ArrayList<Categories>();
-		categorie = (List<Categories>) request.getAttribute("listeCat");
-	%>
+
 	<header class="row">
 		<jsp:include page="header.jsp"></jsp:include>
 	</header>
-	<h2>Nouvelle vente</h2>
-	<div class="row">
-		<form action="creation_article" method="post">
-			<div class="container">
-				<div class="row">
 
-					<! -- Bloc image justifier à gauche -->
+	<%
+	Utilisateurs user = new Utilisateurs();
+	user = (Utilisateurs) session.getAttribute("user");
+	Articles art = (Articles) request.getAttribute("article");
+	List<Categories> categorie = new ArrayList<Categories>();
+	categorie = (List<Categories>) request.getAttribute("listeCat");
+	%>
 
-					<div class="container col-5 " style="width: 500 px;">
-						<div class="row justify-content-left">
+	<form action="creation_article" method="post">
 
-							<img
-								src="https://remove-white-background.imageonline.co/fr/pictureinput.jpg">
+		<div class="container">
 
+			<h2 class="text-center text-uppercase m-4">nouvelle vente</h2>
+
+			<br>
+
+			<div class="row text-left">
+
+
+				<div class="container img-responsive col-lg-5 col-sm-8 ">
+
+					<img src="./images/img.jpg" style="max-width: 100%;"> <label
+						for="avatar">Upload image</label> <input type="file" name="photo"
+						accept="image/png, image/jpeg">
+				</div>
+
+				<div class="container col-lg-7 col-sm-12 row mx-auto	">
+
+					<div class="container col-7">
+
+						<div class="row mt-2">
+							<strong>Article :</strong> <input required type="text"
+								class="form-control" name="nom" placeholder="Article">
 						</div>
-						<label for="avatar">Photo de l'article :</label> <input
-							type="file" name="photo" accept="image/png, image/jpeg">
-					</div>
 
+						<div class="row mt-2">
+							<strong>Description</strong>
+							<textarea style="resize: none;" rows="5" cols="33" type="text"
+								class="form-control" name="descri" placeholder="Description"></textarea>
+						</div>
 
-					<! -- Bloc Nouvelle vente justifier à droite -->
-
-					<div class="container col-7 " style="width: 500 px;">
-						<div class="row justify-content-center">
-
-
-							<div class="form-group">
-								<label>Titre de la vente</label> <input required type="text"
-									class="form-control" name="nom" placeholder="Article">
-							</div>
-
-							<div class="form-group">
-								<label>Description</label> <input type="text"
-									class="form-control" name="descri" placeholder="Description">
-							</div>
-
-							<label>Catégories :</label> <select name="categorie" required>
+						<div class="row mt-2">
+							<strong style="width: 200px;">Catégories :</strong> <select
+								name="categorie" required>
 
 								<option value="0">Toutes</option>
+
 								<%
-									for (int i = 0; i < categorie.size(); i++) {
+								for (int i = 0; i < categorie.size(); i++) {
 								%>
 								<option
 									value="<%out.print(categorie.get(i).getNo_categorie());%>">
 									<%
-										out.print(categorie.get(i).getLibelle());
+									out.print(categorie.get(i).getLibelle());
 									%>
 								</option>
 								<%
-									}
+								}
 								%>
-								<label>Prix</label>
-								<input type="number" class="form-control" required name="prix">
+							</select>
+						</div>
+						<div class="row mt-2">
+							<strong style="width: 200px">Prix</strong> <input type="number"
+								class="form-control" required name="prix" style="width: 100px">
+						</div>
+
+						<div class="row mt-2">
+							<strong style="width: 200px">Début de l'enchère :</strong> <input
+								type="date" name="date_debut" required>
+						</div>
+
+						<div class="row mt-2">
+							<strong style="width: 200px">Fin de l'enchère :</strong> <input
+								type="date" name="date_fin" required>
+						</div>
+
+						<br>
 
 
-								<div>
-									<label>Début de l'enchère :</label> <input type="date"
-										name="date_debut" required>
-								</div>
+						<div class="row">
+							<strong>Retrait</strong>
+						</div>
+						<div class="border row">
 
 
-								<div>
-									<label>Fin de l'enchère :</label> <input type="date"
-										name="date_fin" required>
-								</div>
+							<div class="form-group mx-auto">
+								<label for="exampleInputStreet">Rue</label> <input type="text"
+									required class="form-control" name="rue"
+									value="<%=user.getRue()%>">
+							</div>
 
+							<div class="form-group mx-auto">
+								<label for="exampleInputCodePostal">CodePostal</label> <input
+									required type="text" class="form-control" name="codepostal"
+									value="<%=user.getCode_postal()%>">
+							</div>
 
-								<br>
-								<h4>Retrait</h4>
-								<div class=" border">
-									<div class="form-group">
+							<div class="form-group mx-auto">
+								<label for="exampleInputCity">Ville</label> <input type="text"
+									required class="form-control" name="ville"
+									value="<%=user.getVille()%>" value="">
+							</div>
 
-										<label for="exampleInputStreet">Rue</label> <input type="text"
-											required class="form-control" name="rue"
-											value="<%=user.getRue()%>">
-									</div>
-									<div class="form-group">
-										<label for="exampleInputCodePostal">CodePostal</label> <input
-											required type="text" class="form-control" name="codepostal"
-											value="<%=user.getCode_postal()%>">
-									</div>
-
-									<div class="form-group">
-										<label for="exampleInputCity">Ville</label> <input type="text"
-											required class="form-control" name="ville"
-											value="<%=user.getVille()%>" value="">
-									</div>
-								</div>
-								<br>
-								<div class="container">
-									<button type="submit" class="btn btn-primary">Confirmer</button>
-									<a href="index" class="btn btn-primary">Annuler</a>
-								</div>
 						</div>
 					</div>
+
+					<br>
+
+					<div class="container d-flex justify-content-center" style="margin-top: 2%">
+						<button type="submit" class="btn btn-primary mx-2">Confirmer</button>
+						<a href="index" class="btn btn-primary">Annuler</a>
+					</div>
 				</div>
-
 			</div>
-		</form>
-	</div>
 
+		</div>
+	</form>
 
 </body>

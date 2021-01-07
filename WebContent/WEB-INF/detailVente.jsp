@@ -35,8 +35,9 @@
 
 	<div class="container">
 
-		<h2 class="text-center">Détail vente</h2>
-
+		<h2 class="text-center text-uppercase m-4">détail vente</h2>
+		
+		<br>
 
 		<div class="row text-center">
 
@@ -73,7 +74,7 @@
 				<div class="border">
 				
 					
-					<div class="container col-7 display-4">
+					<div class="container col-7 display-4 ">
 							<strong>	<%
  										 out.print(art.getNomArticle());
  										%>
