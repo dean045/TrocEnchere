@@ -83,8 +83,8 @@ public class modifierArticle extends HttpServlet {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			article.setNomArticle(request.getParameter("nom_article"));
-			article.setDescription(request.getParameter("description"));
+			article.setNomArticle(request.getParameter("nom"));
+			article.setDescription(request.getParameter("descri"));
 			article.setCategorie(request.getParameter("categorie"));
 			article.setPrixInitial(Integer.valueOf(request.getParameter("prix_initial")));
 			article.setDateDebutEnchere(java.sql.Date.valueOf(request.getParameter("date_debut_enchere")));

@@ -35,7 +35,13 @@
 
 	<div class="container">
 
+		<%if (art.getEtat().equals("FN")) {
+					%>
+		<h2>Objet remporté !</h2>
+		<%} else {%>
 		<h2 class="text-center text-uppercase m-4">détail vente</h2>
+		<%}%>
+		
 
 		<br>
 
@@ -52,26 +58,10 @@
 			<div class="container col-lg-7 col-sm-12 border rounded ">
 
 
-				<div class="container col-12">
-					<%
-						if (art.getEtat().equals("FN")) {
-					%>
-					<h1>
-						Objet remporté par
-						<%
-						out.print(manager.getUser(art.getNo_acheteur()).getPseudo());
-					%>
-					</h1>
-					<%
-						} else {
-					%>
-					<%
-						}
-					%>
-				</div>
+				<div class="container col-12"></div>
 
 
-				<div >
+				<div>
 
 
 					<div class="container col-7 display-4 ">
@@ -139,7 +129,8 @@
 						</div>
 					</div>
 
-					<div class="container col-7 border rounded" style="margin-bottom: 1%">
+					<div class="container col-7 border rounded"
+						style="margin-bottom: 1%">
 						<div class="col-5">
 							<div class="row">
 								<p>
@@ -155,7 +146,7 @@
 							</div>
 
 							<div class="row">
-								
+
 								<%out.print(art.getCode_postal() + " " + art.getVille());%>
 							</div>
 						</div>

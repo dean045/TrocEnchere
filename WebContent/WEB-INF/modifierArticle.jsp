@@ -30,103 +30,114 @@
 		categorie = (List<Categories>)request.getAttribute("listeCat");
 	%>
 
-	<h2>Nouvelle vente</h2>
-
 	<form action="modifierArticle" method="post">
+
 		<div class="container">
-			<div class="row">
 
-				<! -- Bloc image justifier à gauche -->
+			<h2 class="text-center text-uppercase m-4">Modifier article</h2>
 
-				<div class="container col-5 " style="width: 500 px;">
-					<div class="row justify-content-left">
+			<br>
 
-						<img
-							src="https://remove-white-background.imageonline.co/fr/pictureinput.jpg">
+			<div class="row text-left">
 
-					</div>
-					<label for="avatar">Photo de l'article :</label> <input type="file"
-						name="photo" accept="image/png, image/jpeg">
+
+				<div class="container img-responsive col-lg-5 col-sm-8 ">
+
+					<img src="./images/img.jpg" style="max-width: 100%;"> <label
+						for="avatar">Upload image</label> <input type="file" name="photo"
+						accept="image/png, image/jpeg">
 				</div>
 
+				<div class="container col-lg-7 col-sm-12 row mx-auto	">
 
-				<! -- Bloc Nouvelle vente justifier à droite -->
+					<div class="container col-7">
 
-				<div class="container col-7 " style="width: 500 px;">
-					<div class="row justify-content-center">
-
-
-						<div class="form-group">
-							<label>Titre de la vente</label> <input type="text"
-								class="form-control" name="nom_article" value="<%=art.getNomArticle()%>">
+						<div class="row mt-2">
+							<strong>Article :</strong> <input required type="text"
+								class="form-control" name="nom" value="<%=art.getNomArticle()%>">
 						</div>
 
-						<div class="form-group">
-							<label>Description</label> <input type="text"
-								class="form-control" name="description"
-								value="<%=art.getDescription()%>" placeholder="Description">
+						<div class="row mt-2">
+							<strong>Description</strong>
+							<textarea style="resize: none;" rows="5" cols="33" type="text"
+								class="form-control" name="descri" value="<%=art.getDescription()%>"></textarea>
 						</div>
 
-						<label>Catégories :</label> <select name="categorie">
+						<div class="row mt-2">
+							<strong style="width: 200px;">Catégories :</strong> <select
+								name="categorie" required>
 
-							<option value="0">Toutes</option>
-							<%
-							for (int i = 0; i < categorie.size(); i++) {
-						%>
-							<option <% if(String.valueOf(categorie.get(i).getNo_categorie()).equalsIgnoreCase(art.getCategorie())){ %>
+								<option value="0">Toutes</option>
+
+								<%
+								for (int i = 0; i < categorie.size(); i++) {
+								%>
+								<option <% if(String.valueOf(categorie.get(i).getNo_categorie()).equalsIgnoreCase(art.getCategorie())){ %>
 								selected = "selected"
 							<% 
 								}
 							%>
 							}
-								value="<%out.print(categorie.get(i).getNo_categorie());%>">
+									value="<%out.print(categorie.get(i).getNo_categorie());%>">
+									<%
+									out.print(categorie.get(i).getLibelle());
+									%>
+								</option>
 								<%
-								out.print(categorie.get(i).getLibelle());
-							%>
-							</option>
-							<%
-							}
-						%>
-
-						</select> <label>Prix</label> <input type="number" name="prix_initial" value="<%=art.getPrixInitial()%>">
-
-
-						<div>
-							<label>Début de l'enchère :</label> <input type="date"
-								name="date_debut_enchere" value="<%=art.getDateDebutEnchere()%>">
+								}
+								%>
+							</select>
+						</div>
+						<div class="row mt-2">
+							<strong style="width: 200px">Prix</strong> <input type="number"
+								class="form-control" required name="prix_initial" value="<%=art.getPrixInitial()%>" style="width: 100px">
 						</div>
 
-
-						<div>
-							<label>Fin de l'enchère :</label> <input type="date"
-								name="date_fin_enchere" value="<%=art.getDateFinEnchere()%>">
+						<div class="row mt-2">
+							<strong style="width: 200px">Début de l'enchère :</strong> <input
+								type="date" name="date_debut_enchere" value="<%=art.getDateDebutEnchere()%>" required>
 						</div>
 
+						<div class="row mt-2">
+							<strong style="width: 200px">Fin de l'enchère :</strong> <input
+								type="date" name="date_fin_enchere" required value="<%=art.getDateFinEnchere()%>">
+						</div>
 
 						<br>
-						<h4>Retrait</h4>
-						<div class=" border">
-							<div class="form-group">
 
+
+						<div class="row">
+							<strong>Retrait</strong>
+						</div>
+						<div class="border row">
+
+
+							<div class="form-group mx-auto">
 								<label for="exampleInputStreet">Rue</label> <input type="text"
-									class="form-control" name="rue" placeholder="Rue" value="<%=art.getRue()%>">
-							</div>
-							<div class="form-group">
-								<label for="exampleInputCodePostal">CodePostal</label> <input
-									type="text" class="form-control" name="code_postal"
-									placeholder="CodePostal" value="<%=art.getCode_postal()%>">
+									required class="form-control" name="rue"
+									 value="<%=art.getRue()%>">
 							</div>
 
-							<div class="form-group">
-								<label for="exampleInputCity">Ville</label> <input type="text"
-									class="form-control" name="ville" placeholder="Ville" value="<%=art.getVille()%>">
+							<div class="form-group mx-auto">
+								<label for="exampleInputCodePostal">CodePostal</label> <input
+									required type="text" class="form-control" name="code_postal"
+									value="<%=art.getCode_postal()%>">
 							</div>
+
+							<div class="form-group mx-auto">
+								<label for="exampleInputCity">Ville</label> <input type="text"
+									required class="form-control" name="ville"
+									value="<%=art.getVille()%>" >
+							</div>
+
 						</div>
-						<br>
-						<div class="container">
-							<button type="submit" class="btn btn-primary" name="button" value="c<%=art.getNoArticle()%>">Confirmer</button>
-							<a href="index" class="btn btn-primary">Annuler</a>
-						</div>
+					</div>
+
+					<br>
+
+					<div class="container d-flex justify-content-center" style="margin-top: 2%">
+						<button type="submit" class="btn btn-primary" name="button" value="c<%=art.getNoArticle()%>">Confirmer</button>
+						<a href="index" class="btn btn-primary">Annuler</a>
 					</div>
 				</div>
 			</div>
