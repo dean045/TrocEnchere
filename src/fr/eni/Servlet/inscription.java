@@ -77,12 +77,7 @@ public class inscription extends HttpServlet {
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
-
-
 		}
-		request.setAttribute("message", message);
-		rd = request.getRequestDispatcher("WEB-INF/inscription.jsp");
-		rd.forward(request, response);
 	}
 
 }

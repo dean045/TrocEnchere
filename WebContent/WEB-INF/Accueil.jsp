@@ -62,43 +62,43 @@
 				%>
 					<script src="asset/js.js"></script>
 					<div class="row">
-						<input type="radio" id="radio_a" name="radio" value="achat" checked> 
-						<label for="vente">Achat</label> 
+						<input type="radio" id="radio_a" name="radio" value="achat" checked="checked"> 
+						<label >Achat</label> 
 						<input type="radio" id="radio_v" name="radio" value="vente" >
-						<label for="huey">Vente</label>
+						<label >Vente</label>
 					</div>
 					
 					<div class="row">
 						<div class="col-6" id="achat">
 							<div class="row">
-								<input type="radio" id="all" name="check" value="0" checked> 
+								<input type="radio" name="check" value="0" checked="checked"> 
 								<label for="scales">enchères en cours</label> 
 							</div>
 							
 							<div class="row">
-								<input type="radio" id="scales" name="check" value="1"> 
+								<input type="radio"  name="check" value="1"> 
 								<label for="scales">mes encères en cours</label> 
 							</div>
 							
 							<div class="row">
-								<input type="radio" id="scales" name="check" value="2">
+								<input type="radio" name="check" value="2">
 								<label for="scales">mes enchères remportées</label>
 							</div>
 							
 						</div>
 						<div class="col-6" id="vente" style="display: none;">
 							<div class="row">
-								<input type="radio" id="all" name="check" checked> 
+								<input type="radio" id="all" name="check2" checked> 
 								<label for="scales">mes ventes en cours</label>
 							</div>
 							
 							<div class="row">
-								<input type="radio" id="scales"name="check"> 
+								<input type="radio" id="scales"name="check2"> 
 								<label for="scales">ventes non débutées</label> 
 							</div> 
 							
 							<div class="row">
-								<input type="radio" id="scales" name="check">
+								<input type="radio" id="scales" name="check2">
 								<label for="scales">ventes terminées</label>
 							</div>
 							
