@@ -111,10 +111,14 @@ public class Manager {
 	public void refresh_art() throws DALException{
 		methode.refresh();
 		}
-	//--------------------Refresh-art-------------------------------
+	//--------------------select-achat-------------------------------
 	public List<Articles> select_achat(int no_categorie, int no_etat, int no_acheteur) throws DALException{
 			return methode.selectAchat(no_categorie, no_etat, no_acheteur);
 			}
+	//--------------------select-vente------------------------------
+		public List<Articles> select_vente(int no_categorie, int no_etat, int no_utilisateur) throws DALException{
+				return methode.selectAchat(no_categorie, no_etat, no_utilisateur);
+				}
 
 	}
 
