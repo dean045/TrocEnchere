@@ -18,12 +18,14 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<link
+	href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 
-<body class="container-fluid">
-	
+<body class="container-fluid" style="background: #eee">
+
 	<%
 		List<Articles> liste = new ArrayList<Articles>();
 		liste = (List<Articles>) request.getAttribute("liste");
@@ -35,9 +37,9 @@
 	</header>
 
 	<div class="row"
-		style=" background-image: url(images/banniere2.png); background-size: cover; background-repeat: no-repeat;">
+		style="background-image: url(images/banniere2.png); background-size: cover; background-repeat: no-repeat;">
 		<div class="col-4 border my-auto h-sm-25"
-			style="min-height : 240px; margin-left: 3%; width: 80%; height: 60%; max-height: 250px;">
+			style="min-height: 240px; margin-left: 3%; width: 80%; height: 60%; max-height: 250px;">
 
 			<form action="index" method="post">
 				<div class="row">
@@ -60,52 +62,51 @@
 				<%if(null != session.getAttribute("user")){
 					Utilisateurs user = (Utilisateurs) session.getAttribute("user");	
 				%>
-					<script src="asset/js.js"></script>
-					<div class="row">
-						<input type="radio" id="radio_a" name="radio" value="achat" checked="checked"> 
-						<label >Achat</label> 
-						<input type="radio" id="radio_v" name="radio" value="vente" >
-						<label >Vente</label>
-					</div>
-					
-					<div class="row">
-						<div class="col-6" id="achat">
-							<div class="row">
-								<input type="radio" name="check" value="0" checked="checked"> 
-								<label for="scales">enchères en cours</label> 
-							</div>
-							
-							<div class="row">
-								<input type="radio"  name="check" value="1"> 
-								<label for="scales">mes enchères en cours</label> 
-							</div>
-							
-							<div class="row">
-								<input type="radio" name="check" value="2">
-								<label for="scales">mes enchères remportées</label>
-							</div>
-							
+				<script src="asset/js.js"></script>
+				<div class="row">
+					<input type="radio" id="radio_a" name="radio" value="achat"
+						checked="checked"> <label>Achat</label> <input
+						type="radio" id="radio_v" name="radio" value="vente"> <label>Vente</label>
+				</div>
+
+				<div class="row">
+					<div class="col-6" id="achat">
+						<div class="row">
+							<input type="radio" name="check" value="0" checked="checked">
+							<label for="scales">enchères en cours</label>
 						</div>
-						<div class="col-6" id="vente" style="display: none;">
-							<div class="row">
-								<input type="radio" name="check2" value="0" checked> 
-								<label for="scales">mes ventes en cours</label>
-							</div>
-							
-							<div class="row">
-								<input type="radio" name="check2" value="1"> 
-								<label for="scales">ventes non débutées</label> 
-							</div> 
-							
-							<div class="row">
-								<input type="radio" name="check2" value="2">
-								<label for="scales">ventes terminées</label>
-							</div>
-							
+
+						<div class="row">
+							<input type="radio" name="check" value="1"> <label
+								for="scales">mes enchères en cours</label>
 						</div>
-						
+
+						<div class="row">
+							<input type="radio" name="check" value="2"> <label
+								for="scales">mes enchères remportées</label>
+						</div>
+
 					</div>
-					<script src="asset/js.js"></script>
+					<div class="col-6" id="vente" style="display: none;">
+						<div class="row">
+							<input type="radio" name="check2" value="0" checked> <label
+								for="scales">mes ventes en cours</label>
+						</div>
+
+						<div class="row">
+							<input type="radio" name="check2" value="1"> <label
+								for="scales">ventes non débutées</label>
+						</div>
+
+						<div class="row">
+							<input type="radio" name="check2" value="2"> <label
+								for="scales">ventes terminées</label>
+						</div>
+
+					</div>
+
+				</div>
+				<script src="asset/js.js"></script>
 				<%}%>
 				<div class="row">
 					<button type="submit" class="btn btn-primary m-auto"
@@ -121,47 +122,59 @@
 	<br>
 
 
-	<div class="container row col-12 border d-flex justify-content-around"
-		style="margin-bottom: 1%;">
-		<div class="row">
+	<div class="container row col-12 border " style="margin-bottom: 1%;">
+		<div class="row d-flex justify-content-center mx-auto">
 			<%
 				for (int i = 0; i < liste.size(); i++) {
 			%>
-			<div class="card col-sm-12 col-lg-3"
-				style="max-width: 250px; min-width:200px; max-height: 400px; margin : 2%">
-				<img class="card-img-top"
-					src="https://png.pngtree.com/png-vector/20190626/ourlarge/pngtree-math-in-computer-line-black-icon-png-image_1507318.jpg"
-					alt="Card image cap">
-				<div class="card-body">
-					<h5 class="card-title">
-						<%
+			<div class="d-flex justify-content-center mt-4"
+				style="min-width: 300px;">
+				<div class="card p-2 bg-white">
+					<i class="fa fa-apple"></i>
+					<div class="about-product text-center mt-2">
+						<img src="images/img.jpg" width="200">
+						<div>
+							<h4>
+								<%
 							out.print(liste.get(i).getNomArticle());
 						%>
-					</h5>
-					<p class="card-text">
-						Prix :
-						<%
-						out.print(liste.get(i).getPrixVente());
-					%><br>Fin de l'enchère : <br>
-						<%
-							out.print(liste.get(i).getDateFinEnchere().toString());
-						%>
+							</h4>
+						</div>
+					</div>
+					<div class="stats mt-2">
 						<%if(liste.get(i).getPseudo() != null){ %>
-						<br> Vendeur :
-						<%
+						<div class="d-flex justify-content-between p-price">
+							<span>Vendeur : </span><span> <%
 							out.print(liste.get(i).getPseudo());
 						%>
-						<br>
+							</span>
+						</div>
 						<%} %>
-					</p>
-				</div>
-				<form action="vente" method="get">
-					<div class="d-flex justify-content-center">
-						<button class="btn btn-secondary btn-sm mx-auto" name="no_article"
-							type="submit" value="<%out.print(liste.get(i).getNoArticle());%>">Voir
-							l'annonce</button>
+						<div class="d-flex justify-content-between p-price">
+							<span>Date de fin</span><span> <%
+							out.print(liste.get(i).getDateFinEnchere().toString());
+						%>
+							</span>
+						</div>
 					</div>
-				</form>
+					<div
+						class="d-flex justify-content-between total font-weight-bold mt-4">
+						<span>Prix</span><span> <%
+						out.print(liste.get(i).getPrixVente());
+					%>
+						</span>
+					</div>
+					<div>
+						<form action="vente" method="get">
+							<div class="d-flex justify-content-center">
+								<button class="btn btn-secondary btn-sm mx-auto"
+									name="no_article" type="submit"
+									value="<%out.print(liste.get(i).getNoArticle());%>">Voir
+									l'annonce</button>
+							</div>
+						</form>
+					</div>
+				</div>
 			</div>
 			<%
 				}
