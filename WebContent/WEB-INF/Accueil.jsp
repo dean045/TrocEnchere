@@ -88,17 +88,17 @@
 						</div>
 						<div class="col-6" id="vente" style="display: none;">
 							<div class="row">
-								<input type="radio" id="all" name="check2" checked> 
+								<input type="radio" name="check2" value="0" checked> 
 								<label for="scales">mes ventes en cours</label>
 							</div>
 							
 							<div class="row">
-								<input type="radio" id="scales"name="check2"> 
+								<input type="radio" name="check2" value="1"> 
 								<label for="scales">ventes non débutées</label> 
 							</div> 
 							
 							<div class="row">
-								<input type="radio" id="scales" name="check2">
+								<input type="radio" name="check2" value="2">
 								<label for="scales">ventes terminées</label>
 							</div>
 							

@@ -50,6 +50,22 @@ public class index extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		else if(null != request.getSession(false) && null != request.getParameter("radio") && request.getParameter("radio").equalsIgnoreCase("vente"))
+		{
+			session = request.getSession(false);
+			Utilisateurs user = (Utilisateurs) session.getAttribute("user");
+			try {
+				manager.refresh_art();
+				listeCat = manager.getLibelle();
+				if(null != request.getParameter("nom_select"))
+				{
+					no_cat = Integer.valueOf(request.getParameter("nom_select"));
+				}
+				liste = manager.select_vente(no_cat,Integer.valueOf(request.getParameter("check2")), user.getNo_utilisateur());
+			} catch (DALException e) {
+				e.printStackTrace();
+			}
+		}
 		else {
 			try {
 				manager.refresh_art();

@@ -796,9 +796,8 @@ public class DaoJDBCImpl implements Dao {
 				if(no_categorie == 0) cat = "";
 				else cat = " AND ARTICLES.no_categorie =" + no_categorie;
 				
-				if(no_etat == 1)
-				etat = "PR";
-				else if (no_etat == 2) etat = "FN";
+				if(no_etat == 1) etat ="'PR'";
+				else if (no_etat == 2) etat = "'FN'";
 				
 				sql = "select no_article, nom_article, prix_vente, date_fin_encheres, ARTICLES.no_utilisateur, IMG, UTILISATEURS.pseudo, no_categorie  \r\n" + 
 						"From UTILISATEURS\r\n" + 

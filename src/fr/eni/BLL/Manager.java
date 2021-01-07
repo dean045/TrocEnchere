@@ -117,7 +117,7 @@ public class Manager {
 			}
 	//--------------------select-vente------------------------------
 		public List<Articles> select_vente(int no_categorie, int no_etat, int no_utilisateur) throws DALException{
-				return methode.selectAchat(no_categorie, no_etat, no_utilisateur);
+				return methode.selectVente(no_categorie, no_etat, no_utilisateur);
 				}
 
 	}
