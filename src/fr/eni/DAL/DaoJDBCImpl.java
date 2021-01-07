@@ -709,7 +709,7 @@ public class DaoJDBCImpl implements Dao {
 
 
 	//-------------------------------------------------Select-Achat--------------------------
-	public List<Articles> selectAchat(int no_categorie, int no_etat ,int no_acheteur) throws DALException  {
+	public List<Articles> selectAchat(int no_categorie, int no_etat ,int no_acheteur, String pseudo) throws DALException  {
 		Connection cnx = null;
 		Statement rqt = null;
 		ResultSet rs = null;
@@ -749,8 +749,8 @@ public class DaoJDBCImpl implements Dao {
 				Date date = rs.getDate("date_fin_encheres");
 				article = new Articles(no_article, nom, date , rs.getInt("prix_vente"), 
 						rs.getInt("no_utilisateur"), "EC",rs.getString("IMG"));
-				article.setPseudo(rs.getString("pseudo"));
-
+				if(no_etat == 1) article.setPseudo(pseudo);
+				else article.setPseudo(rs.getString("pseudo"));
 				liste.add(article);
 			}
 			System.out.println("3");
