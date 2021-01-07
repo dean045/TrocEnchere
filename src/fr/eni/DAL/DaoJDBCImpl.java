@@ -709,7 +709,7 @@ public class DaoJDBCImpl implements Dao {
 
 
 	//-------------------------------------------------Select-Achat--------------------------
-	public List<Articles> selectAchat(int no_categorie, int no_etat ,int no_acheteur, String pseudo) throws DALException  {
+	public List<Articles> selectAchat(int no_categorie, int no_etat ,int no_acheteur) throws DALException  {
 		Connection cnx = null;
 		Statement rqt = null;
 		ResultSet rs = null;
@@ -730,11 +730,16 @@ public class DaoJDBCImpl implements Dao {
 			sql = "select no_article, nom_article, prix_vente, date_fin_encheres, ARTICLES.no_utilisateur, IMG, UTILISATEURS.pseudo, no_categorie \r\n" + 
 					"From ARTICLES\r\n" + 
 					"left join UTILISATEURS ON ARTICLES.no_utilisateur = UTILISATEURS.no_utilisateur WHERE ARTICLES.ETAT ="+ etat + cat ;
-			if(no_etat == 2) etat = "'FN'";
+			if(no_etat == 2) {
+				etat = "'FN'";
+				sql = "select ARTICLES.no_article, nom_article, prix_vente, date_fin_encheres, ARTICLES.no_utilisateur, IMG, no_categorie \r\n" + 
+						"From ARTICLES\r\n" + 
+						"inner join ENCHERES ON ARTICLES.no_article = ENCHERES.no_article WHERE ARTICLES.ETAT = " + etat + " AND encheres.no_utilisateur = "+no_acheteur + cat;
+				}
 			else if(no_etat == 1) {
 				sql = "select ARTICLES.no_article, nom_article, prix_vente, date_fin_encheres, ARTICLES.no_utilisateur, IMG, no_categorie \r\n" + 
 						"From ARTICLES\r\n" + 
-						"inner join ENCHERES ON ARTICLES.no_article = ENCHERES.no_article where  encheres.no_utilisateur = "+no_acheteur + cat;
+						"inner join ENCHERES ON ARTICLES.no_article = ENCHERES.no_article WHERE ARTICLES.ETAT = " + etat + " AND encheres.no_utilisateur = "+no_acheteur + cat;
 			}
 			rs = rqt.executeQuery(sql);
 
@@ -749,8 +754,7 @@ public class DaoJDBCImpl implements Dao {
 				Date date = rs.getDate("date_fin_encheres");
 				article = new Articles(no_article, nom, date , rs.getInt("prix_vente"), 
 						rs.getInt("no_utilisateur"), "EC",rs.getString("IMG"));
-				if(no_etat == 1) article.setPseudo(pseudo);
-				else article.setPseudo(rs.getString("pseudo"));
+				if(no_etat == 0) article.setPseudo(rs.getString("pseudo"));
 				liste.add(article);
 			}
 			System.out.println("3");

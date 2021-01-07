@@ -112,8 +112,8 @@ public class Manager {
 		methode.refresh();
 		}
 	//--------------------Refresh-art-------------------------------
-		public void select_achat(int no_categorie, int no_etat, int no_acheteur, String Pseudo) throws DALException{
-			methode.selectAchat(no_categorie, no_etat, no_acheteur, Pseudo);
+	public List<Articles> select_achat(int no_categorie, int no_etat, int no_acheteur) throws DALException{
+			return methode.selectAchat(no_categorie, no_etat, no_acheteur);
 			}
 
 	}

@@ -71,17 +71,17 @@
 					<div class="row">
 						<div class="col-6" id="achat">
 							<div class="row">
-								<input type="radio" id="all" name="check" checked> 
+								<input type="radio" id="all" name="check" value="0" checked> 
 								<label for="scales">enchères en cours</label> 
 							</div>
 							
 							<div class="row">
-								<input type="radio" id="scales"name="check" checked> 
+								<input type="radio" id="scales" name="check" value="1"> 
 								<label for="scales">mes encères en cours</label> 
 							</div>
 							
 							<div class="row">
-								<input type="radio" id="scales" name="check" checked>
+								<input type="radio" id="scales" name="check" value="2">
 								<label for="scales">mes enchères remportées</label>
 							</div>
 							
@@ -93,12 +93,12 @@
 							</div>
 							
 							<div class="row">
-								<input type="radio" id="scales"name="check" checked> 
+								<input type="radio" id="scales"name="check"> 
 								<label for="scales">ventes non débutées</label> 
 							</div> 
 							
 							<div class="row">
-								<input type="radio" id="scales" name="check" checked>
+								<input type="radio" id="scales" name="check">
 								<label for="scales">ventes terminées</label>
 							</div>
 							
@@ -145,11 +145,14 @@
 					%><br>Fin de l'enchère : <br>
 						<%
 							out.print(liste.get(i).getDateFinEnchere().toString());
-						%><br> Vendeur :
+						%>
+						<%if(liste.get(i).getPseudo() != null){ %>
+						<br> Vendeur :
 						<%
 							out.print(liste.get(i).getPseudo());
 						%>
 						<br>
+						<%} %>
 					</p>
 				</div>
 				<form action="vente" method="get">

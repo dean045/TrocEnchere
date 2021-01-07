@@ -19,7 +19,7 @@ public interface Dao {
 	public void enchere(Articles item) throws DALException;
 	public void delete_article(int no_article) throws DALException;
 	public void refresh() throws DALException;
-	public List<Articles> selectAchat(int no_categorie, int no_etat ,int no_acheteur, String Pseudo) throws DALException;
+	public List<Articles> selectAchat(int no_categorie, int no_etat ,int no_acheteur) throws DALException;
 }
 
 
