@@ -15,9 +15,9 @@
 <title>Détail vente</title>
 </head>
 
-<body>
+<body class="container-fluid">
 
-	<header class="col-12">
+	<header class="row">
 		<jsp:include page="header.jsp"></jsp:include>
 	</header>
 

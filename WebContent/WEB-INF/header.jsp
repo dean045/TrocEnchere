@@ -40,18 +40,21 @@
 				Utilisateurs user = (Utilisateurs) session.getAttribute("user");
 		%>
 
-		<div class="col-sm-12 col-md-12 col-lg-6 col-xl-3 d-flex justify-content-center">			
-			<p style="text-align: center;">
-				Bonjour <% out.print(user_profil.getPseudo());%><br>  
-				Crédit disponible : <% out.print(user.getCredit());%> points <br>										
+		<div class="col-sm-12 col-md-12 col-lg-6 col-xl-3 center">			
+			<div class="row mx-auto">
+				<p style="text-align: center;">
+					Bonjour <% out.print(user_profil.getPseudo());%><br>  
+					Crédit disponible : <% out.print(user.getCredit());%> points <br>														
+				</p>
+			</div>
+			<div class="row mx-auto ">
+					<a class="btn btn-primary btn-sm" href="profil" role="button" style="height: 30px; margin-right: 2%;">Profil</a> 						
+					<a class="btn btn-primary btn-sm" href="creation_article" role="button" style="height: 30px ; margin-right: 2%;">Vendre</a>	
+					<form action="index" method="post">
+					<button class="btn btn-primary btn-sm" name="log" value="off">Déconnexion</button>
+					</form>	
+			</div>
 				
-				<a class="btn btn-primary btn-sm" href="profil" role="button">Profil</a> 						
-				<a class="btn btn-primary btn-sm" href="creation_profil" role="button">Vendre</a>				
-			</p>
-			
-			<form action="index" method="post">
-				<button class="btn btn-primary btn-sm" name="log" value="off">Déconnexion</button>
-			</form>			
 		</div>
 
 		<%
