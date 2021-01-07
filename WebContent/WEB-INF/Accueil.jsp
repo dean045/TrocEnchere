@@ -35,9 +35,9 @@
 	</header>
 
 	<div class="row"
-		style="min-height: 250px; background-image: url(images/Bannière.png); background-size: cover; background-repeat: no-repeat;">
-		<div class="col-4 border my-auto"
-			style="margin-left: 3%; width: 80%; height: 60%; max-height: 250px;">
+		style=" background-image: url(images/banniere2.png); background-size: cover; background-repeat: no-repeat;">
+		<div class="col-4 border my-auto h-sm-25"
+			style="min-height : 240px; margin-left: 3%; width: 80%; height: 60%; max-height: 250px;">
 
 			<form action="index" method="post">
 				<div class="row">
@@ -121,14 +121,14 @@
 	<br>
 
 
-	<div class="container col-12 border d-flex justify-content-around"
+	<div class="container row col-12 border d-flex justify-content-around"
 		style="margin-bottom: 1%;">
 		<div class="row">
 			<%
 				for (int i = 0; i < liste.size(); i++) {
 			%>
-			<div class="card col-sm-12 col-lg-6"
-				style="max-width: 250px; max-height: 420px;">
+			<div class="card col-sm-12 col-lg-3"
+				style="max-width: 250px; min-width:200px; max-height: 400px; margin : 2%">
 				<img class="card-img-top"
 					src="https://png.pngtree.com/png-vector/20190626/ourlarge/pngtree-math-in-computer-line-black-icon-png-image_1507318.jpg"
 					alt="Card image cap">
