@@ -26,7 +26,7 @@
 			<img src="images/logo.png" width="70" height="70" alt="">
 		</a>
 		
-		<h1 class="col-sm-12 col-md-12 col-lg-6 col-xl-3" style="text-align: center;">Arnaqueur.com</h1>
+		<h1 class="col-sm-12 col-md-12 col-lg-6 col-xl-3" style="text-align: center; text-transform: uppercase;">Eni-Enchères</h1>
 		<%
 			if (null == session.getAttribute("user")) {
 		%>
