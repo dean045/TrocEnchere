@@ -34,7 +34,7 @@ public class index extends HttpServlet {
 		List<Articles> liste = new ArrayList<Articles>();
 		List<Categories> listeCat = new ArrayList<Categories>();
 		int no_cat = 0;
-		if(null != request.getSession(false) && null != request.getParameter("radio"))
+		if(null != request.getSession(false) && null != request.getParameter("radio") && request.getParameter("radio").equalsIgnoreCase("achat"))
 		{
 			session = request.getSession(false);
 			Utilisateurs user = (Utilisateurs) session.getAttribute("user");

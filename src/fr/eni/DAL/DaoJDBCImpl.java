@@ -685,13 +685,15 @@ public class DaoJDBCImpl implements Dao {
 		}
 	}
 
-	//-------------------------------------------------DELETE-Art--------------------------
+	//-------------------------------------------------refresh--------------------------
 	public void refresh() throws DALException{
 
 		Connection con = null;
 		try {
 			con = JDBCTOOLS.getConnection();
-			String sql = "update ARTICLES set ETAT = 'FN' where DATEDIFF(day,date_fin_encheres, GETDATE()) > 0;";
+			String sql = "update ARTICLES set ETAT = 'FN' where DATEDIFF(day,date_fin_encheres, GETDATE()) > 0;" +
+					"update ARTICLES set ETAT = 'EC' where DATEDIFF(day,date_debut_encheres, GETDATE()) >= 0 AND DATEDIFF(day,date_fin_encheres, GETDATE()) < 0;" +
+					"update ARTICLES set ETAT = 'PR' where DATEDIFF(day,date_debut_encheres, GETDATE()) < 0;";
 			PreparedStatement preparedStmt = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 			preparedStmt.executeUpdate();
 
@@ -732,14 +734,14 @@ public class DaoJDBCImpl implements Dao {
 					"left join UTILISATEURS ON ARTICLES.no_utilisateur = UTILISATEURS.no_utilisateur WHERE ARTICLES.ETAT ="+ etat + cat ;
 			if(no_etat == 2) {
 				etat = "'FN'";
-				sql = "select ARTICLES.no_article, nom_article, prix_vente, date_fin_encheres, ARTICLES.no_utilisateur, IMG, no_categorie \r\n" + 
-						"From ARTICLES\r\n" + 
-						"inner join ENCHERES ON ARTICLES.no_article = ENCHERES.no_article WHERE ARTICLES.ETAT = " + etat + " AND encheres.no_utilisateur = "+no_acheteur + cat;
+				sql = "select distinct ARTICLES.no_article, nom_article, prix_vente, date_fin_encheres, ARTICLES.no_utilisateur, IMG, no_categorie \r\n" + 
+						"From ENCHERES\r\n" + 
+						"inner join ARTICLES ON ARTICLES.no_article = ENCHERES.no_article WHERE ARTICLES.ETAT = " + etat + " AND ARTICLES.no_acheteur = "+no_acheteur + cat;
 				}
 			else if(no_etat == 1) {
-				sql = "select ARTICLES.no_article, nom_article, prix_vente, date_fin_encheres, ARTICLES.no_utilisateur, IMG, no_categorie \r\n" + 
+				sql = "select distinct ARTICLES.no_article, nom_article, prix_vente, date_fin_encheres, ENCHERES.no_utilisateur, IMG, no_categorie \r\n" + 
 						"From ARTICLES\r\n" + 
-						"inner join ENCHERES ON ARTICLES.no_article = ENCHERES.no_article WHERE ARTICLES.ETAT = " + etat + " AND encheres.no_utilisateur = "+no_acheteur + cat;
+						"inner join ENCHERES ON ENCHERES.no_article  = ARTICLES.no_article and  ENCHERES.no_utilisateur = "+no_acheteur + "where ARTICLES.ETAT = " + etat + cat;
 			}
 			rs = rqt.executeQuery(sql);
 
