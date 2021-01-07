@@ -15,29 +15,37 @@
 <title>Détail vente</title>
 </head>
 
-<body class="container-fluid">
+<body>
 
-	<header class="row">
+	<header class="col-12">
 		<jsp:include page="header.jsp"></jsp:include>
 	</header>
 
 	<%
-		session = request.getSession(false);
-		Utilisateurs user = new Utilisateurs();
-		user = (Utilisateurs) session.getAttribute("user");
-		Articles art = (Articles) request.getAttribute("art");
-		Manager manager = new Manager();
+	session = request.getSession(false);
+	Utilisateurs user = new Utilisateurs();
+	user = (Utilisateurs) session.getAttribute("user");
+	Articles art = (Articles) request.getAttribute("art");
+	Manager manager = new Manager();
 	%>
 
 	<div class="container">
 
+		<h2 class="text-center">Détail vente</h2>
+
+
 		<div class="row text-center">
 
+
 			<div class="container img-responsive col-lg-5 col-sm-8 ">
-				<img src="./img/carotte.jpeg" style="max-width: 100%;">
+			
+				<img src="./images/img.jpg" style="max-width: 100%;">
+				
 			</div>
 
+
 			<div class="container col-lg-7 col-sm-12 ">
+
 
 				<div class="container col-12">
 					<%
@@ -46,174 +54,177 @@
 					<h1>
 						Objet remporté par
 						<%
-						out.print(manager.getUser(art.getNo_acheteur()).getPseudo());
-					%>
+							out.print(manager.getUser(art.getNo_acheteur()).getPseudo());
+						%>
 					</h1>
 					<%
 						} else {
 					%>
-					<h1>Détail vente</h1>
 					<%
 						}
 					%>
 				</div>
-
-				<div class="container col-7">
-					<div class="row">
-						<strong>Nom de l'article :</strong>
-						<p>
-							<%
-								out.print(art.getNomArticle());
-							%>
-						</p>
+				
+				
+				<div class="border">
+				
+					
+					<div class="container col-7 display-4">
+							<strong>	<%
+ 										 out.print(art.getNomArticle());
+ 										%>
+							</strong>
 					</div>
-				</div>
 
-				<div class="container col-7">
-					<div class="row">
-						<strong>Description : </strong>
-						<p>
-							<%
-								out.print(art.getDescription());
-							%>
-						</p>
-					</div>
-				</div>
+					<br>
+					
 
-				<div class="container col-7">
-					<div class="row">
-						<strong> Meilleure offre : </strong>
-						<p>
-							<%
-								out.print(" " + art.getPrixVente() + " ");
-							%>
-						</p>
-					</div>
-					<div class="row">
-						<strong> Meilleure Enchérisseur : </strong>
-						<p>
-							<%
-								Utilisateurs user1 = manager.getUser(art.getNo_acheteur());
-								out.print(" " + user1.getPseudo());
-							%>
-						</p>
-					</div>
-				</div>
-
-
-				<div class="container col-7">
-					<div class="row">
-						<strong>Mise à prix : </strong>
-						<p>
-							<%
-								out.print(art.getPrixInitial());
-							%>
-						</p>
-					</div>
-				</div>
-
-				<div class="container col-7">
-					<div class="row">
-						<p>
-							<strong>Fin de l'enchère :</strong>
-							<%
-								out.print(art.getDateFinEnchere());
-							%>
-						</p>
-					</div>
-				</div>
-
-				<div class="container col-7">
-					<div class="row">
-						<p>
-							<strong>Retrait : </strong>
-							<%
-								out.print(art.getRue() + " " + art.getCode_postal() + " " + art.getVille());
-							%>
-						</p>
-					</div>
-				</div>
-				<div class="container col-7">
-					<div class="row">
-						<strong>Vendeur : </strong>
-						<form action="profil" method="post">
-							<button name="profil" class="btn btn-outline-dark"
-								value="<%=art.getNoUtilisateur()%>" type="submit">
-								<%
-									out.print(manager.getUser(art.getNoUtilisateur()).getPseudo());
-								%>
-							</button>
-						</form>
-
-					</div>
-				</div>
-				<div class="container col-7">
-
-					<form method="post" action="enchere">
+					<div class="container col-7">
 						<div class="row">
-
-							<p>
-								<strong>Ma proposition : </strong>
-							<p>
+							<strong>Description :</strong>
+							<p style = "margin-left: 5px;">
 								<%
-									if (null != request.getAttribute("msg")) {
-								%>
-							
-							<p style="color: red">
-								<%
-									out.print(request.getAttribute("msg"));
+								out.print(art.getDescription());
 								%>
 							</p>
-							<%
-								}
-							%>
-							<input type="number" style="width: 75px; margin-left: 20px;"
-								name="enchere" min=<%out.print(art.getPrixInitial());%>
-								value=<%out.print(art.getPrixVente() + 1);%>>
 						</div>
-
-						<div class="container row">
-
-							<button type="submit" class="btn btn-primary m-auto"
-								name="noArticle" value=<%out.print(art.getNoArticle());%>>Enchérir</button>
-						</div>
-					</form>
-				</div>
-
-				<div class="container row" style="margin-top: 1%">
-
-					<a href="index" class="btn btn-primary btn-block mx-auto"
-						style="width: 13em">Retour à la page principale </a>
-
-				</div>
-			</div>
-
-		</div>
-	</div>
-
-	<%
-		if (null != session.getAttribute("user") && art.getNoUtilisateur() == user.getNo_utilisateur()) {
-	%>
-	<div class="container">
-		<div class="row">
-			<div class="col-3 container mx-auto">
-				<div class="row">
-					<div class="col-5">
-						<form method="post" action="modifierArticle">
-							<button name="button" class="btn btn-secondary" type="submit"
-								value="m<%=art.getNoArticle()%>">Modifier</button>
-						</form>
-						<form method="post" action="modifierArticle">
-							<button name="button" class="btn btn-secondary" type="submit"
-								value="s<%=art.getNoArticle()%>">Supprimer</button>
-						</form>
 					</div>
+
+					<div class="container col-7">
+						<div class="row">
+							<strong> Meilleure offre : </strong>
+							<p style = "margin-left: 5px;">
+								<%
+									out.print(" " + art.getPrixVente() + " ");
+								%>
+								points
+							</p>
+						</div>
+						
+					<div class="row">
+							<strong> Meilleure Enchérisseur : </strong>
+							<p style = "margin-left: 5px;">
+								<%
+									Utilisateurs user1 = manager.getUser(art.getNo_acheteur());
+									out.print(" " + user1.getPseudo());
+								%>
+							</p>
+						</div>
+					</div>
+
+					<div class="container col-7">
+						<div class="row">
+							<strong >Mise à prix : </strong>
+							<p style = "margin-left: 5px;">
+								<%
+									out.print(art.getPrixInitial());
+								%>
+								points
+							</p>
+						</div>
+					</div>
+
+					<div class="container col-7">
+						<div class="row">
+							<p>
+								<strong>Fin de l'enchère :</strong>
+								<%
+									out.print(art.getDateFinEnchere());
+								%>
+							</p>
+						</div>
+					</div>
+
+					<div class="container col-7">
+						<div class="row">
+							<p>
+								<strong>Retrait : </strong>
+								<%
+									out.print(art.getRue() + " " );
+								%> 
+							</p>
+						<div class = "position-relative"  style ="margin-left: -111px;">
+						<br>
+							<%
+								out.print (art.getCode_postal() + " " + art.getVille());
+							%>
+						</div>	
+						</div>
+					</div>
+					
+					
+					<div class="container col-7">
+						<div class="row">
+							<strong style ="margin-top: 12px;">Vendeur : </strong>
+							<form action="profil" method="post">
+								<button style ="margin-top: 5px; margin-left: -5px;" name="profil" class="btn btn-link" value=" <%= art.getNoUtilisateur()%>" type="submit">
+									<%
+										out.print(manager.getUser(art.getNoUtilisateur()).getPseudo());
+									%>
+								</button>
+							</form>
+						</div>
+					</div>
+					
+					
+					<div class="container col-7">
+						<form method="post" action="enchere">
+							<div class="row"  style = "margin-top: 10px;">
+								<p>
+									<strong>Ma proposition :</strong>
+								<p>
+				
+								<input class ="form-control" type="number" style="width: 100px; margin-top: -4px; margin-left: 15px;"
+									name="enchere" min=<%out.print(art.getPrixInitial());%>
+									value=<%out.print(art.getPrixVente() + 1);%>>
+							</div>
+							
+									<%
+										if (null != request.getAttribute("msg")) {
+									%>
+								
+								<p style="color: red">
+									<%
+										out.print(request.getAttribute("msg"));
+									%>
+								</p>
+									<%
+										}
+									%>
+								<button type="submit" class="btn btn-outline-primary mb-2" style="margin-top: -90px; margin-left: 225px;"
+										name="noArticle" value=<%out.print(art.getNoArticle());%>>Enchérir
+								</button>	
+							</form>	
+					</div>		
+							
+							
+					<div class="btn-group">
+						
+							<form method="post" action="modifierArticle">
+							<button name="button" class="btn btn-outline-primary mb-2"
+									type="submit" value="m<%=art.getNoArticle()%>">Modifier
+							</button>
+							</form>
+							<form method="post" action="modifierArticle">
+							<button name="button" class="btn btn-outline-primary mb-2"
+									type="submit" value="s<%=art.getNoArticle()%>">Supprimer
+							</button>
+							</form>
+					</div>
+					
 				</div>
+				
 			</div>
+							
 		</div>
-	</div>
-	<%
-		}
-	%>
+				<a href="index" class="btn btn-primary btn-block mx-auto" style="width: 10em; margin-top: 10px;">Page principal</a>
+	</div>	
+
+					<%
+						if (null != session.getAttribute("user") && art.getNoUtilisateur() == user.getNo_utilisateur()) {
+					%>
+					<%
+						}
+					%>
 </body>
 </html>
