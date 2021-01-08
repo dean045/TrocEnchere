@@ -85,7 +85,7 @@ public class modifierArticle extends HttpServlet {
 			}
 			article.setNomArticle(request.getParameter("nom"));
 			article.setDescription(request.getParameter("descri"));
-			article.setCategorie(request.getParameter("categorie"));
+			article.setCategorie(Integer.valueOf(request.getParameter("categorie")));
 			article.setPrixInitial(Integer.valueOf(request.getParameter("prix_initial")));
 			article.setDateDebutEnchere(java.sql.Date.valueOf(request.getParameter("date_debut_enchere")));
 			article.setDateFinEnchere(java.sql.Date.valueOf(request.getParameter("date_fin_enchere")));

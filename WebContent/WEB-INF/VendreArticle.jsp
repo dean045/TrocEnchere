@@ -76,7 +76,7 @@
 							<strong style="width: 200px;">Catégories :</strong> <select
 								name="categorie" required>
 
-								<option value="0">Toutes</option>
+								<option  value="0">Toutes</option>
 
 								<%
 								for (int i = 0; i < categorie.size(); i++) {

@@ -158,7 +158,7 @@ public class DaoJDBCImpl implements Dao {
 			preparedStmt.setInt(5, item.getPrixInitial());
 			preparedStmt.setInt(6, item.getPrixInitial());
 			preparedStmt.setInt(7, item.getNoUtilisateur());
-			preparedStmt.setInt(8, 1);
+			preparedStmt.setInt(8, item.getCategorie());
 			preparedStmt.setString(9, item.getEtat());
 			preparedStmt.setString(10,item.getImg());
 
@@ -233,7 +233,7 @@ public class DaoJDBCImpl implements Dao {
 
 				art.setNoUtilisateur(rs.getInt("no_utilisateur"));
 
-				art.setCategorie(rs.getString("no_categorie"));
+				art.setCategorie(rs.getInt("no_categorie"));
 
 				art.setEtat(rs.getString("ETAT"));
 
@@ -594,7 +594,7 @@ public class DaoJDBCImpl implements Dao {
 			preparedStmt.setInt(5, registration_article.getPrixInitial());
 			preparedStmt.setInt(6, registration_article.getPrixVente());
 			preparedStmt.setInt(7, registration_article.getNoUtilisateur());
-			preparedStmt.setString(8, registration_article.getCategorie());
+			preparedStmt.setInt(8, registration_article.getCategorie());
 			preparedStmt.setString(9, registration_article.getEtat());
 			preparedStmt.setString(10,registration_article.getImg());
 			preparedStmt.setInt(11,registration_article.getNo_acheteur());

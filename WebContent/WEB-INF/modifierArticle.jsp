@@ -72,7 +72,7 @@
 								<%
 								for (int i = 0; i < categorie.size(); i++) {
 								%>
-								<option <% if(String.valueOf(categorie.get(i).getNo_categorie()).equalsIgnoreCase(art.getCategorie())){ %>
+								<option <% if(Integer.valueOf(categorie.get(i).getNo_categorie()) == art.getCategorie()){ %>
 								selected = "selected"
 							<% 
 								}

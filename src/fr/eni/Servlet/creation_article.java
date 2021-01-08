@@ -68,7 +68,7 @@ public class creation_article extends HttpServlet {
 		Date date_fin =  java.sql.Date.valueOf(request.getParameter("date_fin"));
 		Utilisateurs user = (Utilisateurs) session.getAttribute("user");
 		Articles item = new Articles(request.getParameter("nom"), request.getParameter("descri"),date_debut,date_fin,
-				Integer.valueOf(request.getParameter("prix")),user.getNo_utilisateur(),"EC","img",request.getParameter("categorie"),request.getParameter("rue"),request.getParameter("codepostal"),request.getParameter("ville"));
+				Integer.valueOf(request.getParameter("prix")),user.getNo_utilisateur(),"EC","img",Integer.valueOf(request.getParameter("categorie")),request.getParameter("rue"),request.getParameter("codepostal"),request.getParameter("ville"));
 		try {
 			manager.add_item(item);
 			session.setAttribute("item", item);

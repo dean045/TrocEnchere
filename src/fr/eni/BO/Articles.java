@@ -16,7 +16,7 @@ public class Articles {
 	private int noUtilisateur ; 
 	private String etat ; 
 	private String img ;
-	private String categorie ; 
+	private int categorie ; 
 	private String rue ;
 	private String code_postal;
 	private String ville;
@@ -30,7 +30,7 @@ public class Articles {
 
 
 	public Articles(int noArticle, String nomArticle, String description, Date dateDebutEnchere, Date dateFinEnchere,
-			int prixInitial, int prixVente, int noUtilisateur, String etat, String img, String categorie, String rue,
+			int prixInitial, int prixVente, int noUtilisateur, String etat, String img, int categorie, String rue,
 			String code_postal, String ville, int no_acheteur) {
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
@@ -51,7 +51,7 @@ public class Articles {
 
 	//Surcharge 
 	public Articles(String nomArticle, String description, Date dateDebutEnchere, Date dateFinEnchere, int prixInitial,
-			int noUtilisateur, String etat, String img, String categorie, String rue, String code_postal, String ville) {
+			int noUtilisateur, String etat, String img, int categorie, String rue, String code_postal, String ville) {
 
 		this.nomArticle = nomArticle;
 		this.description = description;
@@ -163,11 +163,11 @@ public class Articles {
 		this.img = img;
 	}
 
-	public String getCategorie() {
+	public int getCategorie() {
 		return categorie;
 	}
 
-	public void setCategorie(String categorie) {
+	public void setCategorie(int categorie) {
 		this.categorie = categorie;
 	}
 
